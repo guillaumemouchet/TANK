@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1827861446373598047}
   - component: {fileID: 1827861446373598046}
   - component: {fileID: 1827861446373598045}
+  - component: {fileID: 24183219979708221}
+  - component: {fileID: 1672212467695852596}
   m_Layer: 0
   m_Name: TankBasic
   m_TagString: Untagged
@@ -134,6 +136,36 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &24183219979708221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827861446373598044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 110a9650fb7614244a648cf7226a58f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missile: {fileID: 835833510877782936, guid: 8076fb346d765e94ea80e470de2d7702, type: 3}
+  launchForce: 45
+  firePoint: {fileID: 2465517743946915942}
+  point: {fileID: 1162168438518866712, guid: e2342da80a8c6fa4b8dbc751c9d79a8a, type: 3}
+  numberOfPoints: 50
+  spaceBetweenPoints: 0.04
+--- !u!114 &1672212467695852596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827861446373598044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66b7b7c955d37f49bc5101bcc3f70af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1841719360736136775
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +291,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4294757500871491811}
-  - component: {fileID: 6792925007854965642}
   m_Layer: 0
   m_Name: Canon
   m_TagString: Untagged
@@ -283,21 +314,3 @@ Transform:
   m_Father: {fileID: 1827861446373598040}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 9.238}
---- !u!114 &6792925007854965642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4030093441107205743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 110a9650fb7614244a648cf7226a58f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  missile: {fileID: 835833510877782936, guid: 8076fb346d765e94ea80e470de2d7702, type: 3}
-  launchForce: 15
-  firePoint: {fileID: 2465517743946915942}
-  point: {fileID: 1162168438518866712, guid: e2342da80a8c6fa4b8dbc751c9d79a8a, type: 3}
-  numberOfPoints: 50
-  spaceBetweenPoints: 0.04
