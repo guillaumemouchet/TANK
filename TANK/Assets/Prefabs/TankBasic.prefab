@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 1827861446373598047}
   - component: {fileID: 1827861446373598046}
   - component: {fileID: 1827861446373598045}
-  - component: {fileID: 8832854162646291205}
   m_Layer: 0
-  m_Name: Player
+  m_Name: TankBasic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.577, y: -3.074, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4294757500871491811}
   m_Father: {fileID: 0}
@@ -46,6 +46,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -133,23 +134,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8832854162646291205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1827861446373598044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6de3a05387159034593b5f4bc4aa9945, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &1841719360736136775
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,6 +161,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.61, y: 0, z: -1}
   m_LocalScale: {x: 1.2850935, y: 0.1664, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2465517743946915942}
   m_Father: {fileID: 4294757500871491811}
@@ -193,6 +178,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -259,6 +245,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.589, y: -0.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1833110597892185018}
   m_RootOrder: 0
@@ -272,7 +259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4294757500871491811}
-  - component: {fileID: 6616574054457805382}
+  - component: {fileID: 6792925007854965642}
   m_Layer: 0
   m_Name: Canon
   m_TagString: Untagged
@@ -290,12 +277,13 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: 0.080526516, w: 0.9967525}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1833110597892185018}
   m_Father: {fileID: 1827861446373598040}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 9.238}
---- !u!114 &6616574054457805382
+--- !u!114 &6792925007854965642
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -304,12 +292,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4030093441107205743}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c913f69444723b1498cba5bc732aa67a, type: 3}
+  m_Script: {fileID: 11500000, guid: 110a9650fb7614244a648cf7226a58f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   missile: {fileID: 835833510877782936, guid: 8076fb346d765e94ea80e470de2d7702, type: 3}
-  launchForce: 13
+  launchForce: 15
   firePoint: {fileID: 2465517743946915942}
   point: {fileID: 1162168438518866712, guid: e2342da80a8c6fa4b8dbc751c9d79a8a, type: 3}
   numberOfPoints: 50
-  spaceBetweenPoints: 0.025
+  spaceBetweenPoints: 0.04
