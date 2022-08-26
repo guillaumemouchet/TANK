@@ -54,7 +54,7 @@ public class RoomController : MonoBehaviourPunCallbacks
             PlayerButton tempButton = tempListing./*transform.GetChild(0).*/GetComponent<PlayerButton>();
             tempButton.SetPlayer(player.NickName);
         }
-        if (PhotonNetwork.IsMasterClient && (PhotonNetwork.PlayerList.Length == int.Parse(roomSize.text)))
+        if (PhotonNetwork.IsMasterClient && (PhotonNetwork.CurrentRoom.PlayerCount == int.Parse(roomSize.text)))
         {
             startButton.SetActive(true);
         }
