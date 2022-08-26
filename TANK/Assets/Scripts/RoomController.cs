@@ -54,6 +54,7 @@ public class RoomController : MonoBehaviourPunCallbacks
         else
         {
             startButton.SetActive(false);
+            Debug.Log("Not Master");
         }
         ClearPlayerListings();
         ListPLayers();
