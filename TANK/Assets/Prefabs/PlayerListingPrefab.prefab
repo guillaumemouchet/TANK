@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 7172954757297378092}
   - component: {fileID: 8330930097314955481}
   - component: {fileID: 8286636915407442145}
+  - component: {fileID: 8379283680588279721}
   m_Layer: 5
   m_Name: PlayerListingPrefab
   m_TagString: Untagged
@@ -256,4 +257,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8330930097314955481}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8379283680588279721}
+        m_TargetAssemblyTypeName: PlayerButton, Assembly-CSharp
+        m_MethodName: DisplayPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8379283680588279721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5917865658527746469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12b2956c1012e664cb584a036bd6c6d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: {fileID: 7593883660701111278}
