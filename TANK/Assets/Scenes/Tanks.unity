@@ -341,6 +341,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87787985983b3f644977a69ad11697d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  btnJump: {fileID: 2074428323}
+  btnIsmissile: {fileID: 688582246}
+  btnPerk1: {fileID: 1227563148}
+  btnPerk2: {fileID: 1978676899}
 --- !u!114 &605465822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,7 +352,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 605465814}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 110a9650fb7614244a648cf7226a58f7, type: 3}
   m_Name: 
@@ -372,8 +376,8 @@ GameObject:
   - component: {fileID: 688582247}
   - component: {fileID: 688582246}
   m_Layer: 5
-  m_Name: BtnSpell1 (1)
-  m_TagString: Untagged
+  m_Name: BtnIsmissile
+  m_TagString: Ismissile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -445,7 +449,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 605465821}
         m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
-        m_MethodName: ToggleState
+        m_MethodName: Canon
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -776,8 +780,8 @@ GameObject:
   - component: {fileID: 1227563149}
   - component: {fileID: 1227563148}
   m_Layer: 5
-  m_Name: BtnSpell1 (2)
-  m_TagString: Untagged
+  m_Name: BtnPerk1
+  m_TagString: BounceGrenade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -846,7 +850,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1227563149}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 605465821}
+        m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
+        m_MethodName: Perk1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1227563149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1154,6 +1170,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 351370981020378598, guid: 5864ace611fc8ba4ba747bcd8f0c804f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1672212467695852596, guid: 5864ace611fc8ba4ba747bcd8f0c804f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1672212467695852596, guid: 5864ace611fc8ba4ba747bcd8f0c804f, type: 3}
+      propertyPath: launchForce
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1827861446373598040, guid: 5864ace611fc8ba4ba747bcd8f0c804f, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1201,6 +1229,18 @@ PrefabInstance:
     - target: {fileID: 1827861446373598044, guid: 5864ace611fc8ba4ba747bcd8f0c804f, type: 3}
       propertyPath: m_Name
       value: TankBasic
+      objectReference: {fileID: 0}
+    - target: {fileID: 1827861446373598044, guid: 5864ace611fc8ba4ba747bcd8f0c804f, type: 3}
+      propertyPath: m_TagString
+      value: Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 1827861446373598045, guid: 5864ace611fc8ba4ba747bcd8f0c804f, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1827861446373598046, guid: 5864ace611fc8ba4ba747bcd8f0c804f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 24183219979708221, guid: 5864ace611fc8ba4ba747bcd8f0c804f, type: 3}
@@ -1298,8 +1338,8 @@ GameObject:
   - component: {fileID: 1978676900}
   - component: {fileID: 1978676899}
   m_Layer: 5
-  m_Name: BtnSpell1 (3)
-  m_TagString: Untagged
+  m_Name: BtnPerk2
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1368,7 +1408,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1978676900}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 605465821}
+        m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
+        m_MethodName: Perk2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1978676900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1420,8 +1472,8 @@ GameObject:
   - component: {fileID: 2074428324}
   - component: {fileID: 2074428323}
   m_Layer: 5
-  m_Name: BtnSpell1
-  m_TagString: Untagged
+  m_Name: BtnJump
+  m_TagString: Jump
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1491,7 +1543,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 605465821}
         m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
         m_MethodName: Jump
         m_Mode: 1

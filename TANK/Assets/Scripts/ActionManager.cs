@@ -1,37 +1,53 @@
+/*
+ * Title : ActionManager.cs
+ * Authors : Titus Abele, Benjamin Mouchet, Guillaume Mouchet, Dorian Tan
+ * Date : 25.08.2022
+ * Source : 
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ActionManager : MonoBehaviour
 {
-
-    private Rigidbody2D rb;
+    public Button btnJump;
+    public Button btnIsmissile;
+    public Button btnPerk1;
+    public Button btnPerk2;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        gameObject.GetComponent<Canon>().enabled = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+
     }
 
     public void Jump()
     {
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            rb.velocity = new Vector2(rb.velocity.x, 7f);
-        }
+        gameObject.GetComponent<Jump>().enabled = true;
+        gameObject.GetComponent<Canon>().enabled = false;
     }
 
-    public void ToggleState()
+    public void Canon()
     {
-        gameObject.GetComponent<Canon>().enabled = !gameObject.GetComponent<Canon>().enabled;
-       
+        gameObject.GetComponent<Jump>().enabled = false;
+        gameObject.GetComponent<Canon>().enabled = true;
+    }
 
-        
+    public void Perk1()
+    {
+
+    }
+
+    public void Perk2()
+    {
+
     }
 }
