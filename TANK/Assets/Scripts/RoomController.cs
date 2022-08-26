@@ -54,6 +54,15 @@ public class RoomController : MonoBehaviourPunCallbacks
             PlayerButton tempButton = tempListing./*transform.GetChild(0).*/GetComponent<PlayerButton>();
             tempButton.SetPlayer(player.NickName);
         }
+        if (PhotonNetwork.IsMasterClient && (PhotonNetwork.PlayerList.Length == int.Parse(roomSize.text)))
+        {
+            startButton.SetActive(true);
+        }
+        else
+        {
+            startButton.SetActive(false);
+            Debug.Log("Not Ready to start yet");
+        }
     }
     static System.Predicate<Player> ByName(string name)
     {
@@ -67,15 +76,6 @@ public class RoomController : MonoBehaviourPunCallbacks
         roomPanel.SetActive(true);
         lobbyPanel.SetActive(false);
         roomNameDisplay.text = PhotonNetwork.CurrentRoom.Name;
-        if (PhotonNetwork.IsMasterClient && (PhotonNetwork.PlayerList.Length==int.Parse(roomSize.text)))
-        {
-            startButton.SetActive(true);
-        }
-        else
-        {
-            startButton.SetActive(false);
-            Debug.Log("Not Master");
-        }
         ClearPlayerListings();
         ListPlayers();
     }
@@ -129,6 +129,6 @@ public class RoomController : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
