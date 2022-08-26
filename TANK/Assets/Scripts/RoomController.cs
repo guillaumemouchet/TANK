@@ -43,16 +43,25 @@ public class RoomController : MonoBehaviourPunCallbacks
     }*/
     private void ListPlayers()
     {
-        int tempIndex;
         foreach (Player player in PhotonNetwork.PlayerList)
         {
+            Debug.Log("PLAYER NAME :" + player.NickName);
             GameObject tempListing = Instantiate(playerListingPrefab, playersContainer);
-            
-            PlayerButton tempButton = tempListing.transform.GetChild(0).GetComponent<PlayerButton>();
+            /*if(PhotonNetwork.PlayerList!= null)
+            {
+                tempIndex = PhotonNetwork.PlayerList.FindIndex(ByName(player.NickName));
+            }*/
+            PlayerButton tempButton = tempListing./*transform.GetChild(0).*/GetComponent<PlayerButton>();
             tempButton.SetPlayer(player.NickName);
         }
     }
-   
+    static System.Predicate<Player> ByName(string name)
+    {
+        return delegate (Player player)
+        {
+            return player.NickName == name;
+        };
+    }
     public override void OnJoinedRoom()
     {
         roomPanel.SetActive(true);
