@@ -22,7 +22,7 @@ public class RoomButton : MonoBehaviour
 
     public void JoinRoomOnClick()
     {
-        PhotonNetwork.JoinRoom(roomName);
+        PhotonNetwork.JoinRoom(roomName); 
     }
 
     public void SetRoom(string nameInput, int sizeInput, int countInput)

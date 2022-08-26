@@ -19,6 +19,11 @@ public class PlayerButton : MonoBehaviour
     {
         Debug.Log("playername " + playerName.text);
     }
+
+    public void SetPlayer(string nameInput)
+    {
+        playerName.name = nameInput;
+    }
     // Start is called before the first frame update
     void Start()
     {

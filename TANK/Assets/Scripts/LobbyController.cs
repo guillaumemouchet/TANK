@@ -19,7 +19,8 @@ public class LobbyController : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject lobbyPanel;
     [SerializeField] private GameObject mainPanel;
     [SerializeField] private TMP_InputField playerNameInput;
-
+    [SerializeField] private TMP_InputField TMP_roomName;
+    [SerializeField] private TMP_InputField TMP_roomSize;
     private string roomName;
     private int roomSize;
 
@@ -58,9 +59,10 @@ public class LobbyController : MonoBehaviourPunCallbacks
 
     public void JoinLobbyOnClick()
     {
-        mainPanel.SetActive(false);
-        lobbyPanel.SetActive(true);
-        PhotonNetwork.JoinLobby();
+       
+            mainPanel.SetActive(false);
+            lobbyPanel.SetActive(true);
+            PhotonNetwork.JoinLobby();
     }
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
@@ -113,13 +115,21 @@ public class LobbyController : MonoBehaviourPunCallbacks
 
     public void OnRoomSizeChanged(string sizeIn)
     {
-        roomSize = int.Parse(sizeIn);
+        string val = sizeIn.Replace("-", "");
+        TMP_roomSize.text = val;
+        roomSize = int.Parse(val);
     }
     public void CreateRoom()
     {
-        Debug.Log("Creating room now");
-        RoomOptions roomOps = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = (byte)roomSize };
-        PhotonNetwork.CreateRoom(roomName, roomOps);
+        if (!(string.IsNullOrWhiteSpace(TMP_roomName.text) || string.IsNullOrWhiteSpace(TMP_roomSize.text)))
+        {
+            Debug.Log("Creating room now");
+            RoomOptions roomOps = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = (byte)roomSize };
+            PhotonNetwork.CreateRoom(roomName, roomOps);
+        }else
+        {
+            Debug.Log("Missing Arguments");
+        }
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)

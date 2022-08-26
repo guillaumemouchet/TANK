@@ -23,7 +23,7 @@ public class RoomController : MonoBehaviourPunCallbacks
     [SerializeField] private Transform playersContainer;
     [SerializeField] private GameObject playerListingPrefab;
     [SerializeField] private TMP_Text roomNameDisplay;
-
+    [SerializeField] private TMP_InputField roomSize;
     void ClearPlayerListings()
     {
         for (int i = playersContainer.childCount - 1; i >= 0; i--)
@@ -32,7 +32,7 @@ public class RoomController : MonoBehaviourPunCallbacks
         }
     }
 
-    void ListPLayers()
+    /*void ListPLayers()
     {
         foreach (Player player in PhotonNetwork.PlayerList)
         {
@@ -40,14 +40,25 @@ public class RoomController : MonoBehaviourPunCallbacks
             Text tempText = tempListing.transform.GetChild(0).GetComponent<Text>();
             tempText.text = player.NickName;
         }
+    }*/
+    private void ListPlayers()
+    {
+        int tempIndex;
+        foreach (Player player in PhotonNetwork.PlayerList)
+        {
+            GameObject tempListing = Instantiate(playerListingPrefab, playersContainer);
+            
+            PlayerButton tempButton = tempListing.transform.GetChild(0).GetComponent<PlayerButton>();
+            tempButton.SetPlayer(player.NickName);
+        }
     }
-
+   
     public override void OnJoinedRoom()
     {
         roomPanel.SetActive(true);
         lobbyPanel.SetActive(false);
         roomNameDisplay.text = PhotonNetwork.CurrentRoom.Name;
-        if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient && (PhotonNetwork.PlayerList.Length==int.Parse(roomSize.text)))
         {
             startButton.SetActive(true);
         }
@@ -57,19 +68,19 @@ public class RoomController : MonoBehaviourPunCallbacks
             Debug.Log("Not Master");
         }
         ClearPlayerListings();
-        ListPLayers();
+        ListPlayers();
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         ClearPlayerListings();
-        ListPLayers();
+        ListPlayers();
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         ClearPlayerListings();
-        ListPLayers();
+        ListPlayers();
         if (PhotonNetwork.IsMasterClient)
         {
             startButton.SetActive(true);
