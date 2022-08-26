@@ -1,6 +1,15 @@
+/*
+ * Title : Canon.cs
+ * Authors : Titus Abele, Benjamin Mouchet, Guillaume Mouchet, Dorian Tan
+ * Date : 25.08.2022
+ * Source : https://www.youtube.com/watch?v=tNwLaGUJTK4
+ */
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public class Canon : MonoBehaviour
 {
@@ -13,7 +22,7 @@ public class Canon : MonoBehaviour
     GameObject[] points;
     public int numberOfPoints;
     public float spaceBetweenPoints;
-    Vector2 direction;
+    Vector2 direction;  
 
     private void Start()
     {
@@ -26,11 +35,11 @@ public class Canon : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        Vector2 canonPos = transform.position;
+    {        
+        Vector2 canonPos = transform.GetChild(0).position;
         Vector2 mousePOs = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         direction = mousePOs - canonPos;
-        transform.right = direction;
+        transform.GetChild(0).right = direction;
 
         if(Input.GetMouseButtonDown(1)) // mouse btn 0 = clicque droit
         {
@@ -46,7 +55,7 @@ public class Canon : MonoBehaviour
     void Shoot()
     {
         GameObject newMissile = Instantiate(missile, firePoint.position, firePoint.rotation);
-        newMissile.GetComponent<Rigidbody2D>().velocity = transform.right * launchForce;
+        newMissile.GetComponent<Rigidbody2D>().velocity = transform.GetChild(0).right * launchForce;
     }
 
     Vector2 PointPosition(float t)
