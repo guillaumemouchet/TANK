@@ -16,7 +16,6 @@ public class ActionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     public void Jump()
@@ -26,5 +25,13 @@ public class ActionManager : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, 7f);
         }
+    }
+
+    public void ToggleState()
+    {
+        gameObject.GetComponent<Canon>().enabled = !gameObject.GetComponent<Canon>().enabled;
+       
+
+        
     }
 }
