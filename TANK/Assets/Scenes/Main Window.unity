@@ -5697,7 +5697,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1738471265
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5965,7 +5965,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1760172124
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6610,6 +6610,8 @@ MonoBehaviour:
   Stages:
   - {fileID: 240113534}
   - {fileID: 1269556032}
+  leftStage: {fileID: 1760172123}
+  rightStage: {fileID: 1738471264}
 --- !u!1 &2029507495
 GameObject:
   m_ObjectHideFlags: 0
