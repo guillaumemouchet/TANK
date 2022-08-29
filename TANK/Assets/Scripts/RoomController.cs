@@ -25,6 +25,14 @@ public class RoomController : MonoBehaviourPunCallbacks
     [SerializeField] private TMP_Text roomNameDisplay;
     [SerializeField] private TMP_InputField roomSize;
     [SerializeField] private TMP_Text playerCount;
+    [SerializeField] private Transform[] Tanks;
+    [SerializeField] private Transform[] Stages;
+    [SerializeField] private GameObject leftStage;
+    [SerializeField] private GameObject rightStage;
+
+    private int currentTank;
+    private int currentStage;
+    private int buildStageDelta = 1;
     void ClearPlayerListings()
     {
         for (int i = playersContainer.childCount - 1; i >= 0; i--)
@@ -48,6 +56,8 @@ public class RoomController : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient && (PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers))
         {
                 startButton.SetActive(true);
+                leftStage.SetActive(true);
+                rightStage.SetActive(true);
         }
         else
         {
@@ -93,7 +103,8 @@ public class RoomController : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;
-            PhotonNetwork.LoadLevel(multiPlayerSceneIndex);
+            //PhotonNetwork.LoadLevel(multiPlayerSceneIndex);
+            PhotonNetwork.LoadLevel(currentStage%Stages.Length+buildStageDelta);
         }
     }
 
@@ -111,10 +122,25 @@ public class RoomController : MonoBehaviourPunCallbacks
         PhotonNetwork.LeaveLobby();
         StartCoroutine(rejoinLobby());
     }
+
+    public void ChangeTank(int change)
+    {
+        Tanks[currentTank%Tanks.Length].gameObject.SetActive(false);
+        currentTank += change;
+        Tanks[currentTank%Tanks.Length].gameObject.SetActive(true);
+    }
+
+    public void ChangeStage(int change)
+    {
+        Stages[currentStage % Stages.Length].gameObject.SetActive(false);
+        currentStage += change;
+        Stages[currentStage % Stages.Length].gameObject.SetActive(true);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
