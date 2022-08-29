@@ -56,7 +56,7 @@ public class RoomController : MonoBehaviourPunCallbacks
         }
         if (PhotonNetwork.IsMasterClient && (PhotonNetwork.CurrentRoom.PlayerCount == int.Parse(roomSize.text)))
         {
-            startButton.SetActive(true);
+                startButton.SetActive(true);
         }
         else
         {
