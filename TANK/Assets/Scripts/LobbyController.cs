@@ -59,13 +59,14 @@ public class LobbyController : MonoBehaviourPunCallbacks
 
     public void JoinLobbyOnClick()
     {
-       
             mainPanel.SetActive(false);
             lobbyPanel.SetActive(true);
             PhotonNetwork.JoinLobby();
     }
+
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
+        ClearRoomListings();
         int tempIndex;
         foreach (RoomInfo room in roomList)
         {
@@ -108,6 +109,14 @@ public class LobbyController : MonoBehaviourPunCallbacks
         }
     }
 
+    void ClearRoomListings()
+    {
+        for (int i = roomsContainer.childCount - 1; i >= 0; i--)
+        {
+            Destroy(roomsContainer.GetChild(i).gameObject);
+        }
+    }
+
     public void OnRoomNameChanged(string nameIn)
     {
         roomName = nameIn;
@@ -119,6 +128,7 @@ public class LobbyController : MonoBehaviourPunCallbacks
         TMP_roomSize.text = val;
         roomSize = int.Parse(val);
     }
+
     public void CreateRoom()
     {
         if (!(string.IsNullOrWhiteSpace(TMP_roomName.text) || string.IsNullOrWhiteSpace(TMP_roomSize.text)))

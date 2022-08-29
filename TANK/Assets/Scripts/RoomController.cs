@@ -1,7 +1,7 @@
 /*
  * Title : Room Controller 
  * Authors : Titus Abele, Benjamin Mouchet, Guillaume Mouchet, Dorian Tan
- * Date : 26.08.2022
+ * Date : 29.08.2022
  * Source : https://www.youtube.com/watch?v=onDorc3Qfn0 
  */
 
@@ -24,6 +24,7 @@ public class RoomController : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject playerListingPrefab;
     [SerializeField] private TMP_Text roomNameDisplay;
     [SerializeField] private TMP_InputField roomSize;
+    [SerializeField] private TMP_Text playerCount;
     void ClearPlayerListings()
     {
         for (int i = playersContainer.childCount - 1; i >= 0; i--)
@@ -32,29 +33,19 @@ public class RoomController : MonoBehaviourPunCallbacks
         }
     }
 
-    /*void ListPLayers()
-    {
-        foreach (Player player in PhotonNetwork.PlayerList)
-        {
-            GameObject tempListing = Instantiate(playerListingPrefab, playersContainer);
-            Text tempText = tempListing.transform.GetChild(0).GetComponent<Text>();
-            tempText.text = player.NickName;
-        }
-    }*/
     private void ListPlayers()
     {
         foreach (Player player in PhotonNetwork.PlayerList)
         {
             Debug.Log("PLAYER NAME :" + player.NickName);
             GameObject tempListing = Instantiate(playerListingPrefab, playersContainer);
-            /*if(PhotonNetwork.PlayerList!= null)
-            {
-                tempIndex = PhotonNetwork.PlayerList.FindIndex(ByName(player.NickName));
-            }*/
-            PlayerButton tempButton = tempListing./*transform.GetChild(0).*/GetComponent<PlayerButton>();
+            PlayerButton tempButton = tempListing.GetComponent<PlayerButton>();
             tempButton.SetPlayer(player.NickName);
         }
-        if (PhotonNetwork.IsMasterClient && (PhotonNetwork.CurrentRoom.PlayerCount == int.Parse(roomSize.text)))
+
+        playerCount.text = PhotonNetwork.CurrentRoom.PlayerCount + "/" + PhotonNetwork.CurrentRoom.MaxPlayers;
+
+        if (PhotonNetwork.IsMasterClient && (PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers))
         {
                 startButton.SetActive(true);
         }
