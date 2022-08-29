@@ -21,6 +21,7 @@ public class LobbyController : MonoBehaviourPunCallbacks
     [SerializeField] private TMP_InputField playerNameInput;
     [SerializeField] private TMP_InputField TMP_roomName;
     [SerializeField] private TMP_InputField TMP_roomSize;
+    [SerializeField] private GameObject helpPanel;
     private string roomName;
     private int roomSize;
 
@@ -152,5 +153,22 @@ public class LobbyController : MonoBehaviourPunCallbacks
         mainPanel.SetActive(true);
         lobbyPanel.SetActive(false);
         PhotonNetwork.LeaveLobby();
+    }
+
+    public void QuitGameOnClick()
+    {
+        Application.Quit();
+    }
+
+    public void DisplayHelp()
+    {
+        helpPanel.SetActive(true);
+        mainPanel.SetActive(false);
+    }
+
+    public void BackFromHelp()
+    {
+        helpPanel.SetActive(false);
+        mainPanel.SetActive(true);
     }
 }
