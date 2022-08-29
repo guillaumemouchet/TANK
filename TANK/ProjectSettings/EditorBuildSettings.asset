@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Map test.unity
     guid: 0f449ba0373a8834ea1fbf80ebf64415
+  - enabled: 0
+    path: Assets/Scenes/TimerPhase.unity
+    guid: d9816cd0815001f468b9c883f1e4b2df
   m_configObjects: {}
