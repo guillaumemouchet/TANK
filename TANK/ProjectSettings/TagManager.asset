@@ -9,6 +9,7 @@ TagManager:
   - Jump
   - Ismissile
   - BounceGrenade
+  - Ground
   layers:
   - Default
   - TransparentFX

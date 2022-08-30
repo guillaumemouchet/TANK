@@ -1,41 +1,26 @@
 /*
- * Title : Missile.cs
+ * Title : GroundController.cs
  * Authors : Titus Abele, Benjamin Mouchet, Guillaume Mouchet, Dorian Tan
  * Date : 25.08.2022
- * Source : https://www.youtube.com/watch?v=tNwLaGUJTK4
+ * Source : 
  */
-
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Missile : MonoBehaviour
+public class GroundController : MonoBehaviour
 {
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
-    void Update()
-    {
-        float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
-        rb.rotation = angle;
-    }
-
     /***************************************************************\
      *                      Methodes private                     *
     \***************************************************************/
 
-    private void OnDestroy() // appelé au Destroy()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Explode();
-    }
-
-    private void Explode()
-    {
-        Debug.Log("BOOM CHAKALAKA");
+        if (collision.gameObject.CompareTag("Ismissile"))
+        {
+            Destroy(collision.gameObject);
+        }
     }
 
     /***************************************************************\
@@ -43,5 +28,4 @@ public class Missile : MonoBehaviour
     \***************************************************************/
 
     // Components
-    private Rigidbody2D rb;
 }

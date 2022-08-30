@@ -1,47 +1,45 @@
 /*
- * Title : Missile.cs
+ * Title : ShieldController.cs
  * Authors : Titus Abele, Benjamin Mouchet, Guillaume Mouchet, Dorian Tan
  * Date : 25.08.2022
- * Source : https://www.youtube.com/watch?v=tNwLaGUJTK4
+ * Source : 
  */
-
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Missile : MonoBehaviour
+public class ShieldController: MonoBehaviour
 {
-    void Start()
+    private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+
     }
 
-    void Update()
+    private void Update()
     {
-        float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
-        rb.rotation = angle;
+        UpdatePlacement();
     }
 
     /***************************************************************\
      *                      Methodes private                     *
     \***************************************************************/
 
-    private void OnDestroy() // appelé au Destroy()
+    private void UpdatePlacement()
     {
-        Explode();
-    }
-
-    private void Explode()
-    {
-        Debug.Log("BOOM CHAKALAKA");
+        Vector2 canonPos = this.transform.parent.position;
+        Vector2 mousePOs = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = mousePOs - canonPos;
+        this.transform.right = direction;
     }
 
     /***************************************************************\
      *                      Attributes private                     *
     \***************************************************************/
 
+    // Tools
+
+
     // Components
-    private Rigidbody2D rb;
+
 }

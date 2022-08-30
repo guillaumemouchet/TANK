@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: f9a8e1b6e8be7b040922916e4aa80870
+=======
+guid: b3d2d5418cd9db343b1fdeb05b7bd330
+>>>>>>> fa9a309 (manual fusion between @Dorian.Tan and my local work branches)
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
