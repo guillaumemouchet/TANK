@@ -1,3 +1,10 @@
+/*
+ * Title : SO_Tanks.cs
+ * Authors : Titus Abele, Benjamin Mouchet, Guillaume Mouchet, Dorian Tan
+ * Date : 25.08.2022
+ * Source : https://www.youtube.com/watch?v=aPXvoWVabPY
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
