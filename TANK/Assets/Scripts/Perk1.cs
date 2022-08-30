@@ -33,7 +33,7 @@ public class Perk1 : MonoBehaviour
     }
     private void BounceGrenade()
     {
-        throw new NotImplementedException();
+        Debug.Log("BounceGrenade() called in Perk1.cs");
     }
 
 

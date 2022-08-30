@@ -19,10 +19,6 @@ public class Canon : MonoBehaviour
     {
         photonView = this.GetComponent<PhotonView>();
         trajectory = new GameObject[numberOfPoints];
-        for (int i = 0; i < numberOfPoints; i++)
-        {
-            trajectory[i] = Instantiate(circleObject, firePoint.position, Quaternion.identity);
-        }
     }
 
     private void Update()
@@ -37,9 +33,14 @@ public class Canon : MonoBehaviour
         direction = mousePOs - canonPos;
         transform.GetChild(0).right = direction;
 
-        if(Input.GetMouseButtonDown(1)) // mouse btn 0 = clicque droit
+        if (Input.GetMouseButtonDown(1)) // mouse btn 0 = clicque droit
         {
-            Shoot(missileObject);
+            //Shoot(missileObject);
+            ActivateTrajectoryLine();
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
+            DeleteTrajectoryLine();
         }
 
         for (int i = 0; i < numberOfPoints; i++)
@@ -53,7 +54,7 @@ public class Canon : MonoBehaviour
      *                      Methodes public                        *
     \***************************************************************/
 
-    public void Shoot(GameObject objectToShoot)
+    public void Shoot(GameObject objectToShoot) // TODO faire passer la bonne munition
     {
         if (photonView.IsMine)
         {
@@ -66,9 +67,25 @@ public class Canon : MonoBehaviour
      *                      Methodes private                       *
     \***************************************************************/
 
+    private void ActivateTrajectoryLine()
+    {
+        for (int i = 0; i < numberOfPoints; i++)
+        {
+            trajectory[i] = Instantiate(circleObject, firePoint.position, Quaternion.identity, trajectoryLine.transform);
+        }
+    }
+    private void DeleteTrajectoryLine()
+    {
+        for (int i = 0; i < trajectory.Length; i++)
+        {
+            Destroy(trajectory[i]);
+        }
+        // Ne pas détruire trajectoryLine parce que c'est le container - on en aura besoin pour recréer une nouvelle ligne
+    }
+
     private Vector2 PointPosition(float t)
     {
-        Vector2 position = (Vector2)firePoint.position + (direction.normalized * launchForce * t ) + 0.5f * Physics2D.gravity * (t * t); // formule physique
+        Vector2 position = (Vector2)firePoint.position + (direction.normalized * launchForce * t ) + 0.5f * Physics2D.gravity * (t * t); // formule physique ( => maqique)
         return position;
     }
 
@@ -85,7 +102,6 @@ public class Canon : MonoBehaviour
     [SerializeField] private float maxLaunchForce = 15f; // Force maximale de tir
     [SerializeField] private float magicForceScale = 4f; // QoL pour ne pas devoir sortir de l'écran avec la souris
 
-    [SerializeField] private int numberOfPoints; // Nombres de billes affichés à la projection de trajectoire
     [SerializeField] private float spaceBetweenPoints = 0.04f; // Espace entre les billes de projection
 
     // Components
@@ -94,6 +110,9 @@ public class Canon : MonoBehaviour
 
     [SerializeField] private GameObject circleObject;
     [SerializeField] private Transform firePoint;
+
+    [SerializeField] private int numberOfPoints; // Nombres de billes affichés à la projection de trajectoire
+    [SerializeField] private Transform trajectoryLine; // Container pour les cercles de la trajectoire (QoL)
 
     // PhotonView
     private PhotonView photonView;
