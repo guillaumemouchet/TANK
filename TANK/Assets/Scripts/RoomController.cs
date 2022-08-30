@@ -65,13 +65,7 @@ public class RoomController : MonoBehaviourPunCallbacks
             Debug.Log("Not Ready to start yet");
         }
     }
-    static System.Predicate<Player> ByName(string name)
-    {
-        return delegate (Player player)
-        {
-            return player.NickName == name;
-        };
-    }
+
     public override void OnJoinedRoom()
     {
         roomPanel.SetActive(true);
