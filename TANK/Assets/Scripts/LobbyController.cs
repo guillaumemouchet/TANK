@@ -12,6 +12,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class LobbyController : MonoBehaviourPunCallbacks
 {
@@ -28,6 +29,11 @@ public class LobbyController : MonoBehaviourPunCallbacks
     private List<RoomInfo> roomListings;
     [SerializeField] private Transform roomsContainer;
     [SerializeField] private GameObject roomListingPrefab;
+
+    public void Start()
+    {
+        playerNameInput.Select();
+    }
 
     public override void OnConnectedToMaster()
     {

@@ -119,16 +119,16 @@ public class RoomController : MonoBehaviourPunCallbacks
 
     public void ChangeTank(int change)
     {
-        Tanks[currentTank%Tanks.Length].gameObject.SetActive(false);
+        Tanks[Mathf.Abs(currentTank%Tanks.Length)].gameObject.SetActive(false);
         currentTank += change;
-        Tanks[currentTank%Tanks.Length].gameObject.SetActive(true);
+        Tanks[Mathf.Abs(currentTank%Tanks.Length)].gameObject.SetActive(true);
     }
 
     public void ChangeStage(int change)
     {
-        Stages[currentStage % Stages.Length].gameObject.SetActive(false);
+        Stages[Mathf.Abs(currentStage % Stages.Length)].gameObject.SetActive(false);
         currentStage += change;
-        Stages[currentStage % Stages.Length].gameObject.SetActive(true);
+        Stages[Mathf.Abs(currentStage % Stages.Length)].gameObject.SetActive(true);
     }
 
     // Start is called before the first frame update
