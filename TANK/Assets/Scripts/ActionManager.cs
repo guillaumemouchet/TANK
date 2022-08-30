@@ -21,14 +21,11 @@ public class ActionManager : MonoBehaviour
     void Start()
     {
         gameObject.GetComponent<Canon>().enabled = true;
+        gameObject.GetComponent<Jump>().enabled = false;
+        //gameObject.GetComponent<Perk1>().enabled = false;
+        //gameObject.GetComponent<Perk2>().enabled = false;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    
     public void Jump()
     {
         gameObject.GetComponent<Jump>().enabled = true;

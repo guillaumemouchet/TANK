@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffd9f403a8ca55b40ad328a2b7742e75, type: 3}
   m_Name: Basic
   m_EditorClassIdentifier: 
-  prefabs: {fileID: 1827861446373598044, guid: 5864ace611fc8ba4ba747bcd8f0c804f, type: 3}
+  prefab: {fileID: 0}
   name: Basic
   HP: 100
   weight: 50
-  spell1: Jump
-  spell2: Ismissile
-  spell3: BounceGrenade
-  spell4: Shield
+  jumpPerk: Jump
+  ismissilePerk: Ismissile
+  perk1: BounceGrenade
+  perk2: Shield

@@ -13,7 +13,7 @@ using UnityEngine;
 public class SO_Tanks : ScriptableObject
 {
 
-    public GameObject prefabs;
+    [SerializeField] private GameObject prefab;
 
     public new string name;
     public int HP;
@@ -21,8 +21,8 @@ public class SO_Tanks : ScriptableObject
 
     //public Sprite sprite;
 
-    public string spell1;
-    public string spell2;
-    public string spell3;
-    public string spell4;
+    public string jumpPerk;
+    public string ismissilePerk;
+    public string perk1;
+    public string perk2;
 }

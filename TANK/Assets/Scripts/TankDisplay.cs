@@ -1,3 +1,10 @@
+/*
+ * Title : TankDisplay.cs
+ * Authors : Titus Abele, Benjamin Mouchet, Guillaume Mouchet, Dorian Tan
+ * Date : 25.08.2022
+ * Source : 
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,22 +13,18 @@ using TMPro;
 
 public class TankDisplay : MonoBehaviour
 {
-
-    public SO_Tanks tank;
-
-    public Text spell1;
-    public Text spell2;
-    public Text spell3;
-    public Text spell4;
-
-
     // Start is called before the first frame update
     void Start()
     {
-        spell1.text = tank.spell1;
-        spell2.text = tank.spell2;
-        spell3.text = tank.spell3;
-        spell4.text = tank.spell4;
+        jumpPerk.text = tank.jumpPerk;
+        ismissilePerk.text = tank.ismissilePerk;
+        perk1.text = tank.perk1;
+        perk2.text = tank.perk2;
+
+        toggleJump.tag = tank.jumpPerk;
+        toggleIsmissile.tag = tank.ismissilePerk;
+        togglePerk1.tag = tank.perk1;
+        togglePerk2.tag = tank.perk2;
     }
 
     // Update is called once per frame
@@ -29,4 +32,24 @@ public class TankDisplay : MonoBehaviour
     {
         
     }
+
+    /***************************************************************\
+     *                      Attributes private                     *
+    \***************************************************************/
+
+    // Components
+    [SerializeField] private SO_Tanks tank;
+
+    [SerializeField] private Text jumpPerk;
+    [SerializeField] private Text ismissilePerk;
+    [SerializeField] private Text perk1;
+    [SerializeField] private Text perk2;
+
+    [SerializeField] private Toggle toggleJump;
+    [SerializeField] private Toggle toggleIsmissile;
+    [SerializeField] private Toggle togglePerk1;
+    [SerializeField] private Toggle togglePerk2;
+
+
+
 }
