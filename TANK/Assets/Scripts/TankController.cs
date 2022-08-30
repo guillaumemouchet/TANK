@@ -13,12 +13,23 @@ public class TankController : MonoBehaviour
 {
     void Start()
     {
-        
+        canon = this.GetComponent<Canon>();
     }
 
     void Update()
     {
-        
+        if (lockedIn && ready)
+        {
+            if (isShootableMunition) // dans le cas d'un missile ou d'une grenade
+            {
+                //GameObject munition = TankDisplay.GetMunition();
+                //canon.Shoot(munition);
+            }
+            else // Shield, jump...
+            {
+                
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -38,6 +49,10 @@ public class TankController : MonoBehaviour
     private int hitPoints = 30;
     private int perk3MunitionCount;
     private int perk4MunitionCount;
+    private bool lockedIn;
+    private bool ready;
+    private bool isShootableMunition;
+    private Canon canon;
 
     [SerializeField] private int missileDamage = 1;
     [SerializeField] private int grenadeDamage;

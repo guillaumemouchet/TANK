@@ -17,42 +17,43 @@ public class Canon : MonoBehaviour
 
     private void Start()
     {
+        lockedIn = false;
         photonView = this.GetComponent<PhotonView>();
+        trajectoryLineNeeded = true;
+    }
+
+    private void OnEnable()
+    {
         trajectory = new GameObject[numberOfPoints];
+        for (int i = 0; i < numberOfPoints; i++)
+        {
+            trajectory[i] = Instantiate(circleObject, firePoint.position, Quaternion.identity, trajectoryLine.transform);
+        }
+        Debug.Log("Canon enabled");
     }
 
     private void Update()
     {   
-        Vector2 canonPos = transform.GetChild(0).position;
-        Vector2 mousePOs = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        launchForce = magicForceScale * Mathf.Sqrt(Vector2.SqrMagnitude(canonPos - mousePOs)); 
-        if (launchForce > maxLaunchForce)
+        if (trajectoryLineNeeded)
         {
-            launchForce = maxLaunchForce;
-        }
-        direction = mousePOs - canonPos;
-        transform.GetChild(0).right = direction;
-
-        if (Input.GetMouseButtonDown(1)) // mouse btn 0 = clicque droit
-        {
-            //Shoot(missileObject);
             ActivateTrajectoryLine();
         }
-        if (Input.GetMouseButtonUp(1))
-        {
-            DeleteTrajectoryLine();
-        }
-
-        for (int i = 0; i < numberOfPoints; i++)
-        {
-            trajectory[i].transform.position = PointPosition(i * spaceBetweenPoints);
-        }
+    }
+    private void OnDisable()
+    {
+        Debug.Log("Canon disabled");
+        DeleteTrajectoryLine();
     }
 
 
     /***************************************************************\
      *                      Methodes public                        *
     \***************************************************************/
+
+    public void LockIn()
+    {
+        lockedIn = true;
+    }
 
     public void Shoot(GameObject objectToShoot) // TODO faire passer la bonne munition
     {
@@ -66,14 +67,23 @@ public class Canon : MonoBehaviour
     /***************************************************************\
      *                      Methodes private                       *
     \***************************************************************/
-
     private void ActivateTrajectoryLine()
     {
+        Vector2 canonPos = transform.GetChild(0).position;
+        Vector2 mousePOs = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        launchForce = magicForceScale * Mathf.Sqrt(Vector2.SqrMagnitude(canonPos - mousePOs));
+        if (launchForce > maxLaunchForce)
+        {
+            launchForce = maxLaunchForce;
+        }
+        direction = mousePOs - canonPos;
+        transform.GetChild(0).right = direction;
         for (int i = 0; i < numberOfPoints; i++)
         {
-            trajectory[i] = Instantiate(circleObject, firePoint.position, Quaternion.identity, trajectoryLine.transform);
+            trajectory[i].transform.position = PointPosition(i * spaceBetweenPoints);
         }
     }
+
     private void DeleteTrajectoryLine()
     {
         for (int i = 0; i < trajectory.Length; i++)
@@ -94,28 +104,25 @@ public class Canon : MonoBehaviour
     \***************************************************************/
 
     // Tools
+    private bool ifCanonSelected = false;
     private GameObject[] trajectory;
     private Vector2 direction; // Vecteur direction du entre canon et souris
+    private bool trajectoryLineNeeded;
+    private bool lockedIn;
+    [SerializeField] private Transform trajectoryLine; // Container pour les cercles de la trajectoire (QoL)
 
     // Force
     [SerializeField] private float launchForce = 1f; // Force de tir choisie
     [SerializeField] private float maxLaunchForce = 15f; // Force maximale de tir
     [SerializeField] private float magicForceScale = 4f; // QoL pour ne pas devoir sortir de l'écran avec la souris
-
     [SerializeField] private float spaceBetweenPoints = 0.04f; // Espace entre les billes de projection
 
     // Components
-    [SerializeField] private GameObject missileObject;
-    [SerializeField] private GameObject grenadeObject;
-
     [SerializeField] private GameObject circleObject;
     [SerializeField] private Transform firePoint;
 
-    [SerializeField] private int numberOfPoints; // Nombres de billes affichés à la projection de trajectoire
-    [SerializeField] private Transform trajectoryLine; // Container pour les cercles de la trajectoire (QoL)
+    [SerializeField] private int numberOfPoints = 50; // Nombres de billes affichés à la projection de trajectoire
 
     // PhotonView
     private PhotonView photonView;
-
-
 }

@@ -12,29 +12,47 @@ using UnityEngine.UI;
 
 public class Perk2 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        Instantiate(gObject, this.transform);
+        /*switch (togglePerk2.tag)
+        {
+            case "Shield":
+                Shield();
+                break;
+        }*/
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
+        Debug.Log("Perk2 enabled"); 
         switch (togglePerk2.tag)
         {
             case "Shield":
-                Debug.Log("coucou");
+                shield = Instantiate(shieldObject, this.transform);
                 Shield();
                 break;
         }
     }
 
-    private void Actions2()
+    private void Update()
     {
 
     }
 
+    private void OnDisable()
+    {
+        Debug.Log("Perk2 disabled");
+        Destroy(shield);
+    }
+
+    /***************************************************************\
+     *                       Méthodes private                      *
+    \***************************************************************/
+
+    private void Actions2()
+    {
+
+    }
 
     private void Shield()
     {
@@ -46,8 +64,9 @@ public class Perk2 : MonoBehaviour
     \***************************************************************/
 
     // Tools
+    private GameObject shield;
 
     // Components
-    [SerializeField] private GameObject gObject;
+    [SerializeField] private GameObject shieldObject;
     [SerializeField] private Toggle togglePerk2;
 }

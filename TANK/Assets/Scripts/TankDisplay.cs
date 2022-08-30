@@ -10,16 +10,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class TankDisplay : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        jumpPerk.text = tank.jumpPerk;
-        ismissilePerk.text = tank.ismissilePerk;
-        perk1.text = tank.perk1;
-        perk2.text = tank.perk2;
+        toggleJump.transform.GetChild(0).GetComponent<Text>().text = tank.jumpPerk;
+        toggleIsmissile.transform.GetChild(0).GetComponent<Text>().text = tank.ismissilePerk;
+        togglePerk1.transform.GetChild(0).GetComponent<Text>().text = tank.perk1;
+        togglePerk2.transform.GetChild(0).GetComponent<Text>().text = tank.perk2;
 
         toggleJump.tag = tank.jumpPerk;
         toggleIsmissile.tag = tank.ismissilePerk;
@@ -27,10 +28,14 @@ public class TankDisplay : MonoBehaviour
         togglePerk2.tag = tank.perk2;
     }
 
-    // Update is called once per frame
-    void Update()
+    /***************************************************************\
+     *                      Méthodes publiques                     *
+    \***************************************************************/
+
+    public static GameObject GetMunition()
     {
-        
+        Debug.Log("Not implemented yet - GetMunition() in TankDisplay()");
+        return null; // TODO
     }
 
     /***************************************************************\
@@ -40,16 +45,8 @@ public class TankDisplay : MonoBehaviour
     // Components
     [SerializeField] private SO_Tanks tank;
 
-    [SerializeField] private Text jumpPerk;
-    [SerializeField] private Text ismissilePerk;
-    [SerializeField] private Text perk1;
-    [SerializeField] private Text perk2;
-
     [SerializeField] private Toggle toggleJump;
     [SerializeField] private Toggle toggleIsmissile;
     [SerializeField] private Toggle togglePerk1;
     [SerializeField] private Toggle togglePerk2;
-
-
-
 }

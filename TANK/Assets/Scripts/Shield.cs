@@ -9,11 +9,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShieldController: MonoBehaviour
+public class Shield: MonoBehaviour
 {
     private void Start()
     {
+        lockedIn = false;
+    }
 
+    private void OnEnable()
+    {
+        Debug.Log("Enabled Shield");
     }
 
     private void Update()
@@ -21,8 +26,22 @@ public class ShieldController: MonoBehaviour
         UpdatePlacement();
     }
 
+    private void OnDisable()
+    {
+        Destroy(this);
+    }
+
     /***************************************************************\
-     *                      Methodes private                     *
+     *                      Methodes publiques                     *
+    \***************************************************************/
+
+    public void LockIn()
+    {
+        lockedIn = true;
+    }
+
+    /***************************************************************\
+     *                      Methodes private                       *
     \***************************************************************/
 
     private void UpdatePlacement()
@@ -38,6 +57,8 @@ public class ShieldController: MonoBehaviour
     \***************************************************************/
 
     // Tools
+    private bool lockedIn;
+    private bool shieldSelected;
 
 
     // Components

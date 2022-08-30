@@ -9,7 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrenadeController : MonoBehaviour
+public class BounceGrenade : MonoBehaviour
 {
     private void Start()
     {
@@ -20,7 +20,7 @@ public class GrenadeController : MonoBehaviour
     private void Update()
     {
         float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
     private void Explode()
     {

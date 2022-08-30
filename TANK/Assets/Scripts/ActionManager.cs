@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+// USELESS
 public class ActionManager : MonoBehaviour
 {
     public Button btnJump;

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 835833510877782941}
   - component: {fileID: 835833510877782942}
   - component: {fileID: 835833510877782943}
-  - component: {fileID: 2663646074694512719}
+  - component: {fileID: 4509184236641410829}
   m_Layer: 0
   m_Name: Missile
   m_TagString: Ismissile
@@ -124,7 +124,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 1
---- !u!114 &2663646074694512719
+--- !u!114 &4509184236641410829
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,6 +133,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 835833510877782936}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b772648ec1d31504689c55c4926de74c, type: 3}
+  m_Script: {fileID: 11500000, guid: be60cfdc5af060c4e990c8c7b3bfee34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
