@@ -13,15 +13,9 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-<<<<<<< HEAD
     AppIdRealtime: fb87ac53-8e5f-4d8e-a9de-147cf88d10ec
     AppIdFusion: 
     AppIdChat: 1c2d5393-f183-458f-bf86-60436b747c10
-=======
-    AppIdRealtime: 
-    AppIdFusion: 
-    AppIdChat: 
->>>>>>> fa9a309 (manual fusion between @Dorian.Tan and my local work branches)
     AppIdVoice: 
     AppVersion: 
     UseNameServer: 1
@@ -39,16 +33,12 @@ MonoBehaviour:
   EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
-<<<<<<< HEAD
   RpcList:
   - ClickRpc
   - DestroyRpc
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
-=======
-  RpcList: []
->>>>>>> fa9a309 (manual fusion between @Dorian.Tan and my local work branches)
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0
