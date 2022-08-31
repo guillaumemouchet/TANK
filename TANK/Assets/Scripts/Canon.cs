@@ -69,18 +69,21 @@ public class Canon : MonoBehaviour
     \***************************************************************/
     private void ActivateTrajectoryLine()
     {
-        Vector2 canonPos = transform.GetChild(0).position;
-        Vector2 mousePOs = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        launchForce = magicForceScale * Mathf.Sqrt(Vector2.SqrMagnitude(canonPos - mousePOs));
-        if (launchForce > maxLaunchForce)
+        if (photonView.IsMine)
         {
-            launchForce = maxLaunchForce;
-        }
-        direction = mousePOs - canonPos;
-        transform.GetChild(0).right = direction;
-        for (int i = 0; i < numberOfPoints; i++)
-        {
-            trajectory[i].transform.position = PointPosition(i * spaceBetweenPoints);
+            Vector2 canonPos = transform.GetChild(0).position;
+            Vector2 mousePOs = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            launchForce = magicForceScale * Mathf.Sqrt(Vector2.SqrMagnitude(canonPos - mousePOs));
+            if (launchForce > maxLaunchForce)
+            {
+                launchForce = maxLaunchForce;
+            }
+            direction = mousePOs - canonPos;
+            transform.GetChild(0).right = direction;
+            for (int i = 0; i < numberOfPoints; i++)
+            {
+                trajectory[i].transform.position = PointPosition(i * spaceBetweenPoints);
+            }
         }
     }
 
