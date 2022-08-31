@@ -13,7 +13,7 @@ public class TankController : MonoBehaviour
 {
     void Start()
     {
-        
+        healthBar.SetHealth(hitPoints, maxHealth);
     }
 
     void Update()
@@ -35,12 +35,15 @@ public class TankController : MonoBehaviour
     \***************************************************************/
 
     // Tools
-    private int hitPoints = 30;
+    private int hitPoints = 100;
     private int perk3MunitionCount;
     private int perk4MunitionCount;
+    private int maxHealth = 100;
 
     [SerializeField] private int missileDamage = 1;
     [SerializeField] private int grenadeDamage;
+
+    [SerializeField] private HealthBar healthBar;
 
     // Components
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffd9f403a8ca55b40ad328a2b7742e75, type: 3}
   m_Name: Basic
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 1875279494566678142, guid: c9157c507e711f94c9fb20ef9205e640, type: 3}
   name: Basic
   HP: 100
   weight: 50
