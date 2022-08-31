@@ -17,6 +17,7 @@ public class TankDisplay : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+
         toggleJump.transform.GetChild(0).GetComponent<Text>().text = tank.jumpPerk;
         toggleIsmissile.transform.GetChild(0).GetComponent<Text>().text = tank.ismissilePerk;
         togglePerk1.transform.GetChild(0).GetComponent<Text>().text = tank.perk1;

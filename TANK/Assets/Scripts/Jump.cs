@@ -42,7 +42,11 @@ public class Jump : MonoBehaviour
         direction = mousePos - canonPos;
         transform.GetChild(0).right = direction;
 
-        ActivateTrajectoryLine();
+        if(photonView.IsMine)
+        {
+            ActivateTrajectoryLine();
+        }
+
         if (Input.GetButtonDown("Jump") && photonView.IsMine)
         {
             Execute();
