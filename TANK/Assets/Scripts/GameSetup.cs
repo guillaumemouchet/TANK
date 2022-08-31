@@ -16,6 +16,7 @@ public class GameSetup : MonoBehaviour
 
     void Start()
     {
+        PhotonNetwork.AutomaticallySyncScene = true;
         CreatePlayer();
     }
 
@@ -28,7 +29,7 @@ public class GameSetup : MonoBehaviour
             {
                 Debug.Log("New Player created");
                 Debug.Log(index);
-                PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonPlayer"), GameController.instance.spawnPoints[index].position, Quaternion.identity);
+                PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TankBasic"), GameController.instance.spawnPoints[index].position, Quaternion.identity);
             }
             else
             {

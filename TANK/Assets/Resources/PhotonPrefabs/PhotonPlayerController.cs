@@ -30,6 +30,7 @@ public class PhotonPlayerController : MonoBehaviour
         {
             Debug.Log(PhotonNetwork.LocalPlayer.NickName + " is dep");
             transform.position = Vector2.zero;
+            
         }
     }
 }

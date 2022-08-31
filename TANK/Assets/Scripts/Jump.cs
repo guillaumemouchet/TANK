@@ -8,6 +8,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Jump : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Jump : MonoBehaviour
     {
         lockedIn = false;
         rb = gameObject.GetComponent<Rigidbody2D>();
+        photonView = this.GetComponent<PhotonView>();
     }
 
     private void OnEnable()
@@ -41,7 +43,7 @@ public class Jump : MonoBehaviour
         transform.GetChild(0).right = direction;
 
         ActivateTrajectoryLine();
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && photonView.IsMine)
         {
             Execute();
         }
@@ -126,4 +128,7 @@ public class Jump : MonoBehaviour
     // Components
     private Rigidbody2D rb;
     [SerializeField] private GameObject circleObject;
+
+    // PhotonView
+    private PhotonView photonView;
 }

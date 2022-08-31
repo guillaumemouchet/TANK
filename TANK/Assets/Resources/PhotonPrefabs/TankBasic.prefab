@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: 1875279494566678080}
   - component: {fileID: 1875279494566678082}
   - component: {fileID: 1875279494566678081}
+  - component: {fileID: 4678324582911003694}
   m_Layer: 0
   m_Name: TankBasic
   m_TagString: Shield
@@ -180,18 +181,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875279494566678142}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e66b7b7c955d37f49bc5101bcc3f70af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trajectoryLine: {fileID: 0}
+  trajectoryLine: {fileID: 4168985349537195174, guid: 51062d6b835d51b408056aae465ec2e9, type: 3}
   numberOfPoints: 25
   launchForce: 10
   maxLaunchForce: 15
   magicForceScale: 0.25
   spaceBetweenPoints: 0.04
-  circleObject: {fileID: 0}
+  circleObject: {fileID: 1162168438518866712, guid: e2342da80a8c6fa4b8dbc751c9d79a8a, type: 3}
 --- !u!61 &1875279494566678088
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -239,7 +240,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875279494566678142}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 110a9650fb7614244a648cf7226a58f7, type: 3}
   m_Name: 
@@ -249,8 +250,6 @@ MonoBehaviour:
   maxLaunchForce: 15
   magicForceScale: 2
   spaceBetweenPoints: 0.04
-  missileObject: {fileID: 835833510877782936, guid: 8076fb346d765e94ea80e470de2d7702, type: 3}
-  grenadeObject: {fileID: 6246106356973332861, guid: 0a6dcc4b3e978054cb744077734675f8, type: 3}
   circleObject: {fileID: 1162168438518866712, guid: e2342da80a8c6fa4b8dbc751c9d79a8a, type: 3}
   firePoint: {fileID: 1875279494846292006}
   numberOfPoints: 50
@@ -321,6 +320,19 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &4678324582911003694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875279494566678142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b772648ec1d31504689c55c4926de74c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ismissileObject: {fileID: 835833510877782936, guid: 8076fb346d765e94ea80e470de2d7702, type: 3}
 --- !u!1 &1875279494749197089
 GameObject:
   m_ObjectHideFlags: 0
