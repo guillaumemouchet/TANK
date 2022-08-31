@@ -13,16 +13,18 @@ using UnityEngine;
 
 public class GameSetup : MonoBehaviour
 {
+    public GameObject tankPrefab;
+    public int index = 0;
 
     void Start()
     {
-        CreatePlayer();
+        CreatePlayers();
     }
 
-    public static void CreatePlayer()
+    public void CreatePlayers()
     {
         Debug.Log("New Player created");
-        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TankBasic"), GameController.instance.spawnPoints[0].position, Quaternion.identity);
+        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TankBasic"), GameController.instance.spawnPoints[index++].position, Quaternion.identity);
     }
 
     // Update is called once per frame

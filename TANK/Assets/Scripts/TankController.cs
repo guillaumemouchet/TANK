@@ -16,31 +16,24 @@ public class TankController : MonoBehaviour
 {
 
     private PhotonView photonView;
+    public static GameObject localPlayerInstance;
 
     void Start()
     {
         canon = this.GetComponent<Canon>();
         photonView = this.GetComponent<PhotonView>();
-
-        int i = 0;
-        foreach (Player p in PhotonNetwork.PlayerList)
-        {
-            if (p != PhotonNetwork.LocalPlayer)
-            {
-                i++;
-            }
-        }
-
-        if (photonView.IsMine)
-        {
-            photonView.transform.position = GameController.instance.spawnPoints[i].position;
-        }
     }
 
-    public static void CreatePlayer()
+    private void Awake()
     {
+        if(photonView.IsMine)
+        {
+            TankController.localPlayerInstance = this.gameObject;
+        }
 
+        DontDestroyOnLoad(this.gameObject);
     }
+
 
     void Update()
     {
