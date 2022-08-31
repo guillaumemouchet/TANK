@@ -249,8 +249,6 @@ MonoBehaviour:
   maxLaunchForce: 15
   magicForceScale: 2
   spaceBetweenPoints: 0.04
-  missileObject: {fileID: 835833510877782936, guid: 8076fb346d765e94ea80e470de2d7702, type: 3}
-  grenadeObject: {fileID: 6246106356973332861, guid: 0a6dcc4b3e978054cb744077734675f8, type: 3}
   circleObject: {fileID: 1162168438518866712, guid: e2342da80a8c6fa4b8dbc751c9d79a8a, type: 3}
   firePoint: {fileID: 1875279494846292006}
   numberOfPoints: 50

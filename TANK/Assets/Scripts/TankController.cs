@@ -5,15 +5,41 @@
  * Source :
  */
 
+using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class TankController : MonoBehaviour
 {
+
+    private PhotonView photonView;
+
     void Start()
     {
         canon = this.GetComponent<Canon>();
+        photonView = this.GetComponent<PhotonView>();
+
+        int i = 0;
+        foreach (Player p in PhotonNetwork.PlayerList)
+        {
+            if (p != PhotonNetwork.LocalPlayer)
+            {
+                i++;
+            }
+        }
+
+        if (photonView.IsMine)
+        {
+            photonView.transform.position = GameController.instance.spawnPoints[i].position;
+        }
+    }
+
+    public static void CreatePlayer()
+    {
+
     }
 
     void Update()
