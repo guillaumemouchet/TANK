@@ -14,9 +14,9 @@ public class Timer : MonoBehaviour
 {
     private float timeValue = 60;
     public TMP_Text timeText;
+    private bool isFinished = false;
 
     [SerializeField] private GameObject preparationPanel;
-    [SerializeField] private GameObject combatPanel;
 
     // Update is called once per frame
     void Update()
@@ -29,8 +29,7 @@ public class Timer : MonoBehaviour
             timeValue = 0;
             //Combat phase
             Debug.Log("Fin de la préparation");
-            preparationPanel.SetActive(false);
-            combatPanel.SetActive(true);
+            isFinished = true;
         }
         DisplayTime(timeValue);
 
@@ -47,5 +46,10 @@ public class Timer : MonoBehaviour
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
         
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    public bool IsFinished()
+    {
+        return isFinished;
     }
 }

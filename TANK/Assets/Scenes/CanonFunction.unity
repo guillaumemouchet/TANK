@@ -767,6 +767,14 @@ PrefabInstance:
       propertyPath: trajectoryLine
       value: 
       objectReference: {fileID: 226772326}
+    - target: {fileID: 1875279494566678135, guid: c9157c507e711f94c9fb20ef9205e640, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1109664369}
+    - target: {fileID: 1875279494566678135, guid: c9157c507e711f94c9fb20ef9205e640, type: 3}
+      propertyPath: ismissileObject
+      value: 
+      objectReference: {fileID: 835833510877782936, guid: 8076fb346d765e94ea80e470de2d7702, type: 3}
     - target: {fileID: 1875279494566678142, guid: c9157c507e711f94c9fb20ef9205e640, type: 3}
       propertyPath: m_Name
       value: TankBasic

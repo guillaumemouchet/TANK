@@ -29,6 +29,7 @@ public class Perk2 : MonoBehaviour
         {
             case "Shield":
                 shield = Instantiate(shieldObject, this.transform);
+                shieldShield = (Shield)shield.GetComponent<Shield>();
                 Shield();
                 break;
         }
@@ -44,6 +45,30 @@ public class Perk2 : MonoBehaviour
         Debug.Log("Perk2 disabled");
         Destroy(shield);
     }
+
+    /***************************************************************\
+     *                       Méthodes publics                      *
+    \***************************************************************/
+
+    public void LockIn()
+    {
+        switch (togglePerk2.tag)
+        {
+            case "Shield":
+                shieldShield.LockIn();
+                break;
+        }
+    }
+
+    public void Execute()
+    {
+        switch (togglePerk2.tag)
+        {
+            case "Shield":
+                break;
+        }
+    }
+
 
     /***************************************************************\
      *                       Méthodes private                      *
@@ -65,6 +90,7 @@ public class Perk2 : MonoBehaviour
 
     // Tools
     private GameObject shield;
+    private Shield shieldShield;
 
     // Components
     [SerializeField] private GameObject shieldObject;

@@ -23,17 +23,17 @@ public class Ismissile : MonoBehaviour
     void Update()
     {
         /*** DEBUGGING ***/
-        if (Input.GetMouseButtonDown(1))
+        /*if (Input.GetMouseButtonDown(1))
         {
             canon.Shoot(ismissileObject);
-        }
+        }*/
         /*** DEBUGGING ***/
     }
 
     private void OnDisable()
     {
         canon.enabled = false;
-    }
+    }  
 
     /***************************************************************\
      *                      Methodes private                       *

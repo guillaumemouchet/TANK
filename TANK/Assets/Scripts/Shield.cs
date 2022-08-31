@@ -23,7 +23,10 @@ public class Shield: MonoBehaviour
 
     private void Update()
     {
-        UpdatePlacement();
+        if (!lockedIn)
+        {
+            UpdatePlacement();
+        }
     }
 
     private void OnDisable()
@@ -37,6 +40,9 @@ public class Shield: MonoBehaviour
 
     public void LockIn()
     {
+        lockInCanonPos = canonPos;
+        lockInMousePos = mousePos;
+        lockInDirection = direction;
         lockedIn = true;
     }
 
@@ -46,9 +52,9 @@ public class Shield: MonoBehaviour
 
     private void UpdatePlacement()
     {
-        Vector2 canonPos = this.transform.parent.position;
-        Vector2 mousePOs = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = mousePOs - canonPos;
+        canonPos = this.transform.parent.position;
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        direction = mousePos - canonPos;
         this.transform.right = direction;
     }
 
@@ -59,6 +65,12 @@ public class Shield: MonoBehaviour
     // Tools
     private bool lockedIn;
     private bool shieldSelected;
+    private Vector2 canonPos;
+    private Vector2 mousePos;
+    private Vector2 direction;
+    private Vector2 lockInCanonPos;
+    private Vector2 lockInMousePos;
+    private Vector2 lockInDirection;
 
 
     // Components
