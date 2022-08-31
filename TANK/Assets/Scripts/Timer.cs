@@ -4,6 +4,7 @@
  * Date : 29.08.2022
  * Source : 
  */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,27 +13,18 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    private float timeValue = 60;
-    public TMP_Text timeText;
-    private bool isFinished = false;
-
-    [SerializeField] private GameObject preparationPanel;
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (timeValue > 0)
         {
             timeValue -= Time.deltaTime;
-        }else
+            DisplayTime(timeValue);
+        }
+        else
         {
             timeValue = 0;
-            //Combat phase
-            Debug.Log("Fin de la préparation");
             isFinished = true;
         }
-        DisplayTime(timeValue);
-
     }
 
     private void DisplayTime(float timeToDisplay)
@@ -44,7 +36,7 @@ public class Timer : MonoBehaviour
 
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        
+
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
@@ -52,4 +44,14 @@ public class Timer : MonoBehaviour
     {
         return isFinished;
     }
+
+    private void OnDestroy()
+    {
+        Debug.Log("Destroying timer");
+    }
+
+    private float timeValue = 10;
+    [SerializeField] private TMP_Text timeText;
+    private bool isFinished = false;
+
 }

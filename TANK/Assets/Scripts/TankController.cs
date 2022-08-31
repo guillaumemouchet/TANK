@@ -79,6 +79,8 @@ public class TankController : MonoBehaviour
         {
             perk2.Execute();
         }
+        TankDisplay tD = gameManager.GetComponent<TankDisplay>();
+        tD.Enable();
     }
 
     /***************************************************************\

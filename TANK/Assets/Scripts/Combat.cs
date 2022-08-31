@@ -13,27 +13,37 @@ using Photon.Realtime;
 
 public class Combat : MonoBehaviour
 {
-    public Happening hp;
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Debug.Log("Start Combat");
+        tankController = tank.GetComponent<TankController>();
         //Faire toutes les actions des joueurs puis une fois fini fais les Happening
         ExecuteAction();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         
     }
+
+    /***************************************************************\
+     *                      Méthodes private                       *
+    \***************************************************************/
 
     private void ExecuteAction()
     {
         tankController.ExecuteAction();
     }
 
-    // Components
 
-    [SerializeField] private TankController tankController;
+    /***************************************************************\
+     *                      Attributes private                     *
+    \***************************************************************/
+    
+    // Tools
+
+
+    // Components
+    private TankController tankController;
+    [SerializeField] private GameObject tank;
 }
