@@ -13,7 +13,8 @@ public class TankController : MonoBehaviour
 {
     void Start()
     {
-        healthBar.SetHealth(hitPoints, maxHealth);
+        currentHealth = so_Tank.HP;
+        healthBar.SetMaxHealth(currentHealth);
     }
 
     void Update()
@@ -25,7 +26,9 @@ public class TankController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ismissile"))
         {
-            hitPoints -= missileDamage;
+            currentHealth -= missileDamage;
+            healthBar.SetHealth(currentHealth);
+
             Destroy(collision.gameObject);
         }
     }
@@ -35,15 +38,15 @@ public class TankController : MonoBehaviour
     \***************************************************************/
 
     // Tools
-    private int hitPoints = 100;
     private int perk3MunitionCount;
     private int perk4MunitionCount;
-    private int maxHealth = 100;
+    [SerializeField] private int currentHealth;
 
-    [SerializeField] private int missileDamage = 1;
+    [SerializeField] private int missileDamage = 10;
     [SerializeField] private int grenadeDamage;
 
     [SerializeField] private HealthBar healthBar;
+    [SerializeField] private SO_Tanks so_Tank;
 
     // Components
 

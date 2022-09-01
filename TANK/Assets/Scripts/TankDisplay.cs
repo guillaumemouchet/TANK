@@ -25,6 +25,7 @@ public class TankDisplay : MonoBehaviour
         toggleIsmissile.tag = tank.ismissilePerk;
         togglePerk1.tag = tank.perk1;
         togglePerk2.tag = tank.perk2;
+
     }
 
     // Update is called once per frame
@@ -49,7 +50,5 @@ public class TankDisplay : MonoBehaviour
     [SerializeField] private Toggle toggleIsmissile;
     [SerializeField] private Toggle togglePerk1;
     [SerializeField] private Toggle togglePerk2;
-
-
 
 }
