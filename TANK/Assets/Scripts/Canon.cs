@@ -27,7 +27,7 @@ public class Canon : MonoBehaviour
         trajectory = new GameObject[numberOfPoints];
         for (int i = 0; i < numberOfPoints; i++)
         {
-            trajectory[i] = Instantiate(circleObject, firePoint.position, Quaternion.identity, trajectoryLine.transform);
+            trajectory[i] = Instantiate(circleObject, firePoint.position, Quaternion.identity, trajectoryLine);
         }
         Debug.Log("Canon enabled");
     }
@@ -38,13 +38,11 @@ public class Canon : MonoBehaviour
         {
             ActivateTrajectoryLine();
         }
-        if (Input.GetMouseButtonDown(1))
-        {
-            LockIn();
-        }
     }
     private void OnDisable()
     {
+        trajectoryLineEnabled = true;
+        lockedIn = false;
         Debug.Log("Canon disabled");
         DeleteTrajectoryLine();
     }
@@ -63,8 +61,6 @@ public class Canon : MonoBehaviour
         trajectoryLineEnabled = false;
         DeleteTrajectoryLine();
     }
-
-    
 
     public void Shoot(GameObject objectToShoot) // TODO faire passer la bonne munition
     {

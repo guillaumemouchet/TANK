@@ -12,8 +12,8 @@ using Photon.Pun;
 using Photon.Realtime;
 
 public class Combat : MonoBehaviour
-{
-    private void Start()
+{   
+    private void OnEnable()
     {
         Debug.Log("Start Combat");
         tankController = tank.GetComponent<TankController>();

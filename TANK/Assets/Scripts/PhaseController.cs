@@ -7,6 +7,7 @@ public class PhaseController : MonoBehaviour
 {
     private void Start()
     {
+        tankController = tank.GetComponent<TankController>();
         InitiatePreparation();
     }
 
@@ -58,6 +59,10 @@ public class PhaseController : MonoBehaviour
                 combatPhaseDone = true;
                 analysisPanel.SetActive(true);
             }
+            else
+            {
+                Debug.Log("Combat IS NOT over");
+            }
         }
         else if (!analPhase1Done)
         {
@@ -88,6 +93,7 @@ public class PhaseController : MonoBehaviour
                 prepPhaseDone = false;
                 combatPhaseDone = false;
                 analPhase1Done = false;
+                happeningPhaseDone = false;
                 InitiatePreparation();
             }
         }
@@ -96,22 +102,18 @@ public class PhaseController : MonoBehaviour
     private void InitiatePreparation()
     {
         // Lancer timer fait par panel de prép
-        Destroy(timer);
-        timer = Instantiate(timerObject, preparationPanel.transform);
+        tankController.Enable();
         preparationPanel.SetActive(true);
+        timer.ResetTimer();
     }
 
     private bool CombatOver()
     {
         // Tester si projectiles ont explosé
-        gameObjectArray = GameObject.FindGameObjectsWithTag("Ismissile");
+        gameObjectArray = GameObject.FindGameObjectsWithTag("Projectile");
         if (gameObjectArray.Length != 0)
         {
-            return false;
-        }
-        gameObjectArray = GameObject.FindGameObjectsWithTag("BounceGrenade");
-        if (gameObjectArray.Length != 0)
-        {
+            Debug.Log("There still is a projectile");
             return false;
         }
         // Tester si joueurs sont immobiles
@@ -133,8 +135,7 @@ public class PhaseController : MonoBehaviour
 
     private bool PlayerMoving()
     {
-        GameObject tank = GameObject.FindGameObjectWithTag("Tank");
-        return tank.GetComponent<Rigidbody2D>().velocity.magnitude > 0.1f;
+        return tank.GetComponent<Rigidbody2D>().velocity.magnitude > 1f;
     }
 
     /***************************************************************\
@@ -148,12 +149,13 @@ public class PhaseController : MonoBehaviour
     private bool analPhase1Done = false;
     private bool happeningPhaseDone = false;
     private bool takt = true;
-    private Timer timer;
 
     // Components
+    private TankController tankController;
     [SerializeField] private GameObject preparationPanel;
     [SerializeField] private GameObject combatPanel;
     [SerializeField] private GameObject happeningPanel;
     [SerializeField] private GameObject analysisPanel;
-    [SerializeField] private Timer timerObject;
+    [SerializeField] private Timer timer;
+    [SerializeField] private GameObject tank;
 }

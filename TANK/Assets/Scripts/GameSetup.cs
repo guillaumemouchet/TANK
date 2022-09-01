@@ -22,7 +22,7 @@ public class GameSetup : MonoBehaviour
     private void CreatePlayer()
     {
         Debug.Log("New Player created");
-        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonPlayer"), GameController.instance.spawnPoints[0].position, Quaternion.identity);
+        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TankBasic"), GameController.instance.spawnPoints[0].position, Quaternion.identity);
     }
 
     // Update is called once per frame

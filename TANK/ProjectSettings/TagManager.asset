@@ -11,6 +11,7 @@ TagManager:
   - BounceGrenade
   - Ground
   - Tank
+  - Projectile
   layers:
   - Default
   - TransparentFX

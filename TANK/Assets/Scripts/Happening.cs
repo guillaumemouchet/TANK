@@ -91,7 +91,7 @@ public class Happening : MonoBehaviour
     private int MaximumItems = 5;
     private int currentNumberItems = 0;
     private GameObject happening = null;
-    private bool isOver;
+    private bool isOver = false;
 
     // Components
     [SerializeField] private GameObject healthpack;
