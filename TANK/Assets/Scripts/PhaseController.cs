@@ -7,7 +7,13 @@ public class PhaseController : MonoBehaviour
 {
     private void Start()
     {
-        tankController = tank.GetComponent<TankController>();
+        timer = preparationPanel.GetComponentInChildren<Timer>();
+        //tankController = tank.GetComponent<TankController>();
+        prepPhaseDone = false;
+        combatPhaseDone = false;
+        analPhase1Done = false;
+        happeningPhaseDone = false;
+        Debug.Log("PhaseController start");
         InitiatePreparation();
     }
 
@@ -21,6 +27,8 @@ public class PhaseController : MonoBehaviour
         if (takt)
         {
             Debug.Log("Entering takt");
+            //Debug.Log(timer.IsFinished());
+           // Debug.Log(timer.timeValue);
             PhaseLogic();
             takt = false;
             StartCoroutine(waiter());
@@ -42,12 +50,15 @@ public class PhaseController : MonoBehaviour
     {
         if (!prepPhaseDone)
         {
+            
             if (timer.IsFinished())
             {
+
                 Debug.Log("PREP DONE");
                 preparationPanel.SetActive(false);
                 prepPhaseDone = true;
                 combatPanel.SetActive(true);
+
             }
         }
         else if (!combatPhaseDone)
@@ -102,8 +113,10 @@ public class PhaseController : MonoBehaviour
     private void InitiatePreparation()
     {
         // Lancer timer fait par panel de prép
+        Debug.Log("PhaseController InitiatePrepa");
         tankController.Enable();
         preparationPanel.SetActive(true);
+        
         timer.ResetTimer();
     }
 
@@ -144,18 +157,19 @@ public class PhaseController : MonoBehaviour
 
     // Tools
     private GameObject[] gameObjectArray;
-    private bool prepPhaseDone = false;
-    private bool combatPhaseDone = false;
-    private bool analPhase1Done = false;
-    private bool happeningPhaseDone = false;
+    private bool prepPhaseDone ;
+    private bool combatPhaseDone;
+    private bool analPhase1Done;
+    private bool happeningPhaseDone;
     private bool takt = true;
 
     // Components
-    private TankController tankController;
+    [SerializeField] private TankController tankController;
     [SerializeField] private GameObject preparationPanel;
     [SerializeField] private GameObject combatPanel;
     [SerializeField] private GameObject happeningPanel;
     [SerializeField] private GameObject analysisPanel;
-    [SerializeField] private Timer timer;
+    // [SerializeField] private Timer timer;
+    private Timer timer;
     [SerializeField] private GameObject tank;
 }
