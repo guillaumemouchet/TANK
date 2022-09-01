@@ -10,11 +10,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class TankController : MonoBehaviour
+public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
 {
-    void OnEnable()
+    private void Start()
     {
+    }
+
+    private void OnEnable()
+    {
+        toggleGroup = this.GetComponentInChildren<ToggleGroup>();
+
         toggleList = new List<Toggle>()
         {
             toggleJump,
@@ -22,6 +30,8 @@ public class TankController : MonoBehaviour
             togglePerk1,
             togglePerk2
         };
+
+        Debug.Log("Enabling Tankcontroller");
 
         toggleJump.transform.GetChild(0).GetComponent<Text>().text = tank.jumpPerk;
         toggleIsmissile.transform.GetChild(0).GetComponent<Text>().text = tank.ismissilePerk;
@@ -32,14 +42,21 @@ public class TankController : MonoBehaviour
         toggleIsmissile.tag = tank.ismissilePerk;
         togglePerk1.tag = tank.perk1;
         togglePerk2.tag = tank.perk2;
-
-        canon = this.GetComponent<Canon>();
-        jump = this.GetComponent<Jump>();
-        perk1 = this.GetComponent<Perk1>();
-        perk2 = this.GetComponent<Perk2>();
+    }
+    public void OnPhotonInstantiate(PhotonMessageInfo info)
+    {
+        Debug.Log("OnPhotonInstantiate TankController.cs");
+        Dictionary<int, Player> playersDict = PhotonNetwork.CurrentRoom.Players;
+        foreach (KeyValuePair<int, Player> keyVal in playersDict)
+        {
+            if (keyVal.Value.IsLocal)
+            {
+                keyVal.Value.TagObject = this.gameObject;
+            }
+        }
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(1))
         {
@@ -49,36 +66,40 @@ public class TankController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        /*
         if (collision.gameObject.CompareTag("Ismissile"))
         {
             hitPoints -= missileDamage;
             Destroy(collision.gameObject);
-        }
+        }*/
     }
 
     private void LockIn()
     {
-        Debug.Log("Tank controller Lock IN");
+        //Debug.Log("Tank controller Lock IN");
         if (this.GetComponent<Jump>().isActiveAndEnabled)
         {
-            Debug.Log("jump Lock IN");
+            //Debug.Log("jump Lock IN");
             jump.LockIn();
+            jumpActionLockedIn = true;
         }
         else if (this.GetComponent<Ismissile>().isActiveAndEnabled)
         {
             Debug.Log("MISSILE Lock IN");
-
             canon.LockIn();
+            ismissileActionLockedIn = true;
         }
         else if (this.GetComponent<Perk1>().isActiveAndEnabled)
         {
             Debug.Log("perk1 Lock IN");
             perk1.LockIn();
+            perk1ActionLockedIn = true;
         }
         else if (this.GetComponent<Perk2>().isActiveAndEnabled)
         {
             Debug.Log("perk2 Lock IN");
             perk2.LockIn();
+            perk2ActionLockedIn = true;
         }
 
         Disable();
@@ -86,40 +107,37 @@ public class TankController : MonoBehaviour
 
     public void ExecuteAction()
     {
-
-        Debug.Log("Tank controller Execute");
-        Debug.Log(toggleJump.isOn);
-        Debug.Log(toggleIsmissile.isOn);
-        Debug.Log(togglePerk1.isOn);
-        Debug.Log(togglePerk2.isOn);
-        
-        if (this.GetComponent<Jump>().isActiveAndEnabled)
+        //Debug.Log("ExecuteAction in TankController.cs");
+        if (jumpActionLockedIn)
         {
             Debug.Log("jump Execute");
             jump.Execute();
             jump.enabled = false;
+            jumpActionLockedIn = false;
         }
-        else if (this.GetComponent<Ismissile>().isActiveAndEnabled)
+        else if (ismissileActionLockedIn)
         {
             Debug.Log("Missile Execute");
-
-            canon.Shoot(ismissileObject);
+            canon.ShootIsmissile();
             canon.enabled = false;
+            ismissileActionLockedIn = false;
         }
-        else if (this.GetComponent<Perk1>().isActiveAndEnabled)
+        else if (perk1ActionLockedIn)
         {
             Debug.Log("perk1 Execute");
             perk1.Execute();
             perk1.enabled = false;
+            perk1ActionLockedIn = false;
         }
-        else if (this.GetComponent<Perk2>().isActiveAndEnabled)
+        else if (perk2ActionLockedIn)
         {
             Debug.Log("perk2s Execute");
             perk2.Execute();
             perk2.enabled = false;
+            perk2ActionLockedIn = false;
+
         }
-        //Enable();
-        Debug.Log("RIENNNNNNNNNNNNNNN Execute");
+        //GetEnabled();
     }
 
     public void Enable()
@@ -149,17 +167,21 @@ public class TankController : MonoBehaviour
     private bool lockedIn;
     private bool ready;
     private bool isShootableMunition;
-    private List<Toggle> toggleList;
 
-    [SerializeField] private int missileDamage = 1;
+    private bool jumpActionLockedIn = false;
+    private bool ismissileActionLockedIn;
+    private bool perk1ActionLockedIn = false;
+    private bool perk2ActionLockedIn = false;
+    private List<Toggle> toggleList;
+    private ToggleGroup toggleGroup;
+
     [SerializeField] private int grenadeDamage;
 
     // Components
-    private Canon canon;
-    private Jump jump;
-    private Perk1 perk1;
-    private Perk2 perk2;
-    [SerializeField] private GameObject ismissileObject;
+    [SerializeField] private Canon canon;
+    [SerializeField] private Jump jump;
+    [SerializeField] private Perk1 perk1;
+    [SerializeField] private Perk2 perk2;
 
     [SerializeField] private Toggle toggleJump;
     [SerializeField] private Toggle toggleIsmissile;

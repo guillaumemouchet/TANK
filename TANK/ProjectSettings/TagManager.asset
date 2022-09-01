@@ -12,6 +12,7 @@ TagManager:
   - Ground
   - Tank
   - Projectile
+  - Local
   layers:
   - Default
   - TransparentFX

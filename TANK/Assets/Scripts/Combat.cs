@@ -16,7 +16,16 @@ public class Combat : MonoBehaviour
     private void OnEnable()
     {
         Debug.Log("Start Combat");
-        //tankController = tank.GetComponent<TankController>();
+        Dictionary<int, Player> playersDict = PhotonNetwork.CurrentRoom.Players;
+        foreach (KeyValuePair<int, Player> keyVal in playersDict)
+        {
+            if (keyVal.Value.IsLocal)
+            {
+                GameObject playerTank = (GameObject)keyVal.Value.TagObject;
+                tankController = playerTank.GetComponent<TankController>();
+            }
+        }
+
         //Faire toutes les actions des joueurs puis une fois fini fais les Happening
         ExecuteAction();
 
@@ -33,7 +42,7 @@ public class Combat : MonoBehaviour
 
     private void ExecuteAction()
     {
-        Debug.Log("Execute action");
+        //Debug.Log("Execute action");
         tankController.ExecuteAction();
     }
 
@@ -46,6 +55,5 @@ public class Combat : MonoBehaviour
 
 
     // Components
-    [SerializeField] private TankController tankController;
-    [SerializeField] private GameObject tank;
+    private TankController tankController;
 }
