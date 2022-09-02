@@ -38,16 +38,21 @@ public class PhaseController : MonoBehaviour
                     Dictionary<int, Player> playersDict = PhotonNetwork.CurrentRoom.Players;
                     foreach (KeyValuePair<int, Player> keyVal in playersDict)
                     {
-                        if (keyVal.Value.IsLocal)
+                        if (keyVal.Value.IsLocal && keyVal.Value.TagObject != null)
                         {
                             var playerTank = keyVal.Value.TagObject;
                             tankController = ((GameObject)playerTank).GetComponent<TankController>();
                             gotTankController = true;
                         }
                     }
-                    InitiatePreparation();
                 }
             }
+            else if (firstInit)
+            {
+                firstInit = false;
+                InitiatePreparation();
+            }
+
             if (takt)
             {
                 Debug.Log("Entering takt");
@@ -57,6 +62,8 @@ public class PhaseController : MonoBehaviour
             }
         }
     }
+
+    
 
 
     /***************************************************************\
@@ -72,10 +79,8 @@ public class PhaseController : MonoBehaviour
     {
         if (!prepPhaseDone)
         {
-            
             if (timer.IsFinished())
             {
-
                 Debug.Log("PREP DONE");
                 preparationPanel.SetActive(false);
                 prepPhaseDone = true;
@@ -134,7 +139,6 @@ public class PhaseController : MonoBehaviour
     private void InitiatePreparation()
     {
         // Lancer timer fait par panel de prép
-        Debug.Log("PhaseController InitiatePrepa");
         tankController.Enable();
         preparationPanel.SetActive(true);
         
@@ -185,6 +189,7 @@ public class PhaseController : MonoBehaviour
     private bool happeningPhaseDone;
     private bool takt = true;
     private bool gotTankController = false;
+    private bool firstInit = true;
 
     // Components
     private TankController tankController;

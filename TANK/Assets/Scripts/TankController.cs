@@ -13,10 +13,21 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class TankController : MonoBehaviour
+public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
 {
     private void Start()
     {
+    }
+
+    public void OnPhotonInstantiate(PhotonMessageInfo info)
+    {
+        foreach (Player p in PhotonNetwork.PlayerList)
+        {
+            if (p == PhotonNetwork.LocalPlayer)
+            {
+                p.TagObject = this.gameObject;
+            }
+        }
     }
 
     private void OnEnable()
