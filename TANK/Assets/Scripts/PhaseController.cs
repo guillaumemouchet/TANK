@@ -9,12 +9,15 @@ public class PhaseController : MonoBehaviour
 {
     private void Start()
     {
-        timer = preparationPanel.GetComponentInChildren<Timer>();
-        //tankController = tank.GetComponent<TankController>();
-        prepPhaseDone = false;
-        combatPhaseDone = false;
-        analPhase1Done = false;
-        happeningPhaseDone = false;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            timer = preparationPanel.GetComponentInChildren<Timer>();
+            //tankController = tank.GetComponent<TankController>();
+            prepPhaseDone = false;
+            combatPhaseDone = false;
+            analPhase1Done = false;
+            happeningPhaseDone = false;
+        }
     }
 
     IEnumerator waiter()
@@ -25,31 +28,32 @@ public class PhaseController : MonoBehaviour
 
     private void Update()
     {
-        if (!gotTankController)
+        if (PhotonNetwork.IsMasterClient)
         {
-            if (PhotonNetwork.PlayerList.Length != 0)
+            if (!gotTankController)
             {
-                Dictionary<int, Player> playersDict = PhotonNetwork.CurrentRoom.Players;
-                foreach (KeyValuePair<int, Player> keyVal in playersDict)
+                if (PhotonNetwork.PlayerList.Length != 0)
                 {
-                    if (keyVal.Value.IsLocal)
+                    Dictionary<int, Player> playersDict = PhotonNetwork.CurrentRoom.Players;
+                    foreach (KeyValuePair<int, Player> keyVal in playersDict)
                     {
-                        var playerTank = keyVal.Value.TagObject;
-                        tankController = ((GameObject)playerTank).GetComponent<TankController>();
-                        gotTankController = true;
+                        if (keyVal.Value.IsLocal)
+                        {
+                            var playerTank = keyVal.Value.TagObject;
+                            tankController = ((GameObject)playerTank).GetComponent<TankController>();
+                            gotTankController = true;
+                        }
                     }
+                    InitiatePreparation();
                 }
-                InitiatePreparation();
             }
-        }
-        if (takt)
-        {
-            Debug.Log("Entering takt");
-            //Debug.Log(timer.IsFinished());
-            //Debug.Log(timer.timeValue);
-            PhaseLogic();
-            takt = false;
-            StartCoroutine(waiter());
+            if (takt)
+            {
+                Debug.Log("Entering takt");
+                PhaseLogic();
+                takt = false;
+                StartCoroutine(waiter());
+            }
         }
     }
 
