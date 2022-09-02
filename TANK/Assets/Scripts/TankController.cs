@@ -13,7 +13,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
+public class TankController : MonoBehaviour
 {
     private void Start()
     {
@@ -43,18 +43,6 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
         togglePerk1.tag = tank.perk1;
         togglePerk2.tag = tank.perk2;
 
-    }
-    public void OnPhotonInstantiate(PhotonMessageInfo info)
-    {
-        Dictionary<int, Player> playersDict = PhotonNetwork.CurrentRoom.Players;
-        foreach (KeyValuePair<int, Player> keyVal in playersDict)
-        {
-            if (keyVal.Value.IsLocal)
-            {
-                keyVal.Value.TagObject = this.gameObject;
-            }
-        }
-        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Update()
