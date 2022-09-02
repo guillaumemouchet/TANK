@@ -14,6 +14,7 @@ public class TankController : MonoBehaviour
     void Start()
     {
         canon = this.GetComponent<Canon>();
+        healthBar.SetHealth(hitPoints, maxHealth);
     }
 
     void Update()
@@ -46,16 +47,19 @@ public class TankController : MonoBehaviour
     \***************************************************************/
 
     // Tools
-    private int hitPoints = 30;
+    private int hitPoints = 100;
     private int perk3MunitionCount;
     private int perk4MunitionCount;
     private bool lockedIn;
     private bool ready;
     private bool isShootableMunition;
     private Canon canon;
+    private int maxHealth = 100;
 
     [SerializeField] private int missileDamage = 1;
     [SerializeField] private int grenadeDamage;
+
+    [SerializeField] private HealthBar healthBar;
 
     // Components
 
