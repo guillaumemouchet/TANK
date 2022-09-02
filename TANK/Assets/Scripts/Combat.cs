@@ -15,17 +15,9 @@ public class Combat : MonoBehaviour
 {   
     private void OnEnable()
     {
-        if (PhotonNetwork.MasterClient == PhotonNetwork.LocalPlayer)
-        {
-            Debug.Log("Start Combat");
-            //Faire toutes les actions des joueurs puis une fois fini fais les Happening
-            foreach (KeyValuePair<int, Player> idAndPlayer in PhotonNetwork.CurrentRoom.Players)
-            {
-                GameObject tank = (GameObject)idAndPlayer.Value.TagObject;
-                TankController tankController = tank.GetComponent<TankController>();
-                tankController.ExecuteAction();
-            }
-        }
+        Debug.Log("Start Combat");
+        //Faire toutes les actions des joueurs puis une fois fini fais les Happening
+        this.GetComponent<TankController>().ExecuteAction();
     }
 
     private void Update()
