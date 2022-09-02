@@ -28,7 +28,8 @@ public class GameSetup : MonoBehaviour
             {
                 Debug.Log("New Player created");
                 Debug.Log(index);
-                PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TankBasic"), GameController.instance.spawnPoints[index].position, Quaternion.identity);
+                GameObject playerTank = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TankBasic"), GameController.instance.spawnPoints[index].position, Quaternion.identity);
+                p.TagObject = playerTank;
             }
             else
             {
