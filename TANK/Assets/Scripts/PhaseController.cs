@@ -9,7 +9,7 @@ public class PhaseController : MonoBehaviour
 {
     private void Start()
     {
-        if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.LocalPlayer.IsMasterClient)
         {
             timer = preparationPanel.GetComponentInChildren<Timer>();
             //tankController = tank.GetComponent<TankController>();
@@ -47,6 +47,7 @@ public class PhaseController : MonoBehaviour
                     }
                 }
             }
+
             else if (firstInit)
             {
                 firstInit = false;

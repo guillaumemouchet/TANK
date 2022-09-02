@@ -141,7 +141,7 @@ public class LobbyController : MonoBehaviourPunCallbacks
         if (!(string.IsNullOrWhiteSpace(TMP_roomName.text) || string.IsNullOrWhiteSpace(TMP_roomSize.text)))
         {
             Debug.Log("Creating room now");
-            RoomOptions roomOps = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = (byte)roomSize };
+            RoomOptions roomOps = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = (byte)roomSize, PublishUserId = true };
             PhotonNetwork.CreateRoom(roomName, roomOps);
         }else
         {

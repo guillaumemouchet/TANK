@@ -21,19 +21,16 @@ public class GameSetup : MonoBehaviour
 
     private void CreatePlayer()
     {
-        int index = 0;
-        foreach (Player p in PhotonNetwork.PlayerList)
+        if (PhotonNetwork.LocalPlayer.IsMasterClient)
         {
-            if (p == PhotonNetwork.LocalPlayer)
+            int index = 0;
+            foreach (Player p in PhotonNetwork.PlayerList)
             {
-                Debug.Log("New Player created");
-                Debug.Log(index);
-                PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TankBasic"), GameController.instance.spawnPoints[index].position, Quaternion.identity);
-                
-            }
-            else
-            {
-                index++;
+                if (PhotonNetwork.LocalPlayer == p)
+                {
+                    p.TagObject = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TankBasic"), GameController.instance.spawnPoints[index++].position, Quaternion.identity);
+                    DontDestroyOnLoad((Object)p.TagObject);
+                }
             }
         }
     }
