@@ -10,7 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-
+using System.IO;
 
 public class Canon : MonoBehaviour
 {
@@ -70,7 +70,8 @@ public class Canon : MonoBehaviour
     {
         if (photonView.IsMine)
         {
-            GameObject newMunition = PhotonNetwork.Instantiate(objectToShoot.name, lockInFirePoint.position, lockInFirePoint.rotation);
+            string name = objectToShoot.name;
+            GameObject newMunition = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", objectToShoot.name), lockInFirePoint.position, lockInFirePoint.rotation);
             newMunition.GetComponent<Rigidbody2D>().velocity = lockInTransform.right * lockInLaunchForce;
         }
     }
