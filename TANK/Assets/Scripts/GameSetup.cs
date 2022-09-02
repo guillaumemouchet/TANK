@@ -21,8 +21,19 @@ public class GameSetup : MonoBehaviour
 
     private void CreatePlayer()
     {
-        Debug.Log("New Player created");
-        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TankBasic"), GameController.instance.spawnPoints[0].position, Quaternion.identity);
+        int index = 0;
+        foreach (Player p in PhotonNetwork.CurrentRoom.Players.Values)
+        {
+            if (p == PhotonNetwork.LocalPlayer)
+            {
+                Debug.Log("New Player created");
+                PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TankBasic"), GameController.instance.spawnPoints[index].position, Quaternion.identity);
+            }
+            else
+            {
+                index++;
+            }
+        }
     }
 
     // Update is called once per frame
