@@ -30,7 +30,7 @@ public class PhaseController : MonoBehaviour
     {
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
         {
-            Debug.Log(PhotonNetwork.LocalPlayer.NickName + " " + PhotonNetwork.LocalPlayer.IsMasterClient);
+            //Debug.Log(PhotonNetwork.LocalPlayer.NickName + " " + PhotonNetwork.LocalPlayer.IsMasterClient);
             if (!gotTankController)
             {
                 if (PhotonNetwork.PlayerList.Length != 0)

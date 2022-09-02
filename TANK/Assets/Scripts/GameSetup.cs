@@ -22,11 +22,12 @@ public class GameSetup : MonoBehaviour
     private void CreatePlayer()
     {
         int index = 0;
-        foreach (Player p in PhotonNetwork.CurrentRoom.Players.Values)
+        foreach (Player p in PhotonNetwork.PlayerList)
         {
             if (p == PhotonNetwork.LocalPlayer)
             {
                 Debug.Log("New Player created");
+                Debug.Log(index);
                 PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TankBasic"), GameController.instance.spawnPoints[index].position, Quaternion.identity);
             }
             else
