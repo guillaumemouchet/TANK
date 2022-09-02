@@ -17,9 +17,9 @@ public class Canon : MonoBehaviour
 
     private void Start()
     {
+        trajectoryLineEnabled = true;
         lockedIn = false;
         photonView = this.GetComponent<PhotonView>();
-        trajectoryLineNeeded = true;
     }
 
     private void OnEnable()
@@ -34,9 +34,13 @@ public class Canon : MonoBehaviour
 
     private void Update()
     {   
-        if (trajectoryLineNeeded)
+        if (!lockedIn)
         {
             ActivateTrajectoryLine();
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            LockIn();
         }
     }
     private void OnDisable()
@@ -52,15 +56,22 @@ public class Canon : MonoBehaviour
 
     public void LockIn()
     {
+        lockInLaunchForce = launchForce;
+        lockInTransform = this.transform.GetChild(0);
+        lockInFirePoint = firePoint;
         lockedIn = true;
+        trajectoryLineEnabled = false;
+        DeleteTrajectoryLine();
     }
+
+    
 
     public void Shoot(GameObject objectToShoot) // TODO faire passer la bonne munition
     {
         if (photonView.IsMine)
         {
-            GameObject newMunition = Instantiate(objectToShoot, firePoint.position, firePoint.rotation);
-            newMunition.GetComponent<Rigidbody2D>().velocity = transform.GetChild(0).right * launchForce;
+            GameObject newMunition = Instantiate(objectToShoot, lockInFirePoint.position, lockInFirePoint.rotation);
+            newMunition.GetComponent<Rigidbody2D>().velocity = lockInTransform.right * lockInLaunchForce;
         }
     }
 
@@ -69,18 +80,21 @@ public class Canon : MonoBehaviour
     \***************************************************************/
     private void ActivateTrajectoryLine()
     {
-        Vector2 canonPos = transform.GetChild(0).position;
-        Vector2 mousePOs = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        launchForce = magicForceScale * Mathf.Sqrt(Vector2.SqrMagnitude(canonPos - mousePOs));
-        if (launchForce > maxLaunchForce)
+        if (trajectoryLineEnabled)
         {
-            launchForce = maxLaunchForce;
-        }
-        direction = mousePOs - canonPos;
-        transform.GetChild(0).right = direction;
-        for (int i = 0; i < numberOfPoints; i++)
-        {
-            trajectory[i].transform.position = PointPosition(i * spaceBetweenPoints);
+            Vector2 canonPos = transform.GetChild(0).position;
+            Vector2 mousePOs = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            launchForce = magicForceScale * Mathf.Sqrt(Vector2.SqrMagnitude(canonPos - mousePOs));
+            if (launchForce > maxLaunchForce)
+            {
+                launchForce = maxLaunchForce;
+            }
+            direction = mousePOs - canonPos;
+            transform.GetChild(0).right = direction;
+            for (int i = 0; i < numberOfPoints; i++)
+            {
+                trajectory[i].transform.position = PointPosition(i * spaceBetweenPoints);
+            }
         }
     }
 
@@ -104,11 +118,13 @@ public class Canon : MonoBehaviour
     \***************************************************************/
 
     // Tools
-    private bool ifCanonSelected = false;
     private GameObject[] trajectory;
     private Vector2 direction; // Vecteur direction du entre canon et souris
-    private bool trajectoryLineNeeded;
     private bool lockedIn;
+    private float lockInLaunchForce;
+    private Transform lockInTransform;
+    private Transform lockInFirePoint;
+    private bool trajectoryLineEnabled;
     [SerializeField] private Transform trajectoryLine; // Container pour les cercles de la trajectoire (QoL)
 
     // Force

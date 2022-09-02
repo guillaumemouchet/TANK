@@ -8,6 +8,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class Combat : MonoBehaviour
 {
@@ -15,43 +17,23 @@ public class Combat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hp = GetComponent<Happening>();
         Debug.Log("Start Combat");
         //Faire toutes les actions des joueurs puis une fois fini fais les Happening
-        StartCoroutine(waiter());
-
-        
+        ExecuteAction();
     }
 
-    IEnumerator waiter()
-    {
-        Debug.Log("Faire les actions");
-        //fais les actions des joueurs
-
-        yield return new WaitForSeconds(4);
-
-        Debug.Log("wait");
-        yield return new WaitForSeconds(4);
-        Debug.Log("wait");
-
-        yield return new WaitForSeconds(4);
-        Debug.Log("wait");
-
-        yield return new WaitForSeconds(4);
-        Debug.Log("wait");
-
-        yield return new WaitForSeconds(4);
-        Debug.Log("end wait");
-
-
-        Debug.Log("Faire les Happenings");
-        //fais les Happenings
-        hp.StartHappening();
-
-    }
     // Update is called once per frame
     void Update()
     {
         
     }
+
+    private void ExecuteAction()
+    {
+        tankController.ExecuteAction();
+    }
+
+    // Components
+
+    [SerializeField] private TankController tankController;
 }

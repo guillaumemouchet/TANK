@@ -5,6 +5,7 @@
  * Source :
  */
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,23 +15,21 @@ public class TankController : MonoBehaviour
     void Start()
     {
         canon = this.GetComponent<Canon>();
+
         currentHealth = so_Tank.HP;
         healthBar.SetMaxHealth(currentHealth);
+
+        jump = this.GetComponent<Jump>();
+        perk1 = this.GetComponent<Perk1>();
+        perk2 = this.GetComponent<Perk2>();
+
     }
 
     void Update()
     {
-        if (lockedIn && ready)
+        if (Input.GetMouseButtonDown(1))
         {
-            if (isShootableMunition) // dans le cas d'un missile ou d'une grenade
-            {
-                //GameObject munition = TankDisplay.GetMunition();
-                //canon.Shoot(munition);
-            }
-            else // Shield, jump...
-            {
-                
-            }
+            LockIn();
         }
     }
 
@@ -45,6 +44,49 @@ public class TankController : MonoBehaviour
         }
     }
 
+    private void LockIn()
+    {
+        if (this.GetComponent<Jump>().isActiveAndEnabled)
+        {
+            jump.LockIn();
+        }
+        else if (this.GetComponent<Ismissile>().isActiveAndEnabled)
+        {
+            canon.LockIn();
+        }
+        else if (this.GetComponent<Perk1>().isActiveAndEnabled)
+        {
+            perk1.LockIn();
+        }
+        else if (this.GetComponent<Perk2>().isActiveAndEnabled)
+        {
+            perk2.LockIn();
+        }
+
+        TankDisplay tD = gameManager.GetComponent<TankDisplay>();   
+        tD.Disable();
+    }
+
+    public void ExecuteAction()
+    {
+        if (this.GetComponent<Jump>().isActiveAndEnabled)
+        {
+            jump.Execute();
+        }
+        else if (this.GetComponent<Ismissile>().isActiveAndEnabled)
+        {
+            canon.Shoot(ismissileObject);
+        }
+        else if (this.GetComponent<Perk1>().isActiveAndEnabled)
+        {
+            perk1.Execute();
+        }
+        else if (this.GetComponent<Perk2>().isActiveAndEnabled)
+        {
+            perk2.Execute();
+        }
+    }
+
     /***************************************************************\
      *                      Attributes private                     *
     \***************************************************************/
@@ -55,9 +97,10 @@ public class TankController : MonoBehaviour
     private bool lockedIn;
     private bool ready;
     private bool isShootableMunition;
-    private Canon canon;
+
     private int maxHealth = 100;
     [SerializeField] private int currentHealth;
+
 
 
     [SerializeField] private int missileDamage = 10;
@@ -67,6 +110,12 @@ public class TankController : MonoBehaviour
     [SerializeField] private SO_Tanks so_Tank;
 
     // Components
+    private Canon canon;
+    private Jump jump;
+    private Perk1 perk1;
+    private Perk2 perk2;
+    [SerializeField] private GameObject ismissileObject;
+    [SerializeField] private GameObject gameManager;
 
 
 }

@@ -16,12 +16,12 @@ public class Perk1 : MonoBehaviour
 {
     void Start()
     {
-        /*switch (togglePerk1.tag)
+        switch (togglePerk1.tag)
         {
             case "BounceGrenade":
                 BounceGrenade();
                 break;
-        }*/
+        }
     }
     private void OnEnable()
     {
@@ -33,7 +33,7 @@ public class Perk1 : MonoBehaviour
     private void Update()
     {
         /*** TESTING ***/
-        if (Input.GetMouseButtonDown(1))
+        /*if (Input.GetMouseButtonDown(1))
         {
             switch (togglePerk1.tag)
             {
@@ -41,7 +41,7 @@ public class Perk1 : MonoBehaviour
                     BounceGrenade();
                     break;
             }
-        }
+        }*/
         /*** TESTING ***/
 
     }
@@ -61,8 +61,33 @@ public class Perk1 : MonoBehaviour
     }
     private void BounceGrenade()
     {
+        gObject = bounceGrenadeObject;
+        canonNeeded = true;
         Debug.Log("BounceGrenade() in Perk1.cs");
-        canon.Shoot(bounceGrenadeObject);
+    }
+
+    public void LockIn()
+    {
+        if(canonNeeded)
+        {
+            canon.LockIn();
+        }    
+        else
+        {
+            // else...
+        }
+    }
+
+    public void Execute()
+    {
+        if (canonNeeded)
+        {
+            canon.Shoot(gObject);
+        }
+        else
+        {
+            // else...
+        }
     }
 
 
@@ -74,8 +99,9 @@ public class Perk1 : MonoBehaviour
 
     // Components
     private Canon canon;
+    private GameObject gObject;
     [SerializeField] private GameObject bounceGrenadeObject;
 
     [SerializeField] private Toggle togglePerk1;
-
+    private bool canonNeeded;
 }

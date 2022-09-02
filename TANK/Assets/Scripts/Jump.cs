@@ -13,6 +13,7 @@ public class Jump : MonoBehaviour
 {
     private void Start()
     {
+        trajectoryLineEnabled = true;
         lockedIn = false;
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
@@ -29,29 +30,9 @@ public class Jump : MonoBehaviour
 
     private void Update()
     {
-        Vector2 canonPos = transform.GetChild(0).position;
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        launchForce = Mathf.Sqrt(Vector2.SqrMagnitude(canonPos - mousePos)) * magicForceScale;
-
-        if (launchForce > maxLaunchForce)
+        if (!lockedIn)
         {
-            launchForce = maxLaunchForce;
-        }
-        direction = mousePos - canonPos;
-        transform.GetChild(0).right = direction;
-
-        ActivateTrajectoryLine();
-        if (Input.GetButtonDown("Jump"))
-        {
-            Execute();
-        }
-
-        if (lockedIn)
-        {
-            if (execute)
-            {
-                Execute();
-            }
+            ActivateTrajectoryLine();
         }
     }
 
@@ -67,12 +48,16 @@ public class Jump : MonoBehaviour
 
     public void LockIn()
     {
+        lockInTransform = transform.GetChild(0);
+        lockInLaunchforce = launchForce;
         lockedIn = true;
+        trajectoryLineEnabled = false;
+        DeleteTrajectoryLine();
     }
 
     public void Execute()
     {
-        rb.velocity = transform.GetChild(0).right * launchForce;
+        rb.velocity = lockInTransform.right * lockInLaunchforce;
     }
 
     /***************************************************************\
@@ -81,9 +66,22 @@ public class Jump : MonoBehaviour
 
     private void ActivateTrajectoryLine()
     {
-        for (int i = 0; i < numberOfPoints; i++)
+        if (trajectoryLineEnabled)
         {
-            trajectory[i].transform.position = PointPosition(i * spaceBetweenPoints);
+            Vector2 canonPos = transform.GetChild(0).position;
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            launchForce = Mathf.Sqrt(Vector2.SqrMagnitude(canonPos - mousePos)) * magicForceScale;
+
+            if (launchForce > maxLaunchForce)
+            {
+                launchForce = maxLaunchForce;
+            }
+            direction = mousePos - canonPos;
+            transform.GetChild(0).right = direction;
+            for (int i = 0; i < numberOfPoints; i++)
+            {
+                trajectory[i].transform.position = PointPosition(i * spaceBetweenPoints);
+            }
         }
     }
     private void DeleteTrajectoryLine()
@@ -113,8 +111,11 @@ public class Jump : MonoBehaviour
     private bool lockedIn;
     private bool execute;
     private GameObject[] trajectory;
+    private bool trajectoryLineEnabled;
     [SerializeField] private Transform trajectoryLine; // Container pour les cercles de la trajectoire (QoL)
     [SerializeField] private int numberOfPoints = 25; // Nombres de billes affichés à la projection de trajectoire
+    private Transform lockInTransform;
+    private float lockInLaunchforce;
 
     // Force
     [SerializeField] private float launchForce = 1f; // Force de tir choisie
