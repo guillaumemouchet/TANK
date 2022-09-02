@@ -10,7 +10,6 @@ public class PhaseController : MonoBehaviour
     private void Start()
     {
         timer = preparationPanel.GetComponentInChildren<Timer>();
-        //tankController = tank.GetComponent<TankController>();
         prepPhaseDone = false;
         combatPhaseDone = false;
         analPhase1Done = false;
@@ -24,7 +23,12 @@ public class PhaseController : MonoBehaviour
     }
 
     private void Update()
-    {       
+    {
+        if (PhotonNetwork.LocalPlayer.TagObject is not null)
+        {
+            GameObject tank = (GameObject)PhotonNetwork.LocalPlayer.TagObject;
+            tankController = tank.GetComponent<TankController>();
+        }
         if (firstInit)
         {
             firstInit = false;
