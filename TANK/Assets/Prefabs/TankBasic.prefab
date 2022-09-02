@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 1963961490}
   m_Layer: 0
   m_Name: TankBasic
-  m_TagString: Shield
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -427,7 +427,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875279494566678142}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.313, y: -1.144, z: 0}
+  m_LocalPosition: {x: -6.313, y: -1.144, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -597,6 +597,8 @@ MonoBehaviour:
   grenadeDamage: 0
   healthBar: {fileID: 139309515}
   so_Tank: {fileID: 11400000, guid: df2d93dc356c83d4e95edbfc77b71377, type: 2}
+  ismissileObject: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!114 &1875279494566678134
 MonoBehaviour:
   m_ObjectHideFlags: 0

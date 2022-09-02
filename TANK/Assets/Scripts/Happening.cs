@@ -4,6 +4,7 @@
  * Date : 29.08.2022
  * Source :
  */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,9 +17,11 @@ public class Happening : MonoBehaviour
     }
     // Update is called once per frame
     void Update()
-    {
 
+    {
+        StartHappening();
     }
+
 
     IEnumerator logEverySecond()
     {
@@ -29,6 +32,11 @@ public class Happening : MonoBehaviour
             placeHP();
         }
     }
+
+    /***************************************************************\
+     *                      Methodes publics                       *
+    \***************************************************************/
+
     public void StartHappening()
     {
         //debut de la phase de happening
@@ -51,15 +59,24 @@ public class Happening : MonoBehaviour
         }
 
         //maximum d'objets de soutien pas atteint
-        if(currentNumberItem<=MaximumItems)
+        if(currentNumberItems<=MaximumItems)
         {
-            placeHP();
+            //PlaceHP();
         }
 
         //retour à la phase d'Analyse
         Debug.Log("Fin des Happenings");
-
+        isOver = true;
     }
+
+    public bool IsOver()
+    {
+        return isOver;
+    }
+
+    /***************************************************************\
+     *                      Methodes private                       *
+    \***************************************************************/
 
     private void ResolveHappening()
     {
@@ -74,18 +91,20 @@ public class Happening : MonoBehaviour
         //annonce happening
     }
 
-
-    private void placeHP()
+    private void PlaceHP()
     {
+
         int i = Random.Range(0, HPPackPos.Length + 1); // +1 pour [a;b]
 
         GameObject go = Instantiate(healthpack, HPPackPos[i].transform.position, Quaternion.identity);
         currentNumberItem++;
+
     }
 
     /***************************************************************\
      *                      Attributes private                     *
     \***************************************************************/
+
 
     [SerializeField] private GameObject healthpack;
     [SerializeField] private GameObject[] HPPackPos;
@@ -94,7 +113,11 @@ public class Happening : MonoBehaviour
     private int currentTurn = 0;
     private int happeningTurn = 4;
     private int MaximumItems = 5;
-    private int currentNumberItem = 0;
+
+    private int currentNumberItems = 0;
     private GameObject happening = null;
+    private bool isOver;
+
+    // Components
 
 }

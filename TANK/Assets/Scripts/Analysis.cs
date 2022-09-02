@@ -11,21 +11,25 @@ using Photon.Pun;
 using Photon.Realtime;
 using System;
 
-public class Analyse : MonoBehaviour
+public class Analysis : MonoBehaviour
 {
-    private bool happeningDone = false;
-    private Happening hp;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         hp = GetComponent<Happening>();
 
         
     }
 
-    void Update()
+    private void Update()
     {
         
+    }
+
+    public bool IsOver()
+    {
+        //return isOver;
+        return true;
     }
 
     private void StartAnalyse()
@@ -70,4 +74,13 @@ public class Analyse : MonoBehaviour
         //Victory of the other team and end the Game
     }
 
+    /***************************************************************\
+     *                      Attributes private                     *
+    \***************************************************************/
+
+    // Tools
+
+    private bool happeningDone = false;
+    private Happening hp;
+    private bool isOver = false;
 }
