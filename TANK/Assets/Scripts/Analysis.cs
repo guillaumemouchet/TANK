@@ -13,23 +13,16 @@ using System;
 
 public class Analysis : MonoBehaviour
 {
-    // Start is called before the first frame update
-    private void Start()
-    {
-        hp = GetComponent<Happening>();
 
-        
-    }
-
-    private void Update()
+    private void OnEnable()
     {
-        
+        isOver = false;
+        StartAnalyse();
     }
 
     public bool IsOver()
     {
-        //return isOver;
-        return true;
+        return isOver;
     }
 
     private void StartAnalyse()
@@ -39,6 +32,7 @@ public class Analysis : MonoBehaviour
         CheckVictory();
         CheckHappening();
         DefaultSettings();
+        isOver = true;
     }
 
     private void DefaultSettings()
@@ -52,18 +46,16 @@ public class Analysis : MonoBehaviour
 
     private void CheckHappening()
     {
-       if(!happeningDone)
-        {
-            hp.StartHappening();
-            happeningDone=true;
-        }
+       
     }
 
     private void CheckAlive()
     {
+
         foreach(Player player in PhotonNetwork.PlayerList)
         {
             //Get Life
+            Debug.Log("Cant Get players life");
             //if player is dead --> spectator Mode
         }
     }
@@ -81,6 +73,6 @@ public class Analysis : MonoBehaviour
     // Tools
 
     private bool happeningDone = false;
-    private Happening hp;
+    [SerializeField] private Happening hp;
     private bool isOver = false;
 }

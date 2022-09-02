@@ -4,68 +4,34 @@
  * Date : 29.08.2022
  * Source :
  */
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using System.IO;
 
 public class Happening : MonoBehaviour
 {
-    private void Start()
-    {
-        StartCoroutine(logEverySecond());
-    }
-    // Update is called once per frame
-    void Update()
-
-    {
-        StartHappening();
-    }
-
-
-    IEnumerator logEverySecond()
-    {
-        while (true)
-        {
-
-            yield return new WaitForSeconds(2);
-            placeHP();
-        }
-    }
-
     /***************************************************************\
      *                      Methodes publics                       *
     \***************************************************************/
 
+    public void OnEnable()
+    {
+        isOver = false;
+        StartHappening();
+    }
     public void StartHappening()
     {
-        //debut de la phase de happening
-        if(happening == null)
-        {
-            //Choose Happening
-        }
-        //calculer le tour de happening
-        currentTurn++;
-        //Tour d'un happening
-        if(currentTurn%happeningTurn ==  0)
-        {
-            //resoudre le happening
-            ResolveHappening();
-        } //tour avant le happening
-        else if(currentTurn % happeningTurn == 1)
-        {
-            //annoncer le happening
-            AnnonceHappening();
-        }
-
+        Debug.Log("Start Happening");
         //maximum d'objets de soutien pas atteint
-        if(currentNumberItems<=MaximumItems)
+        if (currentNumberItems <= MaximumItems)
         {
-            //PlaceHP();
+            Debug.Log("RESOLVE");
+            ResolveHappening();
         }
 
         //retour à la phase d'Analyse
-        //Debug.Log("Fin des Happenings");
         isOver = true;
     }
 
@@ -80,10 +46,9 @@ public class Happening : MonoBehaviour
 
     private void ResolveHappening()
     {
-        //resolve happening
-
+        PlaceHP();
         //set happening to null
-        happening = null;
+        //happening = null;
     }
     
     private void AnnonceHappening()
@@ -94,10 +59,10 @@ public class Happening : MonoBehaviour
     private void PlaceHP()
     {
 
-        int i = Random.Range(0, HPPackPos.Length + 1); // +1 pour [a;b]
+        int i = Random.Range(0, HPPackPos.Length ); // +1 pour [a;b]
 
-        GameObject go = Instantiate(healthpack, HPPackPos[i].transform.position, Quaternion.identity);
-        currentNumberItem++;
+        GameObject go = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Health Pack"), HPPackPos[i].transform.position, Quaternion.identity);
+        currentNumberItems++;
 
     }
 
@@ -115,7 +80,7 @@ public class Happening : MonoBehaviour
     private int MaximumItems = 5;
 
     private int currentNumberItems = 0;
-    private GameObject happening = null;
+    //private GameObject happening = null;
     private bool isOver = false;
 
     // Components

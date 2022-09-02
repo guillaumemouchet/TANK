@@ -17,6 +17,8 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
 {
     private void Start()
     {
+        currentHealth = so_Tank.HP;
+        healthBar.SetMaxHealth(currentHealth);
     }
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)
@@ -66,14 +68,20 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /*
+        
         if (collision.gameObject.CompareTag("Ismissile"))
         {
             currentHealth -= missileDamage;
             healthBar.SetHealth(currentHealth);
 
             Destroy(collision.gameObject);
-        }*/
+        }else if (collision.gameObject.CompareTag("Projectile"))
+        {
+            currentHealth -= grenadeDamage;
+            healthBar.SetHealth(currentHealth);
+
+            Destroy(collision.gameObject);
+        }
     }
 
     private void LockIn()
@@ -182,7 +190,7 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
     private List<Toggle> toggleList;
     private ToggleGroup toggleGroup;
 
-    [SerializeField] private int grenadeDamage;
+    [SerializeField] private int grenadeDamage = 30;
 
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private SO_Tanks so_Tank;

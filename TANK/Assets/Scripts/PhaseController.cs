@@ -113,6 +113,7 @@ public class PhaseController : MonoBehaviour
         }
         else if (!happeningPhaseDone)
         {
+            Debug.Log("Happeing over" + HappeningOver());
             if (HappeningOver())
             {
                 Debug.Log("happening DONE");

@@ -22,7 +22,7 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        slider.transform.position = Camera.main.WorldToScreenPoint(transform.position + offset);
+        slider.transform.position = Camera.main.WorldToScreenPoint(tank.transform.position + offset);
     }
 
     public void SetMaxHealth(int maxHealth)
@@ -43,6 +43,7 @@ public class HealthBar : MonoBehaviour
 
     [SerializeField] private Slider slider;
     [SerializeField] private Vector3 offset;
+    [SerializeField] private GameObject tank;
 
     [SerializeField] private SO_Tanks so_Tank;
 

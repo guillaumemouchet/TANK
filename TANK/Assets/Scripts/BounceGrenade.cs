@@ -15,6 +15,7 @@ public class BounceGrenade : MonoBehaviour
     {
         rb = this.GetComponent<Rigidbody2D>();
         Invoke("Explode", 5); // Appelle Explode() après 5 secondes
+        
     }
 
     private void Update()
@@ -25,16 +26,25 @@ public class BounceGrenade : MonoBehaviour
     private void Explode()
     {
         // Boom
-        Destroy(this.gameObject);
+        explosion.SetActive(true);
+        StartCoroutine(logEverySecond());
     }
 
+    IEnumerator logEverySecond()
+    {
+        while (true)
+        {
 
+            yield return new WaitForSeconds(1);
+            Destroy(this.gameObject);
+        }
+    }
     /***************************************************************\
      *                      Attributes private                     *
     \***************************************************************/
 
     // Components
-
     private Rigidbody2D rb;
+    [SerializeField] private GameObject explosion;
     private float fuseInSeconds;
 }
