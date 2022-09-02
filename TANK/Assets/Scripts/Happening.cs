@@ -10,20 +10,25 @@ using UnityEngine;
 
 public class Happening : MonoBehaviour
 {
-    [SerializeField] private GameObject healthpack;
-
-
-    private int currentTurn = 0;
-    private int happeningTurn = 4;
-    private int MaximumItems = 5;
-    private int currentNumberItem = 0;
-    private GameObject happening = null;
+    private void Start()
+    {
+        StartCoroutine(logEverySecond());
+    }
     // Update is called once per frame
     void Update()
     {
 
     }
 
+    IEnumerator logEverySecond()
+    {
+        while (true)
+        {
+
+            yield return new WaitForSeconds(2);
+            placeHP();
+        }
+    }
     public void StartHappening()
     {
         //debut de la phase de happening
@@ -72,8 +77,24 @@ public class Happening : MonoBehaviour
 
     private void placeHP()
     {
-        GameObject go = Instantiate(healthpack, new Vector2(200, 200), Quaternion.identity);
+        int i = Random.Range(0, HPPackPos.Length + 1); // +1 pour [a;b]
+
+        GameObject go = Instantiate(healthpack, HPPackPos[i].transform.position, Quaternion.identity);
         currentNumberItem++;
     }
+
+    /***************************************************************\
+     *                      Attributes private                     *
+    \***************************************************************/
+
+    [SerializeField] private GameObject healthpack;
+    [SerializeField] private GameObject[] HPPackPos;
+
+
+    private int currentTurn = 0;
+    private int happeningTurn = 4;
+    private int MaximumItems = 5;
+    private int currentNumberItem = 0;
+    private GameObject happening = null;
 
 }
