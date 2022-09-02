@@ -25,9 +25,20 @@ public class BounceGrenade : MonoBehaviour
     private void Explode()
     {
         // Boom
-        Destroy(this.gameObject);
+        explosion.SetActive(true);
+        StartCoroutine(logEverySecond());
+        
     }
 
+    IEnumerator logEverySecond()
+    {
+        while (true)
+        {
+
+            yield return new WaitForSeconds(1);
+            Destroy(this.gameObject);
+        }
+    }
 
     /***************************************************************\
      *                      Attributes private                     *
@@ -37,4 +48,5 @@ public class BounceGrenade : MonoBehaviour
 
     private Rigidbody2D rb;
     private float fuseInSeconds;
+    [SerializeField] private GameObject explosion;
 }

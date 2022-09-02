@@ -56,7 +56,7 @@ public class TankController : MonoBehaviour
     private bool ready;
     private bool isShootableMunition;
     private Canon canon;
-    private int maxHealth = 100;
+    private int maxHealth;
     [SerializeField] private int currentHealth;
 
 
