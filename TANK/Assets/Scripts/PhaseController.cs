@@ -28,8 +28,9 @@ public class PhaseController : MonoBehaviour
 
     private void Update()
     {
-        if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.LocalPlayer.IsMasterClient)
         {
+            Debug.Log(PhotonNetwork.LocalPlayer.NickName + " " + PhotonNetwork.LocalPlayer.IsMasterClient);
             if (!gotTankController)
             {
                 if (PhotonNetwork.PlayerList.Length != 0)
