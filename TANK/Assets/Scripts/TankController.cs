@@ -21,13 +21,13 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
-        foreach (Player p in PhotonNetwork.PlayerList)
+        /*foreach (Player p in PhotonNetwork.PlayerList)
         {
             if (p == PhotonNetwork.LocalPlayer)
             {
                 p.TagObject = this.gameObject;
             }
-        }
+        }*/
     }
 
     private void OnEnable()
