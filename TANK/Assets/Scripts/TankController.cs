@@ -46,7 +46,6 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
     }
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
-        Debug.Log("OnPhotonInstantiate TankController.cs");
         Dictionary<int, Player> playersDict = PhotonNetwork.CurrentRoom.Players;
         foreach (KeyValuePair<int, Player> keyVal in playersDict)
         {
@@ -55,6 +54,7 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
                 keyVal.Value.TagObject = this.gameObject;
             }
         }
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Update()
