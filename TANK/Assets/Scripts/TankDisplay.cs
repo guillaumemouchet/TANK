@@ -26,6 +26,7 @@ public class TankDisplay : MonoBehaviour
         toggleIsmissile.tag = tank.ismissilePerk;
         togglePerk1.tag = tank.perk1;
         togglePerk2.tag = tank.perk2;
+
     }
 
     /***************************************************************\
