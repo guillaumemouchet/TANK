@@ -11,21 +11,18 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    private void Start()
-    {
-        trajectoryLineEnabled = true;
-        lockedIn = false;
-        rb = gameObject.GetComponent<Rigidbody2D>();
-    }
 
     private void OnEnable()
     {
+        Debug.Log("Jump enabled");
+        trajectoryLineEnabled = true;
+        lockedIn = false;
+        rb = GetComponent<Rigidbody2D>();
         trajectory = new GameObject[numberOfPoints];
         for (int i = 0; i < numberOfPoints; i++)
         {
-            trajectory[i] = Instantiate(circleObject, this.transform.position, Quaternion.identity, trajectoryLine.transform);
+            trajectory[i] = Instantiate(circleObject, this.transform.position, Quaternion.identity, trajectoryLine);
         }
-        Debug.Log("Jump enabled");
     }
 
     private void Update()
@@ -38,8 +35,10 @@ public class Jump : MonoBehaviour
 
     private void OnDisable()
     {
-        DeleteTrajectoryLine();
+        trajectoryLineEnabled = true;
+        lockedIn = false;
         Debug.Log("Jump disabled");
+        DeleteTrajectoryLine();
     }
 
     /***************************************************************\
@@ -48,8 +47,8 @@ public class Jump : MonoBehaviour
 
     public void LockIn()
     {
-        lockInTransform = transform.GetChild(0);
         lockInLaunchforce = launchForce;
+        lockInTransform = transform.GetChild(0);
         lockedIn = true;
         trajectoryLineEnabled = false;
         DeleteTrajectoryLine();

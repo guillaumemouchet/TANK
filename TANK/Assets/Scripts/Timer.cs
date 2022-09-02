@@ -45,11 +45,18 @@ public class Timer : MonoBehaviour
         return isFinished;
     }
 
+    public void ResetTimer()
+    {
+        timeValue = TIMER_SECONDS;
+        isFinished = false;
+    }
+
     private void OnDestroy()
     {
         Debug.Log("Destroying timer");
     }
 
+    private const float TIMER_SECONDS = 10;
     private float timeValue = 10;
     [SerializeField] private TMP_Text timeText;
     private bool isFinished = false;

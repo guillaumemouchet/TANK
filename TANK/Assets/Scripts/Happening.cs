@@ -116,7 +116,7 @@ public class Happening : MonoBehaviour
 
     private int currentNumberItems = 0;
     private GameObject happening = null;
-    private bool isOver;
+    private bool isOver = false;
 
     // Components
 
