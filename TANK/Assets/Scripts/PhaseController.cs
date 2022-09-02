@@ -28,7 +28,7 @@ public class PhaseController : MonoBehaviour
 
     private void Update()
     {
-        if (PhotonNetwork.LocalPlayer.IsMasterClient)
+        if (PhotonNetwork.MasterClient == PhotonNetwork.LocalPlayer)
         {
             //Debug.Log(PhotonNetwork.LocalPlayer.NickName + " " + PhotonNetwork.LocalPlayer.IsMasterClient);
             if (!gotTankController)
@@ -140,6 +140,7 @@ public class PhaseController : MonoBehaviour
     private void InitiatePreparation()
     {
         // Lancer timer fait par panel de prép
+        Debug.Log("prep00");
         tankController.Enable();
         preparationPanel.SetActive(true);
         
@@ -174,7 +175,8 @@ public class PhaseController : MonoBehaviour
 
     private bool PlayerMoving()
     {
-        return tank.GetComponent<Rigidbody2D>().velocity.magnitude > 1f;
+        //return tank.GetComponent<Rigidbody2D>().velocity.magnitude > 1f;  not multiplayer compatible
+        return false;
     }
 
 
@@ -200,5 +202,4 @@ public class PhaseController : MonoBehaviour
     [SerializeField] private GameObject analysisPanel;
     // [SerializeField] private Timer timer;
     private Timer timer;
-    [SerializeField] private GameObject tank;
 }

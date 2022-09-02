@@ -15,13 +15,16 @@ public class Combat : MonoBehaviour
 {   
     private void OnEnable()
     {
-        Debug.Log("Start Combat");
-        //Faire toutes les actions des joueurs puis une fois fini fais les Happening
-        foreach(KeyValuePair<int, Player> idAndPlayer in PhotonNetwork.CurrentRoom.Players)
+        if (PhotonNetwork.MasterClient == PhotonNetwork.LocalPlayer)
         {
-            GameObject tank = (GameObject)idAndPlayer.Value.TagObject;
-            TankController tankController = tank.GetComponent<TankController>();
-            tankController.ExecuteAction();
+            Debug.Log("Start Combat");
+            //Faire toutes les actions des joueurs puis une fois fini fais les Happening
+            foreach (KeyValuePair<int, Player> idAndPlayer in PhotonNetwork.CurrentRoom.Players)
+            {
+                GameObject tank = (GameObject)idAndPlayer.Value.TagObject;
+                TankController tankController = tank.GetComponent<TankController>();
+                tankController.ExecuteAction();
+            }
         }
     }
 
