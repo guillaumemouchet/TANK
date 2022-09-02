@@ -17,12 +17,9 @@ public class Combat : MonoBehaviour
     {
         Debug.Log("Start Combat");
         //Faire toutes les actions des joueurs puis une fois fini fais les Happening
-        this.GetComponent<TankController>().ExecuteAction();
-    }
-
-    private void Update()
-    {
-        
+        GameObject tank = (GameObject)PhotonNetwork.LocalPlayer.TagObject;
+        TankController tankController = tank.GetComponent<TankController>();
+        tankController.ExecuteAction();
     }
 
     /***************************************************************\

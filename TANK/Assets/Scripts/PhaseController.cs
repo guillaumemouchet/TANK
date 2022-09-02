@@ -24,10 +24,11 @@ public class PhaseController : MonoBehaviour
 
     private void Update()
     {
-        if (PhotonNetwork.LocalPlayer.TagObject is not null)
+        if (!gotTankController && PhotonNetwork.LocalPlayer.TagObject is not null)
         {
             GameObject tank = (GameObject)PhotonNetwork.LocalPlayer.TagObject;
             tankController = tank.GetComponent<TankController>();
+            gotTankController = true;
         }
         if (firstInit)
         {
