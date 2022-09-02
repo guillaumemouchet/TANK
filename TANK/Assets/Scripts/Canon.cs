@@ -70,7 +70,7 @@ public class Canon : MonoBehaviour
     {
         if (photonView.IsMine)
         {
-            GameObject newMunition = Instantiate(objectToShoot, lockInFirePoint.position, lockInFirePoint.rotation);
+            GameObject newMunition = PhotonNetwork.Instantiate(objectToShoot.name, lockInFirePoint.position, lockInFirePoint.rotation);
             newMunition.GetComponent<Rigidbody2D>().velocity = lockInTransform.right * lockInLaunchForce;
         }
     }
