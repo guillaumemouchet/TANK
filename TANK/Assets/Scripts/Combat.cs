@@ -16,19 +16,13 @@ public class Combat : MonoBehaviour
     private void OnEnable()
     {
         Debug.Log("Start Combat");
-        Dictionary<int, Player> playersDict = PhotonNetwork.CurrentRoom.Players;
-        foreach (KeyValuePair<int, Player> keyVal in playersDict)
-        {
-            if (keyVal.Value.IsLocal)
-            {
-                GameObject playerTank = (GameObject)keyVal.Value.TagObject;
-                tankController = playerTank.GetComponent<TankController>();
-            }
-        }
-
         //Faire toutes les actions des joueurs puis une fois fini fais les Happening
-        ExecuteAction();
-
+        foreach(KeyValuePair<int, Player> idAndPlayer in PhotonNetwork.CurrentRoom.Players)
+        {
+            GameObject tank = (GameObject)idAndPlayer.Value.TagObject;
+            TankController tankController = tank.GetComponent<TankController>();
+            tankController.ExecuteAction();
+        }
     }
 
     private void Update()
@@ -40,12 +34,6 @@ public class Combat : MonoBehaviour
      *                      Méthodes private                       *
     \***************************************************************/
 
-    private void ExecuteAction()
-    {
-        //Debug.Log("Execute action");
-        tankController.ExecuteAction();
-    }
-
 
     /***************************************************************\
      *                      Attributes private                     *
@@ -55,5 +43,4 @@ public class Combat : MonoBehaviour
 
 
     // Components
-    private TankController tankController;
 }
