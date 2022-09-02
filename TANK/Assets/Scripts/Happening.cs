@@ -65,7 +65,7 @@ public class Happening : MonoBehaviour
         }
 
         //retour à la phase d'Analyse
-        Debug.Log("Fin des Happenings");
+        //Debug.Log("Fin des Happenings");
         isOver = true;
     }
 

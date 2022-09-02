@@ -13,7 +13,7 @@ using UnityEngine.UI;
 
 public class TankController : MonoBehaviour
 {
-    void Start()
+    void OnEnable()
     {
         toggleList = new List<Toggle>()
         {
@@ -64,20 +64,26 @@ public class TankController : MonoBehaviour
 
     private void LockIn()
     {
+        Debug.Log("Tank controller Lock IN");
         if (this.GetComponent<Jump>().isActiveAndEnabled)
         {
+            Debug.Log("jump Lock IN");
             jump.LockIn();
         }
         else if (this.GetComponent<Ismissile>().isActiveAndEnabled)
         {
+            Debug.Log("MISSILE Lock IN");
+
             canon.LockIn();
         }
         else if (this.GetComponent<Perk1>().isActiveAndEnabled)
         {
+            Debug.Log("perk1 Lock IN");
             perk1.LockIn();
         }
         else if (this.GetComponent<Perk2>().isActiveAndEnabled)
         {
+            Debug.Log("perk2 Lock IN");
             perk2.LockIn();
         }
 
@@ -86,26 +92,40 @@ public class TankController : MonoBehaviour
 
     public void ExecuteAction()
     {
+
+        Debug.Log("Tank controller Execute");
+        Debug.Log(toggleJump.isOn);
+        Debug.Log(toggleIsmissile.isOn);
+        Debug.Log(togglePerk1.isOn);
+        Debug.Log(togglePerk2.isOn);
+        
         if (this.GetComponent<Jump>().isActiveAndEnabled)
         {
+            Debug.Log("jump Execute");
             jump.Execute();
             jump.enabled = false;
         }
         else if (this.GetComponent<Ismissile>().isActiveAndEnabled)
         {
+            Debug.Log("Missile Execute");
+
             canon.Shoot(ismissileObject);
             canon.enabled = false;
         }
         else if (this.GetComponent<Perk1>().isActiveAndEnabled)
         {
+            Debug.Log("perk1 Execute");
             perk1.Execute();
             perk1.enabled = false;
         }
         else if (this.GetComponent<Perk2>().isActiveAndEnabled)
         {
+            Debug.Log("perk2s Execute");
             perk2.Execute();
             perk2.enabled = false;
         }
+        //Enable();
+        Debug.Log("RIENNNNNNNNNNNNNNN Execute");
     }
 
     public void Enable()

@@ -16,9 +16,10 @@ public class Combat : MonoBehaviour
     private void OnEnable()
     {
         Debug.Log("Start Combat");
-        tankController = tank.GetComponent<TankController>();
+        //tankController = tank.GetComponent<TankController>();
         //Faire toutes les actions des joueurs puis une fois fini fais les Happening
         ExecuteAction();
+
     }
 
     private void Update()
@@ -32,6 +33,7 @@ public class Combat : MonoBehaviour
 
     private void ExecuteAction()
     {
+        Debug.Log("Execute action");
         tankController.ExecuteAction();
     }
 
@@ -44,6 +46,6 @@ public class Combat : MonoBehaviour
 
 
     // Components
-    private TankController tankController;
+    [SerializeField] private TankController tankController;
     [SerializeField] private GameObject tank;
 }

@@ -13,11 +13,17 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
+    public void Start()
+    {
+        ResetTimer();
+    }
+
     private void Update()
     {
         if (timeValue > 0)
         {
             timeValue -= Time.deltaTime;
+            //Debug.Log("deltaTime " + Time.deltaTime);
             DisplayTime(timeValue);
         }
         else
@@ -56,8 +62,8 @@ public class Timer : MonoBehaviour
         Debug.Log("Destroying timer");
     }
 
-    private const float TIMER_SECONDS = 10;
-    private float timeValue = 10;
+    private const float TIMER_SECONDS = 10f;
+    public float timeValue;
     [SerializeField] private TMP_Text timeText;
     private bool isFinished = false;
 

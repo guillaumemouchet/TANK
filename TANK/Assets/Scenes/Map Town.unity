@@ -154,7 +154,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &158504685
 MonoBehaviour:
@@ -654,7 +654,7 @@ Transform:
   - {fileID: 1264687380}
   - {fileID: 1854648759}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &388170152
 GameObject:
@@ -1187,6 +1187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c16919c43c762f4c879384539c86590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tankController: {fileID: 1875279494566678135, guid: ce77a0acf478da046bea30ad3dfd65c5, type: 3}
   tank: {fileID: 1875279494566678142, guid: ce77a0acf478da046bea30ad3dfd65c5, type: 3}
 --- !u!114 &616347709
 MonoBehaviour:
@@ -1195,7 +1196,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616347706}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1324,7 +1325,7 @@ GameObject:
   - component: {fileID: 657524478}
   - component: {fileID: 657524477}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1342,11 +1343,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f072741c0bf97ed4bb3a34ef82f09429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tankController: {fileID: 1875279494566678135, guid: ce77a0acf478da046bea30ad3dfd65c5, type: 3}
   preparationPanel: {fileID: 1990233396}
   combatPanel: {fileID: 616347706}
-  happeningPanel: {fileID: 388170152}
-  analysisPanel: {fileID: 2015955277}
-  timer: {fileID: 7954598987746203264, guid: ce1c80e9d771fd645b74035483c11e19, type: 3}
+  happeningPanel: {fileID: 2015955277}
+  analysisPanel: {fileID: 388170152}
   tank: {fileID: 1875279494566678142, guid: ce77a0acf478da046bea30ad3dfd65c5, type: 3}
 --- !u!114 &657524478
 MonoBehaviour:
@@ -1426,7 +1427,7 @@ RectTransform:
   - {fileID: 388170153}
   - {fileID: 2015955278}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1683,7 +1684,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &953490405
 GameObject:
@@ -6415,7 +6416,7 @@ Transform:
   - {fileID: 1359667793}
   - {fileID: 219890855}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1571749314
 GameObject:
@@ -6744,7 +6745,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1854648758
 GameObject:
