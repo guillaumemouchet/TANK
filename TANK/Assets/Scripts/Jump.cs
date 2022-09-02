@@ -11,13 +11,16 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
+    private void Start()
+    {
+        rb = gameObject.GetComponent<Rigidbody2D>();
+    }
 
     private void OnEnable()
     {
         Debug.Log("Jump enabled");
         trajectoryLineEnabled = true;
         lockedIn = false;
-        rb = GetComponent<Rigidbody2D>();
         trajectory = new GameObject[numberOfPoints];
         for (int i = 0; i < numberOfPoints; i++)
         {
@@ -48,7 +51,6 @@ public class Jump : MonoBehaviour
     public void LockIn()
     {
         lockInLaunchforce = launchForce;
-        lockInTransform = transform.GetChild(0);
         lockedIn = true;
         trajectoryLineEnabled = false;
         DeleteTrajectoryLine();
@@ -56,7 +58,8 @@ public class Jump : MonoBehaviour
 
     public void Execute()
     {
-        rb.velocity = lockInTransform.right * lockInLaunchforce;
+        Debug.Log("jumping");
+        rb.velocity = this.transform.GetChild(0).right * lockInLaunchforce;
     }
 
     /***************************************************************\
@@ -105,25 +108,25 @@ public class Jump : MonoBehaviour
     \***************************************************************/
 
     // Tools
-    private bool jumpSelected = false;
     private Vector2 direction;
     private bool lockedIn;
-    private bool execute;
     private GameObject[] trajectory;
     private bool trajectoryLineEnabled;
-    [SerializeField] private Transform trajectoryLine; // Container pour les cercles de la trajectoire (QoL)
-    [SerializeField] private int numberOfPoints = 25; // Nombres de billes affichés à la projection de trajectoire
-    private Transform lockInTransform;
-    private float lockInLaunchforce;
+    
 
     // Force
-    [SerializeField] private float launchForce = 1f; // Force de tir choisie
-    [SerializeField] private float maxLaunchForce = 15f; // Force maximale de tir
-    [SerializeField] private float magicForceScale = 2f; // QoL pour ne pas devoir sortir de l'écran avec la souris
-    [SerializeField] private float spaceBetweenPoints = 0.04f; // Espace entre les billes de projection
+    private float launchForce = 10f; // Force de tir choisie
+    private float magicForceScale = 2f; // QoL pour ne pas devoir sortir de l'écran avec la souris
+    //private Transform lockInTransform;
+    private float lockInLaunchforce;
 
+    // Params
+    [SerializeField] private float maxLaunchForce = 15f; // Force maximale de tir
+    [SerializeField] private float spaceBetweenPoints = 0.04f; // Espace entre les billes de projection
+    [SerializeField] private int numberOfPoints = 25; // Nombres de billes affichés à la projection de trajectoire
 
     // Components
     private Rigidbody2D rb;
     [SerializeField] private GameObject circleObject;
+    [SerializeField] private Transform trajectoryLine; // Container pour les cercles de la trajectoire (QoL)
 }

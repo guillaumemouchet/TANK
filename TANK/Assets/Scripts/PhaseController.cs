@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class PhaseController : MonoBehaviour
 {
@@ -13,8 +15,6 @@ public class PhaseController : MonoBehaviour
         combatPhaseDone = false;
         analPhase1Done = false;
         happeningPhaseDone = false;
-        Debug.Log("PhaseController start");
-        InitiatePreparation();
     }
 
     IEnumerator waiter()
@@ -22,18 +22,35 @@ public class PhaseController : MonoBehaviour
         yield return new WaitForSeconds(5);
         takt = true;
     }
+
     private void Update()
     {
+        if (!gotTankController)
+        {
+            if (PhotonNetwork.PlayerList.Length != 0)
+            {
+                Dictionary<int, Player> playersDict = PhotonNetwork.CurrentRoom.Players;
+                foreach (KeyValuePair<int, Player> keyVal in playersDict)
+                {
+                    if (keyVal.Value.IsLocal)
+                    {
+                        var playerTank = keyVal.Value.TagObject;
+                        tankController = ((GameObject)playerTank).GetComponent<TankController>();
+                        gotTankController = true;
+                    }
+                }
+                InitiatePreparation();
+            }
+        }
         if (takt)
         {
             Debug.Log("Entering takt");
             //Debug.Log(timer.IsFinished());
-           // Debug.Log(timer.timeValue);
+            //Debug.Log(timer.timeValue);
             PhaseLogic();
             takt = false;
             StartCoroutine(waiter());
         }
-
     }
 
 
@@ -58,7 +75,6 @@ public class PhaseController : MonoBehaviour
                 preparationPanel.SetActive(false);
                 prepPhaseDone = true;
                 combatPanel.SetActive(true);
-
             }
         }
         else if (!combatPhaseDone)
@@ -151,6 +167,7 @@ public class PhaseController : MonoBehaviour
         return tank.GetComponent<Rigidbody2D>().velocity.magnitude > 1f;
     }
 
+
     /***************************************************************\
      *                      Attributes private                     *
     \***************************************************************/
@@ -162,9 +179,10 @@ public class PhaseController : MonoBehaviour
     private bool analPhase1Done;
     private bool happeningPhaseDone;
     private bool takt = true;
+    private bool gotTankController = false;
 
     // Components
-    [SerializeField] private TankController tankController;
+    private TankController tankController;
     [SerializeField] private GameObject preparationPanel;
     [SerializeField] private GameObject combatPanel;
     [SerializeField] private GameObject happeningPanel;

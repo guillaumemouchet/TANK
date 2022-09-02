@@ -19,7 +19,7 @@ public class Canon : MonoBehaviour
     {
         trajectoryLineEnabled = true;
         lockedIn = false;
-        photonView = this.GetComponent<PhotonView>();
+        photonView = gameObject.GetComponent<PhotonView>();
     }
 
     private void OnEnable()
@@ -62,6 +62,10 @@ public class Canon : MonoBehaviour
         DeleteTrajectoryLine();
     }
 
+    public void ShootIsmissile()
+    {
+        this.Shoot(ismissileObject);
+    }
     public void Shoot(GameObject objectToShoot) // TODO faire passer la bonne munition
     {
         if (photonView.IsMine)
@@ -132,6 +136,7 @@ public class Canon : MonoBehaviour
     // Components
     [SerializeField] private GameObject circleObject;
     [SerializeField] private Transform firePoint;
+    [SerializeField] private GameObject ismissileObject;
 
     [SerializeField] private int numberOfPoints = 50; // Nombres de billes affichés à la projection de trajectoire
 

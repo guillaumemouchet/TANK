@@ -297,13 +297,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66b7b7c955d37f49bc5101bcc3f70af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trajectoryLine: {fileID: 7979637541810486940}
-  numberOfPoints: 25
-  launchForce: 10
   maxLaunchForce: 15
-  magicForceScale: 0.25
   spaceBetweenPoints: 0.04
+  numberOfPoints: 25
   circleObject: {fileID: 1162168438518866712, guid: e2342da80a8c6fa4b8dbc751c9d79a8a, type: 3}
+  trajectoryLine: {fileID: 7979637541810486940}
 --- !u!114 &1875279494566678135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,9 +314,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2e2da08e8c05e2449d483b1545d79ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missileDamage: 1
   grenadeDamage: 0
-  ismissileObject: {fileID: 835833510877782936, guid: 8076fb346d765e94ea80e470de2d7702, type: 3}
+  canon: {fileID: 1875279494566678134}
+  jump: {fileID: 1875279494566678089}
+  perk1: {fileID: 1875279494566678080}
+  perk2: {fileID: 1875279494566678095}
   toggleJump: {fileID: 3020648526117236373}
   toggleIsmissile: {fileID: 4764821831408280630}
   togglePerk1: {fileID: 7409245290821439746}
@@ -343,7 +343,8 @@ MonoBehaviour:
   spaceBetweenPoints: 0.04
   circleObject: {fileID: 1162168438518866712, guid: e2342da80a8c6fa4b8dbc751c9d79a8a, type: 3}
   firePoint: {fileID: 1875279494846292006}
-  numberOfPoints: 50
+  ismissileObject: {fileID: 835833510877782936, guid: 8076fb346d765e94ea80e470de2d7702, type: 3}
+  numberOfPoints: 25
 --- !u!114 &1875279494566678095
 MonoBehaviour:
   m_ObjectHideFlags: 0
