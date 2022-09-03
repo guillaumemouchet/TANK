@@ -210,7 +210,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 597999226}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 0
@@ -647,10 +647,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1134023184, guid: c9157c507e711f94c9fb20ef9205e640, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1134023184, guid: c9157c507e711f94c9fb20ef9205e640, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1875279494566678080, guid: c9157c507e711f94c9fb20ef9205e640, type: 3}
       propertyPath: togglePerk1
       value: 
       objectReference: {fileID: 1464319025}
+    - target: {fileID: 1875279494566678080, guid: c9157c507e711f94c9fb20ef9205e640, type: 3}
+      propertyPath: bounceGrenadeObject
+      value: 
+      objectReference: {fileID: 6246106356973332861, guid: 0a6dcc4b3e978054cb744077734675f8, type: 3}
     - target: {fileID: 1875279494566678082, guid: c9157c507e711f94c9fb20ef9205e640, type: 3}
       propertyPath: sceneViewId
       value: 1
@@ -703,6 +715,10 @@ PrefabInstance:
       propertyPath: togglePerk2
       value: 
       objectReference: {fileID: 157061014}
+    - target: {fileID: 1875279494566678095, guid: c9157c507e711f94c9fb20ef9205e640, type: 3}
+      propertyPath: shieldObject
+      value: 
+      objectReference: {fileID: 8738804784541097271, guid: 5ecd7f29544da7e4cbd027ca04fda6f3, type: 3}
     - target: {fileID: 1875279494566678142, guid: c9157c507e711f94c9fb20ef9205e640, type: 3}
       propertyPath: m_Name
       value: TankBasic
@@ -811,17 +827,6 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca7d3fe20e433c84d86d68584898e475, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &597999226 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1875279494566678094, guid: c9157c507e711f94c9fb20ef9205e640, type: 3}
-  m_PrefabInstance: {fileID: 260399117}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e66b7b7c955d37f49bc5101bcc3f70af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &597999227 stripped
@@ -1181,10 +1186,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tank: {fileID: 11400000, guid: df2d93dc356c83d4e95edbfc77b71377, type: 2}
-  jumpPerk: {fileID: 1502875048}
-  ismissilePerk: {fileID: 354201570}
-  perk1: {fileID: 1359374198}
-  perk2: {fileID: 668772519}
   toggleJump: {fileID: 24073861}
   toggleIsmissile: {fileID: 2026996434}
   togglePerk1: {fileID: 1464319025}
@@ -1377,10 +1378,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tank: {fileID: 11400000, guid: ca272f1b962a2ea48b8d4ee879decc34, type: 2}
-  jumpPerk: {fileID: 0}
-  ismissilePerk: {fileID: 0}
-  perk1: {fileID: 0}
-  perk2: {fileID: 0}
   toggleJump: {fileID: 0}
   toggleIsmissile: {fileID: 0}
   togglePerk1: {fileID: 0}
