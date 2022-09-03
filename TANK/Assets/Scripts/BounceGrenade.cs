@@ -46,5 +46,6 @@ public class BounceGrenade : MonoBehaviour
     // Components
     private Rigidbody2D rb;
     [SerializeField] private GameObject explosion;
+    [SerializeField] private GameObject grenade;
     private float fuseInSeconds;
 }

@@ -130,6 +130,8 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
 
     public void ExecuteAction()
     {
+        // Si jamais le joueur n'a rien fait quand même bloquer
+        Disable(); 
         //Debug.Log("ExecuteAction in TankController.cs");
         if (jumpActionLockedIn)
         {

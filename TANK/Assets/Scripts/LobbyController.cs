@@ -60,15 +60,25 @@ public class LobbyController : MonoBehaviourPunCallbacks
     }
     public void PlayerNameUpdate(string nameInput)
     {
+
         PhotonNetwork.NickName = nameInput;
         PlayerPrefs.SetString("NickName", nameInput);
     }
 
     public void JoinLobbyOnClick()
     {
+        if (!string.IsNullOrWhiteSpace(PhotonNetwork.NickName))
+        {
             mainPanel.SetActive(false);
             lobbyPanel.SetActive(true);
+        }else
+        {
             PhotonNetwork.JoinLobby();
+            PhotonNetwork.NickName = "Player" + Random.Range(0, 1000);
+            PlayerPrefs.SetString("NickName", PhotonNetwork.NickName);
+            playerNameInput.text = PhotonNetwork.NickName;
+        }
+        
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
@@ -131,9 +141,19 @@ public class LobbyController : MonoBehaviourPunCallbacks
 
     public void OnRoomSizeChanged(string sizeIn)
     {
-        string val = sizeIn.Replace("-", "");
-        TMP_roomSize.text = val;
-        roomSize = int.Parse(val);
+        if (!string.IsNullOrWhiteSpace(sizeIn))
+        {
+            if (sizeIn.Length > 0 && (sizeIn[0] == '-' || sizeIn[0] == '0'))
+            {
+                TMP_roomSize.text = sizeIn.Remove(0, 1) + '1';
+
+            }
+            
+                roomSize = int.Parse(TMP_roomSize.text);
+
+            
+        }
+
     }
 
     public void CreateRoom()
