@@ -22,6 +22,18 @@ public class IsmissileController : MonoBehaviour
         rb.rotation = angle;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.gameObject.CompareTag("Death"))
+        {
+            Destroy(gameObject);
+        } else if (collision.gameObject.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
     /***************************************************************\
      *                      Attributes private                     *
     \***************************************************************/
