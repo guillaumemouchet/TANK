@@ -72,6 +72,8 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
         if (collision.gameObject.CompareTag("Ismissile"))
         {
             currentHealth -= missileDamage;
+            Debug.Log("degat Ismissile est : " + missileDamage);
+            Debug.Log("Donc current health est : " + currentHealth);
             healthBar.SetHealth(currentHealth);
 
             Destroy(collision.gameObject);
@@ -81,6 +83,17 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
             healthBar.SetHealth(currentHealth);
 
             Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("HealPack"))
+        {
+            currentHealth = maxHealth;
+            healthBar.SetHealth(currentHealth);
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("HealPack"))
+        {
+            currentHealth = 0;
+            healthBar.SetHealth(currentHealth);
         }
     }
 

@@ -13,6 +13,8 @@ TagManager:
   - Tank
   - Projectile
   - Local
+  - HealPack
+  - Death
   layers:
   - Default
   - TransparentFX
