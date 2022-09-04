@@ -32,6 +32,9 @@ public class Perk2 : MonoBehaviour
                 shieldShield = (Shield)shield.GetComponent<Shield>();
                 Shield();
                 break;
+            case "Katana":
+                katana.enabled = true;
+                break;
         }
     }
 
@@ -95,4 +98,5 @@ public class Perk2 : MonoBehaviour
     // Components
     [SerializeField] private GameObject shieldObject;
     [SerializeField] private Toggle togglePerk2;
+    [SerializeField] private Katana katana;
 }

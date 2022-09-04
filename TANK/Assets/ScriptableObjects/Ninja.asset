@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffd9f403a8ca55b40ad328a2b7742e75, type: 3}
-  m_Name: Basic2
+  m_Name: Ninja
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  name: 
-  HP: 0
-  weight: 0
-  spell1: 
-  spell2: 
-  spell3: 
-  spell4: 
+  prefab: {fileID: 1875279494566678142, guid: b8d2f6304796a224ebb61a1e39f6ff25, type: 3}
+  name: Ninja
+  HP: 70
+  weight: 30
+  jumpPerk: Jump
+  ismissilePerk: Ismille
+  perk1: Grab
+  perk2: Katana

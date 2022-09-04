@@ -21,6 +21,9 @@ public class Perk1 : MonoBehaviour
             case "BounceGrenade":
                 BounceGrenade();
                 break;
+            case "Grab":
+                Grab();
+                break;
         }
     }
     private void OnEnable()
@@ -56,15 +59,19 @@ public class Perk1 : MonoBehaviour
      *                       Méthodes private                      *
     \***************************************************************/
 
-    private void Actions1()
-    {
-    }
     private void BounceGrenade()
     {
         gObject = bounceGrenadeObject;
         canonNeeded = true;
         Debug.Log("BounceGrenade() in Perk1.cs");
     }
+
+    private void Grab()
+    {
+        canonNeeded = false;
+        grab.enabled = true;
+    }
+
 
     public void LockIn()
     {
@@ -74,7 +81,7 @@ public class Perk1 : MonoBehaviour
         }    
         else
         {
-            // else...
+            Debug.Log("No need canon");
         }
     }
 
@@ -101,6 +108,7 @@ public class Perk1 : MonoBehaviour
     private Canon canon;
     private GameObject gObject;
     [SerializeField] private GameObject bounceGrenadeObject;
+    [SerializeField] private Grab grab;
 
     [SerializeField] private Toggle togglePerk1;
     private bool canonNeeded;
