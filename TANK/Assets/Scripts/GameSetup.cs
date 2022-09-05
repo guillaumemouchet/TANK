@@ -11,13 +11,13 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class GameSetup : MonoBehaviour
+public class GameSetup : MonoBehaviourPunCallbacks
 {
 
     void Start()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
-        CreatePlayer();
+        Invoke("CreatePlayer", 2); // Appelle CreatePlayer() après 2 secondes
     }
 
     private void CreatePlayer()

@@ -31,7 +31,7 @@ public class PhaseController : MonoBehaviourPunCallbacks, IOnEventCallback
             tankController = tank.GetComponent<TankController>();
             gotTankController = true;
         }
-        if (firstInit)
+        if (firstInit && takt)
         {
             firstInit = false;
             InitiatePreparation();
@@ -96,7 +96,7 @@ public class PhaseController : MonoBehaviourPunCallbacks, IOnEventCallback
                 readyCount = 0;
             }
         }
-        else if (!combatPhaseDone || allPlayersReady)
+        else if (!combatPhaseDone) // || allPlayersReady)
         {
             if (CombatOver())
             {
@@ -202,7 +202,7 @@ public class PhaseController : MonoBehaviourPunCallbacks, IOnEventCallback
     private bool combatPhaseDone;
     private bool analPhase1Done;
     private bool happeningPhaseDone;
-    private bool takt = true;
+    private bool takt = false;
     private bool gotTankController = false;
     private bool firstInit = true;
 
