@@ -40,10 +40,14 @@ public class Shield: MonoBehaviour
 
     public void LockIn()
     {
-        lockInCanonPos = canonPos;
-        lockInMousePos = mousePos;
-        lockInDirection = direction;
+        lockInTransform = this.transform;
         lockedIn = true;
+    }
+
+    public void Execute()
+    {
+        this.transform.position = lockInTransform.position;
+        this.transform.rotation = lockInTransform.rotation;
     }
 
     /***************************************************************\
@@ -68,9 +72,7 @@ public class Shield: MonoBehaviour
     private Vector2 canonPos;
     private Vector2 mousePos;
     private Vector2 direction;
-    private Vector2 lockInCanonPos;
-    private Vector2 lockInMousePos;
-    private Vector2 lockInDirection;
+    private Transform lockInTransform;
 
 
     // Components

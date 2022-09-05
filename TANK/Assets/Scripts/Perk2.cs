@@ -5,12 +5,15 @@
  * Source : 
  */
 
+using ExitGames.Client.Photon;
+using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Perk2 : MonoBehaviour
+public class Perk2 : MonoBehaviourPunCallbacks, IOnEventCallback
 {
     private void Start()
     {
@@ -33,17 +36,17 @@ public class Perk2 : MonoBehaviour
                 Shield();
                 break;
         }
-    }
-
-    private void Update()
-    {
-
+        PhotonNetwork.AddCallbackTarget(this);
     }
 
     private void OnDisable()
     {
-        Debug.Log("Perk2 disabled");
-        Destroy(shield);
+        if (!lockedIn)
+        {
+            Debug.Log("Perk2 disabled");
+            Destroy(shield);
+        }
+        PhotonNetwork.RemoveCallbackTarget(this);
     }
 
     /***************************************************************\
@@ -56,7 +59,17 @@ public class Perk2 : MonoBehaviour
         {
             case "Shield":
                 shieldShield.LockIn();
+                lockedIn = true;
                 break;
+        }
+    }
+    public void OnEvent(EventData photonEvent)
+    {
+        if (photonEvent.Code == CombatFinishedCode && lockedIn)
+        {
+            shieldShield.enabled = false;
+            lockedIn = false;
+            Destroy(this);
         }
     }
 
@@ -65,6 +78,7 @@ public class Perk2 : MonoBehaviour
         switch (togglePerk2.tag)
         {
             case "Shield":
+                shieldShield.Execute();
                 break;
         }
     }
@@ -84,6 +98,7 @@ public class Perk2 : MonoBehaviour
         Debug.Log("Shield() called in Perk2.cs");
     }
 
+
     /***************************************************************\
      *                      Attributes private                     *
     \***************************************************************/
@@ -95,4 +110,8 @@ public class Perk2 : MonoBehaviour
     // Components
     [SerializeField] private GameObject shieldObject;
     [SerializeField] private Toggle togglePerk2;
+    private bool lockedIn = false;
+
+    // Codes
+    private const int CombatFinishedCode = 34;
 }

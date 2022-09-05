@@ -5,11 +5,13 @@
  * Source : 
  */
 
+using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BounceGrenade : MonoBehaviour
+public class BounceGrenade : MonoBehaviourPunCallbacks
 {
     private void Start()
     {
@@ -19,15 +21,13 @@ public class BounceGrenade : MonoBehaviour
 
     private void Update()
     {
-        float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
-        this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
     }
     private void Explode()
     {
         // Boom
         Destroy(this.gameObject);
     }
-
 
     /***************************************************************\
      *                      Attributes private                     *

@@ -97,6 +97,8 @@ public class PhaseController : MonoBehaviourPunCallbacks, IOnEventCallback
         {
             if (CombatOver())
             {
+                RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
+                PhotonNetwork.RaiseEvent(CombatFinishedCode, null, raiseEventOptions, SendOptions.SendReliable);
                 allPlayersReady = false;
                 Debug.Log("COMBAT DONE");
                 combatPanel.SetActive(false);
@@ -212,4 +214,7 @@ public class PhaseController : MonoBehaviourPunCallbacks, IOnEventCallback
     private bool allPlayersReady = false;
     private int readyCount = 0;
     private const int PlayerReadyEvent = 32;
+
+    // Event codes
+    private const int CombatFinishedCode = 34;
 }

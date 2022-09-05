@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6246106356973332857}
   - component: {fileID: 6246106356973332856}
   - component: {fileID: 6246106356973332859}
-  - component: {fileID: 6246106356973332854}
   - component: {fileID: 1321113464967051974}
+  - component: {fileID: 6246106356973332854}
   - component: {fileID: -3596123354278790854}
   - component: {fileID: 3932179407604751900}
   m_Layer: 0
@@ -110,18 +110,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6246106356973332854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6246106356973332861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bf0c74586d8ea548963e89512757ef2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &1321113464967051974
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -138,6 +126,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &6246106356973332854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6246106356973332861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bf0c74586d8ea548963e89512757ef2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-3596123354278790854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +156,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 3932179407604751900}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

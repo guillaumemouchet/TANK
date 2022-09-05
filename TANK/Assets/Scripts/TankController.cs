@@ -140,14 +140,14 @@ public class TankController : MonoBehaviourPunCallbacks, IOnEventCallback
                 ismissileActionLockedIn = true;
                 ready = true;
             }
-            else if (toggle.name.Equals("Perk1"))
+            else if (toggle.name.Equals("Perk 1"))
             {
                 Debug.Log("perk1 Lock IN");
                 perk1.LockIn();
                 perk1ActionLockedIn = true;
                 ready = true;
             }
-            else if (toggle.name.Equals("Perk2"))
+            else if (toggle.name.Equals("Perk 2"))
             {
                 Debug.Log("perk2 Lock IN");
                 perk2.LockIn();
@@ -189,7 +189,7 @@ public class TankController : MonoBehaviourPunCallbacks, IOnEventCallback
         {
             Debug.Log("perk2s Execute");
             perk2.Execute();
-            perk2.enabled = false;
+            //perk2.enabled = false;
             perk2ActionLockedIn = false;
             ready = false;
 

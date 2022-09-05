@@ -17,18 +17,18 @@ public class Perk1 : MonoBehaviourPunCallbacks
 {
     void Start()
     {
-        switch (togglePerk1.tag)
-        {
-            case "BounceGrenade":
-                BounceGrenade();
-                break;
-        }
     }
     private void OnEnable()
     {
         canon = this.GetComponent<Canon>();
         canon.enabled = true;
         Debug.Log("Perk1 enabled");
+        switch (togglePerk1.tag)
+        {
+            case "BounceGrenade":
+                BounceGrenade();
+                break;
+        }
     }
 
     private void Update()
