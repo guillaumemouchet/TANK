@@ -24,12 +24,14 @@ public class IsmissileController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        destroyIsmissile.Play();
 
         if (collision.gameObject.CompareTag("Death"))
         {
             Destroy(gameObject);
         } else if (collision.gameObject.CompareTag("Ground"))
-        {
+        {        
+            Debug.Log("touche ground");
             Destroy(gameObject);
         }
     }
@@ -40,4 +42,8 @@ public class IsmissileController : MonoBehaviour
 
     // Components
     private Rigidbody2D rb;
+
+    //Audios
+    [SerializeField] private AudioSource destroyIsmissile;
+    [SerializeField] private AudioSource IsmissileSound;
 }

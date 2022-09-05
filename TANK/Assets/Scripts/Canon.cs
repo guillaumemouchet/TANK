@@ -71,6 +71,7 @@ public class Canon : MonoBehaviour
         if (photonView.IsMine)
         {
             string name = objectToShoot.name;
+            Debug.Log("name objectShoot " + name);
             GameObject newMunition = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", objectToShoot.name), lockInFirePoint.position, lockInFirePoint.rotation);
             newMunition.GetComponent<Rigidbody2D>().velocity = lockInTransform.right * lockInLaunchForce;
         }
@@ -140,6 +141,7 @@ public class Canon : MonoBehaviour
     [SerializeField] private GameObject ismissileObject;
 
     [SerializeField] private int numberOfPoints = 50; // Nombres de billes affichés à la projection de trajectoire
+
 
     // PhotonView
     private PhotonView photonView;

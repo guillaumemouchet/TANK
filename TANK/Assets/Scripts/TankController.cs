@@ -75,13 +75,11 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
             Debug.Log("degat Ismissile est : " + missileDamage);
             Debug.Log("Donc current health est : " + currentHealth);
             healthBar.SetHealth(currentHealth);
-
             Destroy(collision.gameObject);
         }else if (collision.gameObject.CompareTag("Projectile"))
         {
             currentHealth -= grenadeDamage;
             healthBar.SetHealth(currentHealth);
-
             Destroy(collision.gameObject);
         }
         else if (collision.gameObject.CompareTag("HealPack"))
@@ -90,10 +88,12 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
             healthBar.SetHealth(currentHealth);
             Destroy(collision.gameObject);
         }
-        else if (collision.gameObject.CompareTag("HealPack"))
+        else if (collision.gameObject.CompareTag("Death"))
         {
             currentHealth = 0;
+            deathSound.Play();
             healthBar.SetHealth(currentHealth);
+            Destroy(gameObject);
         }
     }
 
@@ -222,6 +222,9 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
     [SerializeField] private Toggle togglePerk2;
 
     [SerializeField] private SO_Tanks tank;
+
+    //Audios
+    [SerializeField] private AudioSource deathSound;
 
 
 

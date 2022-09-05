@@ -34,8 +34,8 @@ public class BounceGrenade : MonoBehaviour
     {
         while (true)
         {
-
-            yield return new WaitForSeconds(1);
+            destroyGrenade.Play();
+            yield return new WaitForSeconds(1);          
             Destroy(this.gameObject);
         }
     }
@@ -48,4 +48,8 @@ public class BounceGrenade : MonoBehaviour
     [SerializeField] private GameObject explosion;
     [SerializeField] private GameObject grenade;
     private float fuseInSeconds;
+
+    //Audios
+    [SerializeField] private AudioSource destroyGrenade;
+    [SerializeField] private AudioSource GrenadeSound;
 }

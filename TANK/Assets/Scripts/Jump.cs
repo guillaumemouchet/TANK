@@ -59,7 +59,9 @@ public class Jump : MonoBehaviour
     public void Execute()
     {
         Debug.Log("jumping");
+        jumpAudio.Play();
         rb.velocity = this.transform.GetChild(0).right * lockInLaunchforce;
+
     }
 
     /***************************************************************\
@@ -129,4 +131,8 @@ public class Jump : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private GameObject circleObject;
     [SerializeField] private Transform trajectoryLine; // Container pour les cercles de la trajectoire (QoL)
+
+    //tools
+    [SerializeField] private AudioSource jumpAudio;
+
 }

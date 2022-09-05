@@ -29,6 +29,7 @@ public class Perk2 : MonoBehaviour
         {
             case "Shield":
                 shield = Instantiate(shieldObject, this.transform);
+                shieldAudio.Play();
                 shieldShield = (Shield)shield.GetComponent<Shield>();
                 Shield();
                 break;
@@ -99,4 +100,7 @@ public class Perk2 : MonoBehaviour
     [SerializeField] private GameObject shieldObject;
     [SerializeField] private Toggle togglePerk2;
     [SerializeField] private Katana katana;
+
+    //Audios
+    [SerializeField] private AudioSource shieldAudio;
 }

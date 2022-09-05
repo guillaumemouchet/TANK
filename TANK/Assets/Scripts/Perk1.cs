@@ -112,4 +112,5 @@ public class Perk1 : MonoBehaviour
 
     [SerializeField] private Toggle togglePerk1;
     private bool canonNeeded;
+
 }
