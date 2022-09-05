@@ -8,17 +8,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using System.IO;
 
 public class Shield: MonoBehaviour
 {
-    private void Start()
+    private void OnEnable()
+    {
+        Debug.Log("Enabled Shield");
+    }
+
+    public void Setup()
     {
         lockedIn = false;
     }
 
-    private void OnEnable()
+    public void SetLockIn()
     {
-        Debug.Log("Enabled Shield");
+        lockedIn=true;
     }
 
     private void Update()
@@ -46,13 +53,21 @@ public class Shield: MonoBehaviour
         lockedIn = true;
     }
 
+    public void Execute()
+    {
+        this.transform.position = lockInCanonPos;
+        this.transform.right = lockInDirection;
+        
+        lockedIn = true;
+    }
+
     /***************************************************************\
      *                      Methodes private                       *
     \***************************************************************/
 
     private void UpdatePlacement()
     {
-        canonPos = this.transform.parent.position;
+        canonPos = this.transform.position; // this.transform.parent.position;
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         direction = mousePos - canonPos;
         this.transform.right = direction;

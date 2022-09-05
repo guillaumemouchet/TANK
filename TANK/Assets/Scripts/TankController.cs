@@ -21,6 +21,11 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
         healthBar.SetMaxHealth(currentHealth);
     }
 
+    public float Gethealth()
+    {
+        return this.currentHealth;
+    }
+
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
         /*foreach (Player p in PhotonNetwork.PlayerList)
@@ -43,8 +48,11 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
             togglePerk1,
             togglePerk2
         };
-
-        Debug.Log("Enabling Tankcontroller");
+        jumpActionLockedIn = false;
+    ismissileActionLockedIn = false;
+    perk1ActionLockedIn = false;
+    perk2ActionLockedIn = false;
+    Debug.Log("Enabling Tankcontroller");
 
         toggleJump.transform.GetChild(0).GetComponent<Text>().text = tank.jumpPerk;
         toggleIsmissile.transform.GetChild(0).GetComponent<Text>().text = tank.ismissilePerk;
@@ -102,7 +110,7 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
         //Debug.Log("Tank controller Lock IN");
         if (this.GetComponent<Jump>().isActiveAndEnabled)
         {
-            //Debug.Log("jump Lock IN");
+            Debug.Log("jump Lock IN");
             jump.LockIn();
             jumpActionLockedIn = true;
         }

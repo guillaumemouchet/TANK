@@ -77,62 +77,65 @@ public class PhaseController : MonoBehaviour
 
     private void PhaseLogic()
     {
-        if (!prepPhaseDone)
+        if (!GameIsEnded())
         {
-            if (timer.IsFinished())
+            if (!prepPhaseDone)
             {
-                Debug.Log("PREP DONE");
-                preparationPanel.SetActive(false);
-                prepPhaseDone = true;
-                combatPanel.SetActive(true);
+                if (timer.IsFinished())
+                {
+                    Debug.Log("PREP DONE");
+                    preparationPanel.SetActive(false);
+                    prepPhaseDone = true;
+                    combatPanel.SetActive(true);
+                }
             }
-        }
-        else if (!combatPhaseDone)
-        {
-            if (CombatOver())
+            else if (!combatPhaseDone)
             {
-                Debug.Log("COMBAT DONE");
-                combatPanel.SetActive(false);
-                combatPhaseDone = true;
-                analysisPanel.SetActive(true);
+                if (CombatOver())
+                {
+                    Debug.Log("COMBAT DONE");
+                    combatPanel.SetActive(false);
+                    combatPhaseDone = true;
+                    analysisPanel.SetActive(true);
+                }
+                else
+                {
+                    Debug.Log("Combat IS NOT over");
+                }
+            }
+            else if (!analPhase1Done)
+            {
+                if (AnalysisOver())
+                {
+                    Debug.Log("Analysis 1 DONE");
+                    analysisPanel.SetActive(false);
+                    analPhase1Done = true;
+                    happeningPanel.SetActive(true);
+                }
+            }
+            else if (!happeningPhaseDone)
+            {
+                Debug.Log("Happeing over" + HappeningOver());
+                if (HappeningOver())
+                {
+                    Debug.Log("happening DONE");
+                    happeningPanel.SetActive(false);
+                    happeningPhaseDone = true;
+                    analysisPanel.SetActive(true);
+                }
             }
             else
             {
-                Debug.Log("Combat IS NOT over");
-            }
-        }
-        else if (!analPhase1Done)
-        {
-            if (AnalysisOver())
-            {
-                Debug.Log("Analysis 1 DONE");
-                analysisPanel.SetActive(false);
-                analPhase1Done = true;
-                happeningPanel.SetActive(true);
-            }
-        }
-        else if (!happeningPhaseDone)
-        {
-            Debug.Log("Happeing over" + HappeningOver());
-            if (HappeningOver())
-            {
-                Debug.Log("happening DONE");
-                happeningPanel.SetActive(false);
-                happeningPhaseDone = true;
-                analysisPanel.SetActive(true);
-            }
-        }
-        else
-        {
-            if (AnalysisOver())
-            {
-                Debug.Log("Analysis 2 DONE");
-                analysisPanel.SetActive(false);
-                prepPhaseDone = false;
-                combatPhaseDone = false;
-                analPhase1Done = false;
-                happeningPhaseDone = false;
-                InitiatePreparation();
+                if (AnalysisOver())
+                {
+                    Debug.Log("Analysis 2 DONE");
+                    analysisPanel.SetActive(false);
+                    prepPhaseDone = false;
+                    combatPhaseDone = false;
+                    analPhase1Done = false;
+                    happeningPhaseDone = false;
+                    InitiatePreparation();
+                }
             }
         }
     }
@@ -172,6 +175,11 @@ public class PhaseController : MonoBehaviour
 
     }
 
+    private bool GameIsEnded()
+    {
+        Analysis analsysis = analysisPanel.GetComponent<Analysis>();
+        return analsysis.GameEnded();
+    }
     private bool PlayerMoving()
     {
         return tank.GetComponent<Rigidbody2D>().velocity.magnitude > 1f;

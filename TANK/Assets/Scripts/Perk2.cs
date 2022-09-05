@@ -5,8 +5,10 @@
  * Source : 
  */
 
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,10 +30,9 @@ public class Perk2 : MonoBehaviour
         switch (togglePerk2.tag)
         {
             case "Shield":
-                shield = Instantiate(shieldObject, this.transform);
-                shieldAudio.Play();
+                GameObject shield = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Shield"), new Vector3(this.transform.position.x,this.transform.position.y,0), Quaternion.identity);
                 shieldShield = (Shield)shield.GetComponent<Shield>();
-                Shield();
+                shieldShield.Setup();
                 break;
             case "Katana":
                 katana.enabled = true;
@@ -60,6 +61,7 @@ public class Perk2 : MonoBehaviour
         {
             case "Shield":
                 shieldShield.LockIn();
+                shieldShield.SetLockIn();
                 break;
         }
     }
@@ -69,6 +71,8 @@ public class Perk2 : MonoBehaviour
         switch (togglePerk2.tag)
         {
             case "Shield":
+                shieldShield.Execute();
+                
                 break;
         }
     }
