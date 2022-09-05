@@ -63,9 +63,18 @@ public class TankController : MonoBehaviour
             healthBar.SetHealth(currentHealth);
             Destroy(gameObject);
         }
+        /*
+        if (currentHealth <= 0)
+        {
+            deathSound.Play();
+            Invoke("die", 2f);
+        }*/
     }
 
-    
+    private void die()
+    {
+        Destroy(gameObject);
+    }
 
     private void OnEnable()
     {
