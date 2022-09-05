@@ -25,6 +25,14 @@ public class HealthBar : MonoBehaviour
         slider.transform.position = Camera.main.WorldToScreenPoint(tank.transform.position + offset);
     }
 
+    /***************************************************************\
+     *                      Methodes private                       *
+    \***************************************************************/
+
+    /***************************************************************\
+     *                      Methodes publiques                     *
+    \***************************************************************/
+
     public void SetMaxHealth(int maxHealth)
     {
         slider.maxValue = maxHealth;

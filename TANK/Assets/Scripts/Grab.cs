@@ -1,3 +1,10 @@
+/*
+* Title : Shield Controller
+* Authors : Titus Abele, Benjamin Mouchet, Guillaume Mouchet, Dorian Tan
+* Date : 05.09.2022
+* Source : 
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,4 +22,17 @@ public class Grab : MonoBehaviour
     {
         
     }
+
+    /***************************************************************\
+     *                      Methodes private                       *
+    \***************************************************************/
+
+
+    /***************************************************************\
+     *                      Methodes publiques                     *
+    \***************************************************************/
+
+    /***************************************************************\
+    *                      Attributes private                     *
+    \***************************************************************/
 }

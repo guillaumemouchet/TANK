@@ -1,15 +1,13 @@
 /*
- * Title : ShieldController.cs
+ * Title : Shield Controller
  * Authors : Titus Abele, Benjamin Mouchet, Guillaume Mouchet, Dorian Tan
- * Date : 25.08.2022
+ * Date : 05.09.2022
  * Source : 
  */
 
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-using Photon.Pun;
-using System.IO;
+
 
 public class Shield: MonoBehaviour
 {
@@ -18,16 +16,7 @@ public class Shield: MonoBehaviour
         Debug.Log("Enabled Shield");
     }
 
-    public void Setup()
-    {
-        lockedIn = false;
-    }
-
-    public void SetLockIn()
-    {
-        lockedIn=true;
-    }
-
+    
     private void Update()
     {
         if (!lockedIn)
@@ -60,6 +49,16 @@ public class Shield: MonoBehaviour
         
         lockedIn = true;
     }
+    public void Setup()
+    {
+        lockedIn = false;
+    }
+
+    public void SetLockIn()
+    {
+        lockedIn = true;
+    }
+
 
     /***************************************************************\
      *                      Methodes private                       *

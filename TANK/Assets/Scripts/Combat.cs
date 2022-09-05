@@ -16,7 +16,7 @@ public class Combat : MonoBehaviour
     private void OnEnable()
     {
         Debug.Log("Start Combat");
-        //Faire toutes les actions des joueurs puis une fois fini fais les Happening
+        //Execute action from all players
         foreach(KeyValuePair<int, Player> idAndPlayer in PhotonNetwork.CurrentRoom.Players)
         {
             GameObject tank = (GameObject)idAndPlayer.Value.TagObject;

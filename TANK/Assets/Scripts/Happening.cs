@@ -1,7 +1,7 @@
 /*
  * Title : Happening
  * Authors : Titus Abele, Benjamin Mouchet, Guillaume Mouchet, Dorian Tan
- * Date : 29.08.2022
+ * Date : 05.09.2022
  * Source :
  */
 using System.Collections;
@@ -12,15 +12,17 @@ using System.IO;
 
 public class Happening : MonoBehaviour
 {
-    /***************************************************************\
-     *                      Methodes publics                       *
-    \***************************************************************/
-
+    
     public void OnEnable()
     {
         isOver = false;
         StartHappening();
     }
+
+    /***************************************************************\
+     *                      Methodes publics                       *
+    \***************************************************************/
+
     public void StartHappening()
     {
         Debug.Log("Start Happening");
@@ -80,7 +82,6 @@ public class Happening : MonoBehaviour
     private int MaximumItems = 5;
 
     private int currentNumberItems = 0;
-    //private GameObject happening = null;
     private bool isOver = false;
 
     // Components

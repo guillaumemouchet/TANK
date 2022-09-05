@@ -13,16 +13,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Perk2 : MonoBehaviour
-{
-    private void Start()
-    {
-        /*switch (togglePerk2.tag)
-        {
-            case "Shield":
-                Shield();
-                break;
-        }*/
-    }
+{ 
 
     private void OnEnable()
     {
@@ -38,11 +29,6 @@ public class Perk2 : MonoBehaviour
                 katana.enabled = true;
                 break;
         }
-    }
-
-    private void Update()
-    {
-
     }
 
     private void OnDisable()
@@ -82,15 +68,6 @@ public class Perk2 : MonoBehaviour
      *                       Méthodes private                      *
     \***************************************************************/
 
-    private void Actions2()
-    {
-
-    }
-
-    private void Shield()
-    {
-        Debug.Log("Shield() called in Perk2.cs");
-    }
 
     /***************************************************************\
      *                      Attributes private                     *

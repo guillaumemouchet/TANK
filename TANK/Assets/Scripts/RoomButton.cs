@@ -13,12 +13,15 @@ using TMPro;
 
 public class RoomButton : MonoBehaviour
 {
-    [SerializeField] private TMP_Text nameText;
-    [SerializeField] private TMP_Text sizeText;
 
-    private string roomName;
-    private int roomSize;
-    private int playerCount;
+    /***************************************************************\
+     *                      Methodes private                       *
+    \***************************************************************/
+
+
+    /***************************************************************\
+     *                      Methodes publiques                     *
+    \***************************************************************/
 
     public void JoinRoomOnClick()
     {
@@ -33,15 +36,16 @@ public class RoomButton : MonoBehaviour
         nameText.text = nameInput;
         sizeText.text = countInput + "/" + sizeInput;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+    /***************************************************************\
+     *                      Attributes private                     *
+    \***************************************************************/
+
+    [SerializeField] private TMP_Text nameText;
+    [SerializeField] private TMP_Text sizeText;
+
+    private string roomName;
+    private int roomSize;
+    private int playerCount;
 }

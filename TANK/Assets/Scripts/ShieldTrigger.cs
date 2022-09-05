@@ -17,4 +17,17 @@ public class ShieldTrigger : MonoBehaviour
         Rigidbody2D collidingObject = collision.gameObject.GetComponent<Rigidbody2D>();
         collidingObject.velocity = -collidingObject.velocity; // Inverser le vecteur mouvement pour contre-uno le joueur
     }
+
+    /***************************************************************\
+     *                      Methodes private                       *
+    \***************************************************************/
+
+
+    /***************************************************************\
+     *                      Methodes publiques                     *
+    \***************************************************************/
+
+    /***************************************************************\
+     *                      Attributes private                     *
+    \***************************************************************/
 }

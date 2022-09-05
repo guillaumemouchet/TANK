@@ -14,20 +14,21 @@ using UnityEngine.UI;
 // USELESS
 public class ActionManager : MonoBehaviour
 {
-    public Button btnJump;
-    public Button btnIsmissile;
-    public Button btnPerk1;
-    public Button btnPerk2;
-
     // Start is called before the first frame update
     void Start()
     {
         gameObject.GetComponent<Canon>().enabled = true;
         gameObject.GetComponent<Jump>().enabled = false;
-        //gameObject.GetComponent<Perk1>().enabled = false;
-        //gameObject.GetComponent<Perk2>().enabled = false;
+
     }
-    
+    /***************************************************************\
+     *                      Methodes private                       *
+    \***************************************************************/
+
+
+    /***************************************************************\
+     *                      Methodes publiques                     *
+    \***************************************************************/
     public void Jump()
     {
         gameObject.GetComponent<Jump>().enabled = true;
@@ -49,4 +50,11 @@ public class ActionManager : MonoBehaviour
     {
 
     }
+    /***************************************************************\
+     *                      Attributes private                     *
+    \***************************************************************/
+    public Button btnJump;
+    public Button btnIsmissile;
+    public Button btnPerk1;
+    public Button btnPerk2;
 }

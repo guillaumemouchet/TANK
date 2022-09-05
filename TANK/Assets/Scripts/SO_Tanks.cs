@@ -13,13 +13,15 @@ using UnityEngine;
 public class SO_Tanks : ScriptableObject
 {
 
+
+    /***************************************************************\
+     *                      Attributes private                     *
+    \***************************************************************/
     [SerializeField] private GameObject prefab;
 
     public new string name;
     public int HP;
     public int weight;
-
-    //public Sprite sprite;
 
     public string jumpPerk;
     public string ismissilePerk;

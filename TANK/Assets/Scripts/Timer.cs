@@ -33,9 +33,13 @@ public class Timer : MonoBehaviour
         }
     }
 
+
+    /***************************************************************\
+     *                      Methodes private                       *
+    \***************************************************************/
     private void DisplayTime(float timeToDisplay)
     {
-        if(timeToDisplay < 0)
+        if (timeToDisplay < 0)
         {
             timeToDisplay = 0;
         }
@@ -45,6 +49,16 @@ public class Timer : MonoBehaviour
 
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
+
+    private void OnDestroy()
+    {
+        Debug.Log("Destroying timer");
+    }
+
+    /***************************************************************\
+     *                      Methodes publiques                     *
+    \***************************************************************/
+
 
     public bool IsFinished()
     {
@@ -57,10 +71,9 @@ public class Timer : MonoBehaviour
         isFinished = false;
     }
 
-    private void OnDestroy()
-    {
-        Debug.Log("Destroying timer");
-    }
+    /***************************************************************\
+     *                      Attributes private                     *
+    \***************************************************************/
 
     private const float TIMER_SECONDS = 10f;
     public float timeValue;

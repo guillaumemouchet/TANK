@@ -66,7 +66,7 @@ public class Canon : MonoBehaviour
     {
         this.Shoot(ismissileObject);
     }
-    public void Shoot(GameObject objectToShoot) // TODO faire passer la bonne munition
+    public void Shoot(GameObject objectToShoot)
     {
         if (photonView.IsMine)
         {

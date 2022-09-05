@@ -13,57 +13,12 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
+public class TankController : MonoBehaviour
 {
     private void Start()
     {
         currentHealth = so_Tank.HP;
         healthBar.SetMaxHealth(currentHealth);
-    }
-
-    public float Gethealth()
-    {
-        return this.currentHealth;
-    }
-
-    public void OnPhotonInstantiate(PhotonMessageInfo info)
-    {
-        /*foreach (Player p in PhotonNetwork.PlayerList)
-        {
-            if (p == PhotonNetwork.LocalPlayer)
-            {
-                p.TagObject = this.gameObject;
-            }
-        }*/
-    }
-
-    private void OnEnable()
-    {
-        toggleGroup = this.GetComponentInChildren<ToggleGroup>();
-
-        toggleList = new List<Toggle>()
-        {
-            toggleJump,
-            toggleIsmissile,
-            togglePerk1,
-            togglePerk2
-        };
-        jumpActionLockedIn = false;
-    ismissileActionLockedIn = false;
-    perk1ActionLockedIn = false;
-    perk2ActionLockedIn = false;
-    Debug.Log("Enabling Tankcontroller");
-
-        toggleJump.transform.GetChild(0).GetComponent<Text>().text = tank.jumpPerk;
-        toggleIsmissile.transform.GetChild(0).GetComponent<Text>().text = tank.ismissilePerk;
-        togglePerk1.transform.GetChild(0).GetComponent<Text>().text = tank.perk1;
-        togglePerk2.transform.GetChild(0).GetComponent<Text>().text = tank.perk2;
-
-        toggleJump.tag = tank.jumpPerk;
-        toggleIsmissile.tag = tank.ismissilePerk;
-        togglePerk1.tag = tank.perk1;
-        togglePerk2.tag = tank.perk2;
-
     }
 
     private void Update()
@@ -74,9 +29,13 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
         }
     }
 
+    /***************************************************************\
+     *                      Methodes private                       *
+    \***************************************************************/
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+
         if (collision.gameObject.CompareTag("Ismissile"))
         {
             currentHealth -= missileDamage;
@@ -84,7 +43,8 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
             Debug.Log("Donc current health est : " + currentHealth);
             healthBar.SetHealth(currentHealth);
             Destroy(collision.gameObject);
-        }else if (collision.gameObject.CompareTag("Projectile"))
+        }
+        else if (collision.gameObject.CompareTag("Projectile"))
         {
             currentHealth -= grenadeDamage;
             healthBar.SetHealth(currentHealth);
@@ -103,6 +63,37 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
             healthBar.SetHealth(currentHealth);
             Destroy(gameObject);
         }
+    }
+
+    
+
+    private void OnEnable()
+    {
+        toggleGroup = this.GetComponentInChildren<ToggleGroup>();
+
+        toggleList = new List<Toggle>()
+        {
+            toggleJump,
+            toggleIsmissile,
+            togglePerk1,
+            togglePerk2
+        };
+        jumpActionLockedIn = false;
+        ismissileActionLockedIn = false;
+        perk1ActionLockedIn = false;
+        perk2ActionLockedIn = false;
+        Debug.Log("Enabling Tankcontroller");
+
+        toggleJump.transform.GetChild(0).GetComponent<Text>().text = tank.jumpPerk;
+        toggleIsmissile.transform.GetChild(0).GetComponent<Text>().text = tank.ismissilePerk;
+        togglePerk1.transform.GetChild(0).GetComponent<Text>().text = tank.perk1;
+        togglePerk2.transform.GetChild(0).GetComponent<Text>().text = tank.perk2;
+
+        toggleJump.tag = tank.jumpPerk;
+        toggleIsmissile.tag = tank.ismissilePerk;
+        togglePerk1.tag = tank.perk1;
+        togglePerk2.tag = tank.perk2;
+
     }
 
     private void LockIn()
@@ -134,6 +125,15 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
         }
 
         Disable();
+    }
+
+    /***************************************************************\
+     *                      Methodes publiques                     *
+    \***************************************************************/
+
+    public float Gethealth()
+    {
+        return this.currentHealth;
     }
 
     public void ExecuteAction()
@@ -194,16 +194,9 @@ public class TankController : MonoBehaviour, IPunInstantiateMagicCallback
     \***************************************************************/
 
     // Tools
-    private int perk3MunitionCount;
-    private int perk4MunitionCount;
-    private bool lockedIn;
-    private bool ready;
-    private bool isShootableMunition;
 
     private int maxHealth = 100;
     [SerializeField] private int currentHealth;
-
-
 
     [SerializeField] private int missileDamage = 10;
     private bool jumpActionLockedIn = false;

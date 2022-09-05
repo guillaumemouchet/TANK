@@ -13,8 +13,16 @@ using TMPro;
 
 public class PlayerButton : MonoBehaviour
 {
-    [SerializeField] private TMP_Text playerName;
 
+
+    /***************************************************************\
+     *                      Methodes private                       *
+    \***************************************************************/
+
+
+    /***************************************************************\
+     *                      Methodes publiques                     *
+    \***************************************************************/
     public void DisplayPlayer()
     {
         Debug.Log("playername " + playerName.text);
@@ -25,15 +33,11 @@ public class PlayerButton : MonoBehaviour
         //Debug.Log(nameInput);
         playerName.text = nameInput;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+    /***************************************************************\
+     *                      Attributes private                     *
+    \***************************************************************/
+    [SerializeField] private TMP_Text playerName;
+
 }

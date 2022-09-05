@@ -1,3 +1,11 @@
+/*
+* Title : Phase Controller
+* Authors : Titus Abele, Benjamin Mouchet, Guillaume Mouchet, Dorian Tan
+* Date : 05.09.2022
+* Source : 
+*/
+
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,12 +26,6 @@ public class PhaseController : MonoBehaviour
             analPhase1Done = false;
             happeningPhaseDone = false;
         }
-    }
-
-    IEnumerator waiter()
-    {
-        yield return new WaitForSeconds(5);
-        takt = true;
     }
 
     private void Update()
@@ -63,7 +65,11 @@ public class PhaseController : MonoBehaviour
         }
     }
 
-    
+    IEnumerator waiter()
+    {
+        yield return new WaitForSeconds(5);
+        takt = true;
+    }
 
 
     /***************************************************************\
@@ -206,7 +212,6 @@ public class PhaseController : MonoBehaviour
     [SerializeField] private GameObject combatPanel;
     [SerializeField] private GameObject happeningPanel;
     [SerializeField] private GameObject analysisPanel;
-    // [SerializeField] private Timer timer;
     private Timer timer;
     [SerializeField] private GameObject tank;
 }

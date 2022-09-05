@@ -1,5 +1,5 @@
 /*
- * Title : GrenadeController.cs
+ * Title : Bounce Grenade Controller
  * Authors : Titus Abele, Benjamin Mouchet, Guillaume Mouchet, Dorian Tan
  * Date : 25.08.2022
  * Source : 
@@ -23,6 +23,11 @@ public class BounceGrenade : MonoBehaviour
         float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
         this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
+
+    /***************************************************************\
+     *                      Methodes private                       *
+    \***************************************************************/
+
     private void Explode()
     {
         // Boom
@@ -35,10 +40,15 @@ public class BounceGrenade : MonoBehaviour
         while (true)
         {
             destroyGrenade.Play();
-            yield return new WaitForSeconds(1);          
+            yield return new WaitForSeconds(1);
             Destroy(this.gameObject);
         }
     }
+    /***************************************************************\
+     *                      Methodes publiques                     *
+    \***************************************************************/
+
+
     /***************************************************************\
      *                      Attributes private                     *
     \***************************************************************/

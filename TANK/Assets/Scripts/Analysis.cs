@@ -1,15 +1,12 @@
 /*
- * Title : Analyse
+ * Title : Analysis 
  * Authors : Titus Abele, Benjamin Mouchet, Guillaume Mouchet, Dorian Tan
- * Date : 29.08.2022
- * Source :
+ * Date : 05.09.2022
  */
-using System.Collections;
-using System.Collections.Generic;
+
+
 using UnityEngine;
-using Photon.Pun;
-using Photon.Realtime;
-using System;
+
 using UnityEngine.SceneManagement;
 
 public class Analysis : MonoBehaviour
@@ -22,14 +19,25 @@ public class Analysis : MonoBehaviour
         StartAnalyse();
     }
 
+    /***************************************************************\
+     *                      Methodes publiques                     *
+    \***************************************************************/
     public bool IsOver()
     {
         return isOver;
     }
 
+    public bool GameEnded()
+    {
+        return gameEnded;
+    }
+
+    /***************************************************************\
+    *                      Methodes private                       *
+    \***************************************************************/
+
     private void StartAnalyse()
     {
-        //Controler l'état de chaque joueur
         CheckAlive();
         CheckVictory();
         CheckHappening();
@@ -48,7 +56,7 @@ public class Analysis : MonoBehaviour
     {
         //Enlever les éléments de chaque TANKs (bouclier, buffs etc)
         
-        UnityEngine.Object[] shieldtab = FindObjectsOfType(typeof(Shield));
+        Object[] shieldtab = FindObjectsOfType(typeof(Shield));
         foreach (Shield shield in shieldtab)
         {
             DestroyImmediate(shield.gameObject);
@@ -58,13 +66,13 @@ public class Analysis : MonoBehaviour
 
     private void CheckHappening()
     {
-       
+       //TODO
     }
 
     private void CheckAlive()
     {
 
-        UnityEngine.Object[] tankTab = FindObjectsOfType(typeof(TankController));
+        Object[] tankTab = FindObjectsOfType(typeof(TankController));
         Debug.Log("CheckAlive");
         foreach (TankController tank in tankTab)
         {
@@ -87,8 +95,8 @@ public class Analysis : MonoBehaviour
     {
         //If all player of the same "team" are dead
         int i = 0;
-        UnityEngine.Object[] tankTab2 = FindObjectsOfType(typeof(TankController));
-        Debug.Log("CheckAlive");
+        Object[] tankTab2 = FindObjectsOfType(typeof(TankController));
+        Debug.Log("CheckVictory");
         foreach (TankController tank in tankTab2)
         {
             if (tank.CompareTag("Tank"))
@@ -107,19 +115,14 @@ public class Analysis : MonoBehaviour
             analysisPanel.SetActive(false);
             gameEnded = true;
             winner.SetActive(false);
-            Invoke("CompleteLevel", 5f);
+            Invoke("EndGame", 5f);
         }
         //Victory of the other team and end the Game
     }
-    private void CompleteLevel()
+    private void EndGame()
     {
         Debug.Log("ferme l'appli");
         Application.Quit();
-    }
-
-    public bool GameEnded()
-    {
-        return gameEnded;
     }
 
     /***************************************************************\

@@ -16,24 +16,35 @@ using UnityEngine.EventSystems;
 
 public class LobbyController : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private GameObject lobbyConnectButton;
-    [SerializeField] private GameObject lobbyPanel;
-    [SerializeField] private GameObject mainPanel;
-    [SerializeField] private TMP_InputField playerNameInput;
-    [SerializeField] private TMP_InputField TMP_roomName;
-    [SerializeField] private TMP_InputField TMP_roomSize;
-    [SerializeField] private GameObject helpPanel;
-    private string roomName;
-    private int roomSize;
-
-    private List<RoomInfo> roomListings;
-    [SerializeField] private Transform roomsContainer;
-    [SerializeField] private GameObject roomListingPrefab;
-
     public void Start()
     {
         playerNameInput.Select();
     }
+
+    /***************************************************************\
+    *                      Methodes private                       *
+    \***************************************************************/
+
+    private void ListRoom(RoomInfo room)
+    {
+        if (room.IsOpen && room.IsVisible)
+        {
+            GameObject tempListing = Instantiate(roomListingPrefab, roomsContainer);
+            RoomButton tempButton = tempListing.GetComponent<RoomButton>();
+            tempButton.SetRoom(room.Name, room.MaxPlayers, room.PlayerCount);
+        }
+    }
+
+    private void ClearRoomListings()
+    {
+        for (int i = roomsContainer.childCount - 1; i >= 0; i--)
+        {
+            Destroy(roomsContainer.GetChild(i).gameObject);
+        }
+    }
+    /***************************************************************\
+     *                      Methodes publiques                     *
+    \***************************************************************/
 
     public override void OnConnectedToMaster()
     {
@@ -115,24 +126,7 @@ public class LobbyController : MonoBehaviourPunCallbacks
             return room.Name == name;
         };
     }
-
-    private void ListRoom(RoomInfo room)
-    {
-        if (room.IsOpen && room.IsVisible)
-        {
-            GameObject tempListing = Instantiate(roomListingPrefab, roomsContainer);
-            RoomButton tempButton = tempListing.GetComponent<RoomButton>();
-            tempButton.SetRoom(room.Name, room.MaxPlayers, room.PlayerCount);
-        }
-    }
-
-    void ClearRoomListings()
-    {
-        for (int i = roomsContainer.childCount - 1; i >= 0; i--)
-        {
-            Destroy(roomsContainer.GetChild(i).gameObject);
-        }
-    }
+      
 
     public void OnRoomNameChanged(string nameIn)
     {
@@ -197,4 +191,22 @@ public class LobbyController : MonoBehaviourPunCallbacks
         helpPanel.SetActive(false);
         mainPanel.SetActive(true);
     }
+
+    /***************************************************************\
+    *                      Attributes private                     *
+    \***************************************************************/
+
+    [SerializeField] private GameObject lobbyConnectButton;
+    [SerializeField] private GameObject lobbyPanel;
+    [SerializeField] private GameObject mainPanel;
+    [SerializeField] private TMP_InputField playerNameInput;
+    [SerializeField] private TMP_InputField TMP_roomName;
+    [SerializeField] private TMP_InputField TMP_roomSize;
+    [SerializeField] private GameObject helpPanel;
+    private string roomName;
+    private int roomSize;
+
+    private List<RoomInfo> roomListings;
+    [SerializeField] private Transform roomsContainer;
+    [SerializeField] private GameObject roomListingPrefab;
 }

@@ -1,8 +1,8 @@
 /*
- * Title : Missile.cs
+ * Title : Missile
  * Authors : Titus Abele, Benjamin Mouchet, Guillaume Mouchet, Dorian Tan
  * Date : 25.08.2022
- * Source : https://www.youtube.com/watch?v=tNwLaGUJTK4
+ * Source :
  */
 
 
@@ -22,27 +22,21 @@ public class Ismissile : MonoBehaviour
 
     void Update()
     {
-        /*** DEBUGGING ***/
-        /*if (Input.GetMouseButtonDown(1))
-        {
-            canon.Shoot(ismissileObject);
-        }*/
-        /*** DEBUGGING ***/
+
     }
 
     private void OnDisable()
     {
         canon.enabled = false;
-    }  
-
-    /***************************************************************\
-     *                      Methodes private                       *
-    \***************************************************************/
-
+    } 
     private void OnDestroy() // appelé au Destroy()
     {
         Explode();
     }
+
+    /***************************************************************\
+     *                      Methodes private                       *
+    \***************************************************************/
 
     private void Explode()
     {

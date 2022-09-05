@@ -16,30 +16,80 @@ using Unity.VisualScripting;
 
 public class RoomController : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private int multiPlayerSceneIndex;
-    [SerializeField] private GameObject lobbyPanel;
-    [SerializeField] private GameObject roomPanel;
-    [SerializeField] private GameObject startButton;
-    [SerializeField] private Transform playersContainer;
-    [SerializeField] private GameObject playerListingPrefab;
-    [SerializeField] private TMP_Text roomNameDisplay;
-    [SerializeField] private TMP_InputField roomSize;
-    [SerializeField] private TMP_Text playerCount;
-    [SerializeField] private Transform[] Tanks;
-    [SerializeField] private Transform[] Stages;
-    [SerializeField] private GameObject leftStage;
-    [SerializeField] private GameObject rightStage;
+    /***************************************************************\
+     *                      Methodes publiques                     *
+    \***************************************************************/
 
-    private int currentTank;
-    private int currentStage;
-    private int buildStageDelta = 1;
-    void ClearPlayerListings()
+    public void ClearPlayerListings()
     {
         for (int i = playersContainer.childCount - 1; i >= 0; i--)
         {
             Destroy(playersContainer.GetChild(i).gameObject);
         }
     }
+
+    public override void OnJoinedRoom()
+    {
+        roomPanel.SetActive(true);
+        lobbyPanel.SetActive(false);
+        roomNameDisplay.text = PhotonNetwork.CurrentRoom.Name;
+        ClearPlayerListings();
+        ListPlayers();
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        ClearPlayerListings();
+        ListPlayers();
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        ClearPlayerListings();
+        ListPlayers();
+
+    }
+    public void startGame()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+            //PhotonNetwork.LoadLevel(multiPlayerSceneIndex);
+            PhotonNetwork.LoadLevel(currentStage % Stages.Length + buildStageDelta);
+        }
+    }
+
+    IEnumerator rejoinLobby()
+    {
+        yield return new WaitForSeconds(1);
+        PhotonNetwork.JoinLobby();
+    }
+
+    public void BackOnClick()
+    {
+        lobbyPanel.SetActive(true);
+        roomPanel.SetActive(false);
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.LeaveLobby();
+        StartCoroutine(rejoinLobby());
+    }
+
+    public void ChangeTank(int change)
+    {
+        Tanks[Mathf.Abs(currentTank % Tanks.Length)].gameObject.SetActive(false);
+        currentTank += change;
+        Tanks[Mathf.Abs(currentTank % Tanks.Length)].gameObject.SetActive(true);
+    }
+
+    public void ChangeStage(int change)
+    {
+        Stages[Mathf.Abs(currentStage % Stages.Length)].gameObject.SetActive(false);
+        currentStage += change;
+        Stages[Mathf.Abs(currentStage % Stages.Length)].gameObject.SetActive(true);
+    }
+    /***************************************************************\
+     *                      Methodes private                       *
+    \***************************************************************/
 
     private void ListPlayers()
     {
@@ -66,77 +116,29 @@ public class RoomController : MonoBehaviourPunCallbacks
         }
     }
 
-    public override void OnJoinedRoom()
-    {
-        roomPanel.SetActive(true);
-        lobbyPanel.SetActive(false);
-        roomNameDisplay.text = PhotonNetwork.CurrentRoom.Name;
-        ClearPlayerListings();
-        ListPlayers();
-    }
-
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        ClearPlayerListings();
-        ListPlayers();
-    }
-
-    public override void OnPlayerLeftRoom(Player otherPlayer)
-    {
-        ClearPlayerListings();
-        ListPlayers();
-
-    }
+    
 
 
-    public void startGame()
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            PhotonNetwork.CurrentRoom.IsOpen = false;
-            //PhotonNetwork.LoadLevel(multiPlayerSceneIndex);
-            PhotonNetwork.LoadLevel(currentStage%Stages.Length+buildStageDelta);
-        }
-    }
+    /***************************************************************\
+    *                      Attributes private                     *
+    \***************************************************************/
 
-    IEnumerator rejoinLobby()
-    {
-        yield return new WaitForSeconds(1);
-        PhotonNetwork.JoinLobby();
-    }
+    [SerializeField] private int multiPlayerSceneIndex;
+    [SerializeField] private GameObject lobbyPanel;
+    [SerializeField] private GameObject roomPanel;
+    [SerializeField] private GameObject startButton;
+    [SerializeField] private Transform playersContainer;
+    [SerializeField] private GameObject playerListingPrefab;
+    [SerializeField] private TMP_Text roomNameDisplay;
+    [SerializeField] private TMP_InputField roomSize;
+    [SerializeField] private TMP_Text playerCount;
+    [SerializeField] private Transform[] Tanks;
+    [SerializeField] private Transform[] Stages;
+    [SerializeField] private GameObject leftStage;
+    [SerializeField] private GameObject rightStage;
 
-    public void BackOnClick()
-    {
-        lobbyPanel.SetActive(true);
-        roomPanel.SetActive(false);
-        PhotonNetwork.LeaveRoom();
-        PhotonNetwork.LeaveLobby();
-        StartCoroutine(rejoinLobby());
-    }
+    private int currentTank;
+    private int currentStage;
+    private int buildStageDelta = 1;
 
-    public void ChangeTank(int change)
-    {
-        Tanks[Mathf.Abs(currentTank%Tanks.Length)].gameObject.SetActive(false);
-        currentTank += change;
-        Tanks[Mathf.Abs(currentTank%Tanks.Length)].gameObject.SetActive(true);
-    }
-
-    public void ChangeStage(int change)
-    {
-        Stages[Mathf.Abs(currentStage % Stages.Length)].gameObject.SetActive(false);
-        currentStage += change;
-        Stages[Mathf.Abs(currentStage % Stages.Length)].gameObject.SetActive(true);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

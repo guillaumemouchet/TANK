@@ -119,7 +119,6 @@ public class Jump : MonoBehaviour
     // Force
     private float launchForce = 10f; // Force de tir choisie
     private float magicForceScale = 2f; // QoL pour ne pas devoir sortir de l'écran avec la souris
-    //private Transform lockInTransform;
     private float lockInLaunchforce;
 
     // Params

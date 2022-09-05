@@ -4,6 +4,7 @@
  * Date : 26.08.2022
  * Source : https://www.youtube.com/watch?v=onDorc3Qfn0 
  */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,15 +17,22 @@ public class NetworkController : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.ConnectUsingSettings();
     }
-    
+
+    /***************************************************************\
+     *                      Methodes private                       *
+    \***************************************************************/
+
+
+    /***************************************************************\
+     *                      Methodes publiques                     *
+    \***************************************************************/
+
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to " + PhotonNetwork.CloudRegion);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    /***************************************************************\
+    *                      Attributes private                     *
+    \***************************************************************/
 }

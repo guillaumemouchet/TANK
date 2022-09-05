@@ -33,22 +33,6 @@ public class Perk1 : MonoBehaviour
         Debug.Log("Perk1 enabled");
     }
 
-    private void Update()
-    {
-        /*** TESTING ***/
-        /*if (Input.GetMouseButtonDown(1))
-        {
-            switch (togglePerk1.tag)
-            {
-                case "BounceGrenade":
-                    BounceGrenade();
-                    break;
-            }
-        }*/
-        /*** TESTING ***/
-
-    }
-
     private void OnDisable()
     {
         Debug.Log("Perk1 disabled");
