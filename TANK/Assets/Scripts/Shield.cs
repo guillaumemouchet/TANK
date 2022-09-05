@@ -32,7 +32,6 @@ public class Shield: MonoBehaviourPunCallbacks
 
     private void OnDisable()
     {
-        Destroy(this);
     }
 
     /***************************************************************\

@@ -15,6 +15,7 @@ public class PhaseController : MonoBehaviourPunCallbacks, IOnEventCallback
         combatPhaseDone = false;
         analPhase1Done = false;
         happeningPhaseDone = false;
+        StartCoroutine(waiter());
     }
 
     IEnumerator waiter()
@@ -35,8 +36,8 @@ public class PhaseController : MonoBehaviourPunCallbacks, IOnEventCallback
         {
             firstInit = false;
             InitiatePreparation();
+            StartCoroutine(waiter());
         }
-
         if (takt)
         {
             Debug.Log("Entering takt");

@@ -17,14 +17,14 @@ public class GameSetup : MonoBehaviourPunCallbacks
     void Start()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
-        Invoke("CreatePlayer", 2); // Appelle CreatePlayer() après 2 secondes
+        Invoke("CreatePlayer", 1); // Appelle CreatePlayer() après 1 seconde
     }
 
     private void CreatePlayer()
     {
         if (TankController.LocalPlayerInstance == null)
         {
-            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TankBasic"), GameController.instance.spawnPoints[PhotonNetwork.LocalPlayer.ActorNumber].position, Quaternion.identity, 0);
+            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TankBasic"), GameController.instance.spawnPoints[PhotonNetwork.LocalPlayer.ActorNumber - 1].position, Quaternion.identity);
         }
     }
 
