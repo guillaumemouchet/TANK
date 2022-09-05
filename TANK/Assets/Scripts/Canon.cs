@@ -12,7 +12,7 @@ using UnityEngine;
 using Photon.Pun;
 using System.IO;
 
-public class Canon : MonoBehaviour
+public class Canon : MonoBehaviourPunCallbacks
 {
 
     private void Start()

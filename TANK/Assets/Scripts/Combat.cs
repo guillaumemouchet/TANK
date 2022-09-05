@@ -11,7 +11,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class Combat : MonoBehaviour
+public class Combat : MonoBehaviourPunCallbacks
 {   
     private void OnEnable()
     {

@@ -5,11 +5,12 @@
  * Source : 
  */
 
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IsmissileController : MonoBehaviour
+public class IsmissileController : MonoBehaviourPunCallbacks
 {
     private void Start()
     {

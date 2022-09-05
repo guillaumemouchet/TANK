@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using ExitGames.Client.Photon;
 
-public class PhaseController : MonoBehaviour
+public class PhaseController : MonoBehaviourPunCallbacks, IOnEventCallback
 {
     private void Start()
     {
@@ -45,7 +46,28 @@ public class PhaseController : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        PhotonNetwork.AddCallbackTarget(this);
+    }
     
+    public void OnEvent(EventData photonEvent)
+    {
+        if ((int)photonEvent.Code == PlayerReadyEvent)
+        {
+            this.tanks.Add((GameObject)photonEvent.CustomData);
+            if (this.tanks.Count == PhotonNetwork.CountOfPlayers)
+            {
+                allPlayersReady = true;
+            }
+        }
+    }
+
+    private void OnDisable()
+    {
+        PhotonNetwork.RemoveCallbackTarget(this);
+    }
+
 
 
     /***************************************************************\
@@ -69,10 +91,11 @@ public class PhaseController : MonoBehaviour
                 combatPanel.SetActive(true);
             }
         }
-        else if (!combatPhaseDone)
+        else if (!combatPhaseDone || allPlayersReady)
         {
             if (CombatOver())
             {
+                allPlayersReady = false;
                 Debug.Log("COMBAT DONE");
                 combatPanel.SetActive(false);
                 combatPhaseDone = true;
@@ -161,6 +184,7 @@ public class PhaseController : MonoBehaviour
     }
 
 
+
     /***************************************************************\
      *                      Attributes private                     *
     \***************************************************************/
@@ -175,6 +199,8 @@ public class PhaseController : MonoBehaviour
     private bool gotTankController = false;
     private bool firstInit = true;
 
+    private List<GameObject> tanks;
+
     // Components
     private TankController tankController;
     [SerializeField] private GameObject preparationPanel;
@@ -183,4 +209,6 @@ public class PhaseController : MonoBehaviour
     [SerializeField] private GameObject analysisPanel;
     // [SerializeField] private Timer timer;
     private Timer timer;
+    private bool allPlayersReady = false;
+    private const int PlayerReadyEvent = 32;
 }

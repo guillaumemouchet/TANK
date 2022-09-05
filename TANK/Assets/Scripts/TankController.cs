@@ -12,8 +12,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using ExitGames.Client.Photon;
 
-public class TankController : MonoBehaviour
+public class TankController : MonoBehaviourPunCallbacks, IPunObservable
 {
     private void Start()
     {
@@ -22,6 +23,7 @@ public class TankController : MonoBehaviour
         ismissileActionLockedIn = false;
         perk1ActionLockedIn = false;
         perk2ActionLockedIn = false;
+        ready = false;
     }
 
     private void OnEnable()
@@ -51,9 +53,31 @@ public class TankController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            LockIn();
+            if (photonView.IsMine)
+            {
+                LockIn();
+                RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.MasterClient };
+                PhotonNetwork.RaiseEvent(PlayerReadyEvent, this, raiseEventOptions, SendOptions.SendReliable);
+            }
         }
     }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            Vector3 pos = transform.localPosition;
+            stream.Serialize(ref pos);
+            stream.SendNext(this.ready);
+            stream.SendNext(this.readyCount);
+        }
+        else
+        {
+            Vector3 pos = Vector3.zero;
+            stream.Serialize(ref pos);
+        }
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -82,24 +106,28 @@ public class TankController : MonoBehaviour
                 Debug.Log("jump Lock IN");
                 jump.LockIn();
                 jumpActionLockedIn = true;
+                ready = true;
             }
             else if (toggle.name.Equals("Ismissile"))
             {
                 Debug.Log("MISSILE Lock IN");
                 canon.LockIn();
                 ismissileActionLockedIn = true;
+                ready = true;
             }
             else if (toggle.name.Equals("Perk1"))
             {
                 Debug.Log("perk1 Lock IN");
                 perk1.LockIn();
                 perk1ActionLockedIn = true;
+                ready = true;
             }
             else if (toggle.name.Equals("Perk2"))
             {
                 Debug.Log("perk2 Lock IN");
                 perk2.LockIn();
                 perk2ActionLockedIn = true;
+                ready = true;
             }
             Disable();
         }
@@ -114,6 +142,7 @@ public class TankController : MonoBehaviour
             jump.Execute();
             jump.enabled = false;
             jumpActionLockedIn = false;
+            ready = false;
         }
         else if (ismissileActionLockedIn)
         {
@@ -121,6 +150,7 @@ public class TankController : MonoBehaviour
             canon.ShootIsmissile();
             canon.enabled = false;
             ismissileActionLockedIn = false;
+            ready = false;
         }
         else if (perk1ActionLockedIn)
         {
@@ -128,6 +158,7 @@ public class TankController : MonoBehaviour
             perk1.Execute();
             perk1.enabled = false;
             perk1ActionLockedIn = false;
+            ready = false;
         }
         else if (perk2ActionLockedIn)
         {
@@ -135,6 +166,7 @@ public class TankController : MonoBehaviour
             perk2.Execute();
             perk2.enabled = false;
             perk2ActionLockedIn = false;
+            ready = false;
 
         }
         //GetEnabled();
@@ -167,6 +199,7 @@ public class TankController : MonoBehaviour
     private bool lockedIn;
     private bool ready;
     private bool isShootableMunition;
+    private int readyCount = 0;
 
     private bool jumpActionLockedIn;
     private bool ismissileActionLockedIn;
@@ -183,6 +216,7 @@ public class TankController : MonoBehaviour
     private Perk2 perk2;
 
     [SerializeField] private SO_Tanks tankSO;
+    private const int PlayerReadyEvent = 32;
 
 
 

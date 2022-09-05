@@ -11,8 +11,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using Photon.Pun;
 
-public class TankDisplay : MonoBehaviour
+public class TankDisplay : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
     private void Start()

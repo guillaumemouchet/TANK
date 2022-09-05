@@ -26,7 +26,8 @@ public class GameSetup : MonoBehaviour
         {
             if (p == PhotonNetwork.LocalPlayer)
             {
-                p.TagObject = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TankBasic"), GameController.instance.spawnPoints[index].position, Quaternion.identity);
+                GameObject gObject= PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TankBasic"), GameController.instance.spawnPoints[index].position, Quaternion.identity);
+                p.TagObject = gObject;
             }
             else
             {
