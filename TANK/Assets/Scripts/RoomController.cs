@@ -85,10 +85,7 @@ public class RoomController : MonoBehaviourPunCallbacks
     {
         ClearPlayerListings();
         ListPlayers();
-        if (PhotonNetwork.IsMasterClient)
-        {
-            startButton.SetActive(true);
-        }
+
     }
 
 
