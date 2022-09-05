@@ -63,12 +63,13 @@ public class TankController : MonoBehaviour
             healthBar.SetHealth(currentHealth);
             Destroy(gameObject);
         }
-        /*
+        
         if (currentHealth <= 0)
         {
+            Debug.Log("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
             deathSound.Play();
             Invoke("die", 2f);
-        }*/
+        }
     }
 
     private void die()
@@ -149,7 +150,6 @@ public class TankController : MonoBehaviour
     {
         // Si jamais le joueur n'a rien fait quand même bloquer
         Disable(); 
-        //Debug.Log("ExecuteAction in TankController.cs");
         if (jumpActionLockedIn)
         {
             Debug.Log("jump Execute");
@@ -179,7 +179,6 @@ public class TankController : MonoBehaviour
             perk2ActionLockedIn = false;
 
         }
-        //GetEnabled();
     }
 
     public void Enable()

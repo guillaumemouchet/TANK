@@ -234,7 +234,6 @@ GameObject:
   - component: {fileID: 1875279494566678080}
   - component: {fileID: 1875279494566678082}
   - component: {fileID: 1875279494566678081}
-  - component: {fileID: -4145023194462344291}
   - component: {fileID: -5830332271416689344}
   - component: {fileID: 7524654185048628205}
   - component: {fileID: 5595070827979396654}
@@ -408,6 +407,7 @@ MonoBehaviour:
   numberOfPoints: 25
   circleObject: {fileID: 1162168438518866712, guid: e2342da80a8c6fa4b8dbc751c9d79a8a, type: 3}
   trajectoryLine: {fileID: 7979637541810486940}
+  jumpAudio: {fileID: 0}
 --- !u!114 &1875279494566678135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,6 +434,7 @@ MonoBehaviour:
   togglePerk1: {fileID: 7409245290821439746}
   togglePerk2: {fileID: 7134496319355920240}
   tank: {fileID: 11400000, guid: ead97677f41710f45acbaab250cf94ac, type: 2}
+  deathSound: {fileID: 0}
 --- !u!114 &1875279494566678134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,6 +471,7 @@ MonoBehaviour:
   shieldObject: {fileID: 8738804784541097271, guid: 5ecd7f29544da7e4cbd027ca04fda6f3, type: 3}
   togglePerk2: {fileID: 7134496319355920240}
   katana: {fileID: 5595070827979396654}
+  shieldAudio: {fileID: 0}
 --- !u!114 &1875279494566678080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,18 +526,6 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
---- !u!114 &-4145023194462344291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1875279494566678142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8199a3ec375e7d74f94a07cc26ad7d76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-5830332271416689344
 MonoBehaviour:
   m_ObjectHideFlags: 0

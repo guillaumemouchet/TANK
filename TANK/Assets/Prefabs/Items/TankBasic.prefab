@@ -105,6 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 139309513}
   offset: {x: 0, y: 0, z: 0}
+  tank: {fileID: 0}
   so_Tank: {fileID: 11400000, guid: df2d93dc356c83d4e95edbfc77b71377, type: 2}
 --- !u!1 &391567723
 GameObject:
@@ -410,7 +411,6 @@ GameObject:
   - component: {fileID: 1875279494566678080}
   - component: {fileID: 1875279494566678082}
   - component: {fileID: 1875279494566678081}
-  - component: {fileID: 1963961489}
   - component: {fileID: 1963961490}
   m_Layer: 0
   m_Name: TankBasic
@@ -547,13 +547,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66b7b7c955d37f49bc5101bcc3f70af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trajectoryLine: {fileID: 0}
-  numberOfPoints: 25
-  launchForce: 10
   maxLaunchForce: 15
-  magicForceScale: 0.25
   spaceBetweenPoints: 0.04
+  numberOfPoints: 25
   circleObject: {fileID: 0}
+  trajectoryLine: {fileID: 0}
+  jumpAudio: {fileID: 0}
 --- !u!61 &1875279494566678088
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -597,8 +596,16 @@ MonoBehaviour:
   grenadeDamage: 0
   healthBar: {fileID: 139309515}
   so_Tank: {fileID: 11400000, guid: df2d93dc356c83d4e95edbfc77b71377, type: 2}
-  ismissileObject: {fileID: 0}
-  gameManager: {fileID: 0}
+  canon: {fileID: 0}
+  jump: {fileID: 0}
+  perk1: {fileID: 0}
+  perk2: {fileID: 0}
+  toggleJump: {fileID: 0}
+  toggleIsmissile: {fileID: 0}
+  togglePerk1: {fileID: 0}
+  togglePerk2: {fileID: 0}
+  tank: {fileID: 0}
+  deathSound: {fileID: 0}
 --- !u!114 &1875279494566678134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,6 +625,7 @@ MonoBehaviour:
   spaceBetweenPoints: 0.04
   circleObject: {fileID: 1162168438518866712, guid: e2342da80a8c6fa4b8dbc751c9d79a8a, type: 3}
   firePoint: {fileID: 1875279494846292006}
+  ismissileObject: {fileID: 0}
   numberOfPoints: 50
 --- !u!114 &1875279494566678095
 MonoBehaviour:
@@ -633,6 +641,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shieldObject: {fileID: 0}
   togglePerk2: {fileID: 0}
+  katana: {fileID: 0}
+  shieldAudio: {fileID: 0}
 --- !u!114 &1875279494566678080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -646,6 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceGrenadeObject: {fileID: 0}
+  grab: {fileID: 0}
   togglePerk1: {fileID: 0}
 --- !u!114 &1875279494566678082
 MonoBehaviour:
@@ -686,23 +697,6 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
---- !u!114 &1963961489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1875279494566678142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8199a3ec375e7d74f94a07cc26ad7d76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tank: {fileID: 11400000, guid: df2d93dc356c83d4e95edbfc77b71377, type: 2}
-  toggleJump: {fileID: 0}
-  toggleIsmissile: {fileID: 0}
-  togglePerk1: {fileID: 0}
-  togglePerk2: {fileID: 0}
 --- !u!114 &1963961490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,6 +711,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 139309513}
   offset: {x: 0, y: 1, z: 0}
+  tank: {fileID: 0}
   so_Tank: {fileID: 11400000, guid: df2d93dc356c83d4e95edbfc77b71377, type: 2}
 --- !u!1 &1875279494749197089
 GameObject:

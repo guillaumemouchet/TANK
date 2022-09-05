@@ -77,8 +77,8 @@ public class Happening : MonoBehaviour
     [SerializeField] private GameObject[] HPPackPos;
 
 
-    private int currentTurn = 0;
-    private int happeningTurn = 4;
+   // private int currentTurn = 0;
+   // private int happeningTurn = 4;
     private int MaximumItems = 5;
 
     private int currentNumberItems = 0;

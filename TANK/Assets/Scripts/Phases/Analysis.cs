@@ -112,10 +112,11 @@ public class Analysis : MonoBehaviour
         if (i<2)
         {
             endGamePanel.SetActive(true);
+            Invoke("EndGame", 5f);
             analysisPanel.SetActive(false);
             gameEnded = true;
             winner.SetActive(false);
-            Invoke("EndGame", 5f);
+            
         }
         //Victory of the other team and end the Game
     }
