@@ -5,11 +5,12 @@
  * Source : 
  */
 
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shield: MonoBehaviour
+public class Shield: MonoBehaviourPunCallbacks
 {
     private void Start()
     {

@@ -83,7 +83,7 @@ public class Perk1 : MonoBehaviourPunCallbacks
     {
         if (canonNeeded)
         {
-            canon.Shoot(gObject);
+            canon.Shoot(bounceGrenadeObject);
         }
         else
         {

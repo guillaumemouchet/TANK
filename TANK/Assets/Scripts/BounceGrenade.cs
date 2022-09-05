@@ -15,14 +15,9 @@ public class BounceGrenade : MonoBehaviourPunCallbacks
 {
     private void Start()
     {
-        rb = this.GetComponent<Rigidbody2D>();
         Invoke("Explode", 5); // Appelle Explode() après 5 secondes
     }
 
-    private void Update()
-    {
-
-    }
     private void Explode()
     {
         // Boom
