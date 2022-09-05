@@ -181,7 +181,7 @@ public class TankController : MonoBehaviourPunCallbacks, IOnEventCallback
         {
             Debug.Log("perk1 Execute");
             perk1.Execute();
-            perk1.enabled = false;
+            //perk1.enabled = false;
             perk1ActionLockedIn = false;
             ready = false;
         }

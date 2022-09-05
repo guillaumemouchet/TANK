@@ -63,6 +63,7 @@ public class Perk2 : MonoBehaviourPunCallbacks, IOnEventCallback
                 break;
         }
     }
+
     public void OnEvent(EventData photonEvent)
     {
         if (photonEvent.Code == CombatFinishedCode && lockedIn)

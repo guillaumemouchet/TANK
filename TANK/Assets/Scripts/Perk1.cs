@@ -5,7 +5,9 @@
  * Source : 
  */
 
+using ExitGames.Client.Photon;
 using Photon.Pun;
+using Photon.Realtime;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +15,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Perk1 : MonoBehaviourPunCallbacks
+public class Perk1 : MonoBehaviourPunCallbacks, IOnEventCallback
 {
     void Start()
     {
@@ -29,6 +31,7 @@ public class Perk1 : MonoBehaviourPunCallbacks
                 BounceGrenade();
                 break;
         }
+        PhotonNetwork.AddCallbackTarget(this);
     }
 
     private void Update()
@@ -47,10 +50,19 @@ public class Perk1 : MonoBehaviourPunCallbacks
 
     }
 
+    public void OnEvent(EventData photonEvent)
+    {
+        if (photonEvent.Code == CombatFinishedCode && lockedIn)
+        {
+            canon.enabled = false;
+            lockedIn = false;
+        }
+    }
+
     private void OnDisable()
     {
         Debug.Log("Perk1 disabled");
-        canon.enabled = false;
+        PhotonNetwork.RemoveCallbackTarget(this);
     }
 
     /***************************************************************\
@@ -72,6 +84,7 @@ public class Perk1 : MonoBehaviourPunCallbacks
         if(canonNeeded)
         {
             canon.LockIn();
+            lockedIn = true;
         }    
         else
         {
@@ -105,4 +118,9 @@ public class Perk1 : MonoBehaviourPunCallbacks
 
     [SerializeField] private Toggle togglePerk1;
     private bool canonNeeded;
+    private bool lockedIn = false;
+
+    // Codes
+
+    private const int CombatFinishedCode = 34;
 }
