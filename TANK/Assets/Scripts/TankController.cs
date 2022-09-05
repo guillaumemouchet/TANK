@@ -60,6 +60,17 @@ public class TankController : MonoBehaviourPunCallbacks, IOnEventCallback
         }
     }
 
+    private void Awake()
+    {
+        if (photonView.IsMine)
+        {
+            TankController.LocalPlayerInstance = this.gameObject;
+        }
+        // #Critical
+        // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     /*
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -220,6 +231,8 @@ public class TankController : MonoBehaviourPunCallbacks, IOnEventCallback
     private bool perk1ActionLockedIn;
     private bool perk2ActionLockedIn;
     private Toggle[] toggles;
+
+    publicstatic GameObject LocalPlayerInstance;
 
     [SerializeField] private int grenadeDamage;
 

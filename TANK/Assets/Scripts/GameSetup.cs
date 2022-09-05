@@ -16,23 +16,15 @@ public class GameSetup : MonoBehaviour
 
     void Start()
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            PhotonNetwork.AutomaticallySyncScene = true;
-            CreatePlayer();
-        }
+        PhotonNetwork.AutomaticallySyncScene = true;
+        CreatePlayer();
     }
 
     private void CreatePlayer()
     {
-        int index = 0;
-        foreach (Player p in PhotonNetwork.PlayerList)
+        if (TankController.LocalPlayerInstance == null)
         {
-            //if (p == PhotonNetwork.LocalPlayer)
-            {
-                GameObject gObject= PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TankBasic"), GameController.instance.spawnPoints[index++].position, Quaternion.identity);
-                p.TagObject = gObject;
-            }
+            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TankBasic"), GameController.instance.spawnPoints[PhotonNetwork.LocalPlayer.ActorNumber].position, Quaternion.identity, 0);
         }
     }
 
