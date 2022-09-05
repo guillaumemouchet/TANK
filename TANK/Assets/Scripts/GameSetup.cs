@@ -16,8 +16,11 @@ public class GameSetup : MonoBehaviour
 
     void Start()
     {
-        PhotonNetwork.AutomaticallySyncScene = true;
-        CreatePlayer();
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.AutomaticallySyncScene = true;
+            CreatePlayer();
+        }
     }
 
     private void CreatePlayer()
@@ -25,14 +28,10 @@ public class GameSetup : MonoBehaviour
         int index = 0;
         foreach (Player p in PhotonNetwork.PlayerList)
         {
-            if (p == PhotonNetwork.LocalPlayer)
+            //if (p == PhotonNetwork.LocalPlayer)
             {
-                GameObject gObject= PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TankBasic"), GameController.instance.spawnPoints[index].position, Quaternion.identity);
+                GameObject gObject= PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TankBasic"), GameController.instance.spawnPoints[index++].position, Quaternion.identity);
                 p.TagObject = gObject;
-            }
-            else
-            {
-                index++;
             }
         }
     }

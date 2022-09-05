@@ -56,7 +56,7 @@ public class PhaseController : MonoBehaviourPunCallbacks, IOnEventCallback
         if ((int)photonEvent.Code == PlayerReadyEvent)
         {
             this.readyCount++;
-            if (this.readyCount == PhotonNetwork.CountOfPlayers)
+            if (this.readyCount == PhotonNetwork.PlayerList.Length)
             {
                 allPlayersReady = true;
                 Debug.Log("All Players Are Ready o.o");

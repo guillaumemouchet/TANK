@@ -59,7 +59,7 @@ public class Jump : MonoBehaviourPunCallbacks
 
     public void Execute()
     {
-        Debug.Log("jumping");
+        Debug.Log("jumping id :" + photonView.IsMine);
         rb.velocity = this.transform.GetChild(0).right * lockInLaunchforce;
     }
 

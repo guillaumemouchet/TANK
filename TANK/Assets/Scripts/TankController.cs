@@ -14,7 +14,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
 
-public class TankController : MonoBehaviourPunCallbacks, IPunObservable, IOnEventCallback
+public class TankController : MonoBehaviourPunCallbacks, IOnEventCallback
 {
     private void Start()
     {
@@ -48,7 +48,6 @@ public class TankController : MonoBehaviourPunCallbacks, IPunObservable, IOnEven
         toggles[3].tag = tankSO.perk2;
 
         PhotonNetwork.AddCallbackTarget(this);
-
     }
 
     private void Update()
@@ -61,6 +60,7 @@ public class TankController : MonoBehaviourPunCallbacks, IPunObservable, IOnEven
         }
     }
 
+    /*
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -77,7 +77,7 @@ public class TankController : MonoBehaviourPunCallbacks, IPunObservable, IOnEven
             this.ready = (bool)stream.ReceiveNext();
             this.readyCount = (int)stream.ReceiveNext();
         }
-    }
+    }*/
 
     public void OnEvent(EventData photonEvent)
     {
