@@ -16,6 +16,7 @@ public class GameSetup : MonoBehaviour
 
     void Start()
     {
+        PhotonNetwork.AutomaticallySyncScene = true;
         CreatePlayer();
     }
 

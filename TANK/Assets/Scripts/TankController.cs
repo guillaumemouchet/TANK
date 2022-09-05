@@ -74,6 +74,8 @@ public class TankController : MonoBehaviourPunCallbacks, IPunObservable, IOnEven
         {
             Vector3 pos = Vector3.zero;
             stream.Serialize(ref pos);
+            this.ready = (bool)stream.ReceiveNext();
+            this.readyCount = (int)stream.ReceiveNext();
         }
     }
 
