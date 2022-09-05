@@ -66,7 +66,6 @@ public class TankController : MonoBehaviour
         
         if (currentHealth <= 0)
         {
-            Debug.Log("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
             deathSound.Play();
             Invoke("die", 2f);
         }

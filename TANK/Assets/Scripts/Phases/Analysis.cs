@@ -6,7 +6,6 @@
 
 
 using UnityEngine;
-
 using UnityEngine.SceneManagement;
 
 public class Analysis : MonoBehaviour
@@ -101,7 +100,7 @@ public class Analysis : MonoBehaviour
         {
             if (tank.CompareTag("Tank"))
             {//Get Life
-                if (tank.Gethealth() < 0)
+                if (tank.Gethealth() > 0)
                 {
                     i++;
                     winner = tank.gameObject;
@@ -109,7 +108,8 @@ public class Analysis : MonoBehaviour
             }
 
         }
-        if (i<2)
+        Debug.Log("TTTTTTTTTTTTTTTTTTTTTTTT  " + i + " TTTTTTTTTTTTTTTTTTTTTTTTTTTTt");
+        if(i<1) //i<2 for more than 1 players in game // i<1 for one player Game
         {
             endGamePanel.SetActive(true);
             Invoke("EndGame", 5f);
