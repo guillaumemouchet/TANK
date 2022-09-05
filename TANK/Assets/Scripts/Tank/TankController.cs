@@ -113,27 +113,31 @@ public class TankController : MonoBehaviour
             Debug.Log("jump Lock IN");
             jump.LockIn();
             jumpActionLockedIn = true;
+            Disable();
         }
         else if (this.GetComponent<Ismissile>().isActiveAndEnabled)
         {
             Debug.Log("MISSILE Lock IN");
             canon.LockIn();
             ismissileActionLockedIn = true;
+            Disable();
         }
         else if (this.GetComponent<Perk1>().isActiveAndEnabled)
         {
             Debug.Log("perk1 Lock IN");
             perk1.LockIn();
             perk1ActionLockedIn = true;
+            Disable();
         }
         else if (this.GetComponent<Perk2>().isActiveAndEnabled)
         {
             Debug.Log("perk2 Lock IN");
             perk2.LockIn();
             perk2ActionLockedIn = true;
+            Disable();
         }
 
-        Disable();
+        
     }
 
     /***************************************************************\

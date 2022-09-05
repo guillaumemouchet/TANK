@@ -108,7 +108,6 @@ public class Analysis : MonoBehaviour
             }
 
         }
-        Debug.Log("TTTTTTTTTTTTTTTTTTTTTTTT  " + i + " TTTTTTTTTTTTTTTTTTTTTTTTTTTTt");
         if(i<1) //i<2 for more than 1 players in game // i<1 for one player Game
         {
             endGamePanel.SetActive(true);

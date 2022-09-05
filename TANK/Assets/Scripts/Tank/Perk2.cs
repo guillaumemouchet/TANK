@@ -17,7 +17,8 @@ public class Perk2 : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("Perk2 enabled"); 
+        Debug.Log("Perk2 enabled");
+        lockin = false;
         switch (togglePerk2.tag)
         {
             case "Shield":
@@ -34,7 +35,11 @@ public class Perk2 : MonoBehaviour
     private void OnDisable()
     {
         Debug.Log("Perk2 disabled");
-        Destroy(shield.gameObject);
+        if(!lockin)
+        {
+            Destroy(shield.gameObject);
+            lockin = false;
+        }
     }
 
     /***************************************************************\
@@ -48,6 +53,7 @@ public class Perk2 : MonoBehaviour
             case "Shield":
                 shieldShield.LockIn();
                 shieldShield.SetLockIn();
+                lockin = true;
                 break;
         }
     }
@@ -76,6 +82,7 @@ public class Perk2 : MonoBehaviour
     // Tools
     private GameObject shield;
     private Shield shieldShield;
+    private bool lockin;
 
     // Components
     [SerializeField] private GameObject shieldObject;

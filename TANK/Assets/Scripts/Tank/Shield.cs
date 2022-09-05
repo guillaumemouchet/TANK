@@ -46,7 +46,6 @@ public class Shield: MonoBehaviour
     {
         this.transform.position = lockInCanonPos;
         this.transform.right = lockInDirection;
-        
         lockedIn = true;
     }
     public void Setup()
