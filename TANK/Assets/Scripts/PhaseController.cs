@@ -147,7 +147,7 @@ public class PhaseController : MonoBehaviourPunCallbacks, IOnEventCallback
     {
         // Lancer timer fait par panel de prép
         Debug.Log("prep00");
-        tankController.Enable();
+        TankController.LocalPlayerInstance.GetComponent<TankController>().Enable();
         preparationPanel.SetActive(true);
         
         timer.ResetTimer();

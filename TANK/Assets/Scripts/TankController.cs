@@ -232,7 +232,7 @@ public class TankController : MonoBehaviourPunCallbacks, IOnEventCallback
     private bool perk2ActionLockedIn;
     private Toggle[] toggles;
 
-    publicstatic GameObject LocalPlayerInstance;
+    public static GameObject LocalPlayerInstance;
 
     [SerializeField] private int grenadeDamage;
 
