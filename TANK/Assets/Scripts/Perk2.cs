@@ -30,7 +30,7 @@ public class Perk2 : MonoBehaviour
         switch (togglePerk2.tag)
         {
             case "Shield":
-                GameObject shield = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Shield"), new Vector3(this.transform.position.x,this.transform.position.y,0), Quaternion.identity);
+                shield = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Shield"), new Vector3(this.transform.position.x,this.transform.position.y,0), Quaternion.identity);
                 shieldShield = (Shield)shield.GetComponent<Shield>();
                 shieldShield.Setup();
                 break;
@@ -48,7 +48,7 @@ public class Perk2 : MonoBehaviour
     private void OnDisable()
     {
         Debug.Log("Perk2 disabled");
-        Destroy(shield);
+        Destroy(shield.gameObject);
     }
 
     /***************************************************************\
