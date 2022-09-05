@@ -14,7 +14,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
 
-public class TankController : MonoBehaviourPunCallbacks, IPunObservable
+public class TankController : MonoBehaviourPunCallbacks, IPunObservable, IOnEventCallback
 {
     private void Start()
     {
@@ -47,18 +47,17 @@ public class TankController : MonoBehaviourPunCallbacks, IPunObservable
         toggles[2].tag = tankSO.perk1;
         toggles[3].tag = tankSO.perk2;
 
+        PhotonNetwork.AddCallbackTarget(this);
+
     }
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(1))
         {
-            if (photonView.IsMine)
-            {
-                LockIn();
-                RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.MasterClient };
-                PhotonNetwork.RaiseEvent(PlayerReadyEvent, null, raiseEventOptions, SendOptions.SendReliable);
-            }
+            LockIn();
+            RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.MasterClient };
+            PhotonNetwork.RaiseEvent(PlayerReadyEvent, null, raiseEventOptions, SendOptions.SendReliable);
         }
     }
 
@@ -85,6 +84,11 @@ public class TankController : MonoBehaviourPunCallbacks, IPunObservable
             this.ExecuteAction();
         }
     }
+    private void OnDisable()
+    {
+        PhotonNetwork.RemoveCallbackTarget(this);
+    }
+
 
 
     private void OnTriggerEnter2D(Collider2D collision)
