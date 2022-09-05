@@ -75,6 +75,7 @@ public class Analysis : MonoBehaviour
                     Debug.Log("Player dead");
                     //if player is dead --> spectator Mode
                     tank.gameObject.SetActive(false);
+                    
 
                 }
             }
@@ -95,6 +96,7 @@ public class Analysis : MonoBehaviour
                 if (tank.Gethealth() < 0)
                 {
                     i++;
+                    winner = tank.gameObject;
                 }
             }
 
@@ -104,6 +106,7 @@ public class Analysis : MonoBehaviour
             endGamePanel.SetActive(true);
             analysisPanel.SetActive(false);
             gameEnded = true;
+            winner.SetActive(false);
             Invoke("CompleteLevel", 5f);
         }
         //Victory of the other team and end the Game
@@ -126,6 +129,7 @@ public class Analysis : MonoBehaviour
     // Tools
     private bool analysisTwo = false;
     private bool gameEnded = false;
+    private GameObject winner;
     [SerializeField] private Happening hp;
     [SerializeField] private GameObject endGamePanel;
     [SerializeField] private GameObject analysisPanel;
