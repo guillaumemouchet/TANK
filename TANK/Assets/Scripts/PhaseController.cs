@@ -55,10 +55,11 @@ public class PhaseController : MonoBehaviourPunCallbacks, IOnEventCallback
     {
         if ((int)photonEvent.Code == PlayerReadyEvent)
         {
-            this.tanks.Add((GameObject)photonEvent.CustomData);
-            if (this.tanks.Count == PhotonNetwork.CountOfPlayers)
+            this.readyCount++;
+            if (this.readyCount == PhotonNetwork.CountOfPlayers)
             {
                 allPlayersReady = true;
+                Debug.Log("All Players Are Ready o.o");
             }
         }
     }
@@ -89,6 +90,7 @@ public class PhaseController : MonoBehaviourPunCallbacks, IOnEventCallback
                 preparationPanel.SetActive(false);
                 prepPhaseDone = true;
                 combatPanel.SetActive(true);
+                readyCount = 0;
             }
         }
         else if (!combatPhaseDone || allPlayersReady)
@@ -199,8 +201,6 @@ public class PhaseController : MonoBehaviourPunCallbacks, IOnEventCallback
     private bool gotTankController = false;
     private bool firstInit = true;
 
-    private List<GameObject> tanks;
-
     // Components
     private TankController tankController;
     [SerializeField] private GameObject preparationPanel;
@@ -210,5 +210,6 @@ public class PhaseController : MonoBehaviourPunCallbacks, IOnEventCallback
     // [SerializeField] private Timer timer;
     private Timer timer;
     private bool allPlayersReady = false;
+    private int readyCount = 0;
     private const int PlayerReadyEvent = 32;
 }

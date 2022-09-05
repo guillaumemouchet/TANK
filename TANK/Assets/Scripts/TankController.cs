@@ -57,7 +57,7 @@ public class TankController : MonoBehaviourPunCallbacks, IPunObservable
             {
                 LockIn();
                 RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.MasterClient };
-                PhotonNetwork.RaiseEvent(PlayerReadyEvent, this, raiseEventOptions, SendOptions.SendReliable);
+                PhotonNetwork.RaiseEvent(PlayerReadyEvent, null, raiseEventOptions, SendOptions.SendReliable);
             }
         }
     }
@@ -75,6 +75,14 @@ public class TankController : MonoBehaviourPunCallbacks, IPunObservable
         {
             Vector3 pos = Vector3.zero;
             stream.Serialize(ref pos);
+        }
+    }
+
+    public void OnEvent(EventData photonEvent)
+    {
+        if ((int)photonEvent.Code == CombatEventCode)
+        {
+            this.ExecuteAction();
         }
     }
 
@@ -216,7 +224,12 @@ public class TankController : MonoBehaviourPunCallbacks, IPunObservable
     private Perk2 perk2;
 
     [SerializeField] private SO_Tanks tankSO;
+
+    // Event Codes
+
     private const int PlayerReadyEvent = 32;
+    private const int CombatEventCode = 33;
+
 
 
 
