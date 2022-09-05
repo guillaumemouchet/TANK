@@ -27,7 +27,6 @@ public class GameSetup : MonoBehaviour
             if (p == PhotonNetwork.LocalPlayer)
             {
                 p.TagObject = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TankBasic"), GameController.instance.spawnPoints[index].position, Quaternion.identity);
-                DontDestroyOnLoad((Object)p.TagObject);
             }
             else
             {

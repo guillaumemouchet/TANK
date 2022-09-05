@@ -315,15 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grenadeDamage: 0
-  canon: {fileID: 1875279494566678134}
-  jump: {fileID: 1875279494566678089}
-  perk1: {fileID: 1875279494566678080}
-  perk2: {fileID: 1875279494566678095}
-  toggleJump: {fileID: 3020648526117236373}
-  toggleIsmissile: {fileID: 4764821831408280630}
-  togglePerk1: {fileID: 7409245290821439746}
-  togglePerk2: {fileID: 7134496319355920240}
-  tank: {fileID: 11400000, guid: df2d93dc356c83d4e95edbfc77b71377, type: 2}
+  tankSO: {fileID: 11400000, guid: df2d93dc356c83d4e95edbfc77b71377, type: 2}
 --- !u!114 &1875279494566678134
 MonoBehaviour:
   m_ObjectHideFlags: 0

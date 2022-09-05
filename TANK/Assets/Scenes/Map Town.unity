@@ -1468,7 +1468,6 @@ MonoBehaviour:
   combatPanel: {fileID: 616347706}
   happeningPanel: {fileID: 2015955277}
   analysisPanel: {fileID: 388170152}
-  tank: {fileID: 1875279494566678142, guid: ce77a0acf478da046bea30ad3dfd65c5, type: 3}
 --- !u!114 &657524478
 MonoBehaviour:
   m_ObjectHideFlags: 0

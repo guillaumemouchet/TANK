@@ -26,25 +26,25 @@ public class TankController : MonoBehaviour
 
     private void OnEnable()
     {
-        toggleList = new List<Toggle>()
-        {
-            toggleJump,
-            toggleIsmissile,
-            togglePerk1,
-            togglePerk2
-        };
-
         Debug.Log("Enabling Tankcontroller");
 
-        toggleJump.transform.GetChild(0).GetComponent<Text>().text = tank.jumpPerk;
-        toggleIsmissile.transform.GetChild(0).GetComponent<Text>().text = tank.ismissilePerk;
-        togglePerk1.transform.GetChild(0).GetComponent<Text>().text = tank.perk1;
-        togglePerk2.transform.GetChild(0).GetComponent<Text>().text = tank.perk2;
+        jump = this.GetComponent<Jump>();
+        canon = this.GetComponent<Canon>();
+        perk1 = this.GetComponent<Perk1>();
+        perk2 = this.GetComponent<Perk2>();
 
-        toggleJump.tag = tank.jumpPerk;
-        toggleIsmissile.tag = tank.ismissilePerk;
-        togglePerk1.tag = tank.perk1;
-        togglePerk2.tag = tank.perk2;
+        toggles = this.GetComponentsInChildren<Toggle>();
+
+        toggles[0].transform.GetChild(0).GetComponent<Text>().text = tankSO.jumpPerk;
+        toggles[1].transform.GetChild(0).GetComponent<Text>().text = tankSO.ismissilePerk;
+        toggles[2].transform.GetChild(0).GetComponent<Text>().text = tankSO.perk1;
+        toggles[3].transform.GetChild(0).GetComponent<Text>().text = tankSO.perk2;
+
+        toggles[0].tag = tankSO.jumpPerk;
+        toggles[1].tag = tankSO.ismissilePerk;
+        toggles[2].tag = tankSO.perk1;
+        toggles[3].tag = tankSO.perk2;
+
     }
 
     private void Update()
@@ -68,7 +68,7 @@ public class TankController : MonoBehaviour
     private void LockIn()
     {
         Toggle toggle = null;
-        foreach (Toggle element in toggleList)
+        foreach (Toggle element in toggles)
         { 
             if (element.isOn)
             {
@@ -79,13 +79,13 @@ public class TankController : MonoBehaviour
         {
             if (toggle.name.Equals("Jump"))
             {
-                //Debug.Log("jump Lock IN");
+                Debug.Log("jump Lock IN");
                 jump.LockIn();
                 jumpActionLockedIn = true;
             }
             else if (toggle.name.Equals("Ismissile"))
             {
-                //Debug.Log("MISSILE Lock IN");
+                Debug.Log("MISSILE Lock IN");
                 canon.LockIn();
                 ismissileActionLockedIn = true;
             }
@@ -142,7 +142,7 @@ public class TankController : MonoBehaviour
 
     public void Enable()
     {
-        foreach (Toggle toggle in toggleList)
+        foreach (Toggle toggle in toggles)
         {
             toggle.interactable = true;
         }
@@ -150,7 +150,7 @@ public class TankController : MonoBehaviour
 
     public void Disable()
     {
-        foreach (Toggle toggle in toggleList)
+        foreach (Toggle toggle in toggles)
         {
             toggle.interactable = false;
         }
@@ -172,22 +172,17 @@ public class TankController : MonoBehaviour
     private bool ismissileActionLockedIn;
     private bool perk1ActionLockedIn;
     private bool perk2ActionLockedIn;
-    private List<Toggle> toggleList;
+    private Toggle[] toggles;
 
     [SerializeField] private int grenadeDamage;
 
     // Components
-    [SerializeField] private Canon canon;
-    [SerializeField] private Jump jump;
-    [SerializeField] private Perk1 perk1;
-    [SerializeField] private Perk2 perk2;
+    private Canon canon;
+    private Jump jump;
+    private Perk1 perk1;
+    private Perk2 perk2;
 
-    [SerializeField] private Toggle toggleJump;
-    [SerializeField] private Toggle toggleIsmissile;
-    [SerializeField] private Toggle togglePerk1;
-    [SerializeField] private Toggle togglePerk2;
-
-    [SerializeField] private SO_Tanks tank;
+    [SerializeField] private SO_Tanks tankSO;
 
 
 
